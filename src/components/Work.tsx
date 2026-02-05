@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   Drawer,
   DrawerClose,
@@ -27,6 +28,7 @@ interface SelectedWork {
 
 const Work = () => {
   const [selectedProject, setSelectedProject] = useState<SelectedWork | null>(null);
+  const navigate = useNavigate();
 
   const { data: projects = [] } = useQuery({
     queryKey: ["selected_works"],
@@ -43,6 +45,12 @@ const Work = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleProjectClick = (project: SelectedWork) => {
+    // Check if this is the Navian project - navigate to dedicated case study page
+    if (project.title.toLowerCase().includes("navian") || project.title.toLowerCase().includes("navain")) {
+      navigate("/case/navian");
+      return;
+    }
+    // For other projects, open the drawer
     setSelectedProject(project);
     setIsOpen(true);
   };
