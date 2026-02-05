@@ -120,7 +120,7 @@ const CaseNavian = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
                             >
-                                <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                                <p className="text-xs font-medium tracking-wide text-muted-foreground mb-2">
                                     {item.label}
                                 </p>
                                 <p className="text-base font-medium text-[#141414]">{item.value}</p>
@@ -155,7 +155,7 @@ const CaseNavian = () => {
                         transition={{ duration: 0.6 }}
                         className="flex items-baseline gap-4 mb-12"
                     >
-                        <span className="text-6xl font-bold text-gray-200 font-heading">01</span>
+                        <span className="text-3xl font-light text-gray-300 font-heading">01</span>
                         <h2 className="text-2xl font-bold tracking-tight text-[#141414]">The Context</h2>
                     </motion.div>
 
@@ -179,7 +179,7 @@ const CaseNavian = () => {
                         </div>
 
                         <div className="space-y-6">
-                            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground border-b border-gray-200 pb-3">
+                            <h4 className="text-xs font-medium tracking-wide text-muted-foreground border-b border-gray-200 pb-3">
                                 The Problems
                             </h4>
                             {[
@@ -213,7 +213,7 @@ const CaseNavian = () => {
                         transition={{ delay: 0.2, duration: 0.8 }}
                         className="mt-16 p-8 bg-gray-100 rounded-2xl"
                     >
-                        <p className="text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                        <p className="text-xs font-medium tracking-wide text-muted-foreground mb-4">
                             The Mission
                         </p>
                         <p className="text-xl lg:text-2xl font-medium text-[#141414] leading-relaxed">
@@ -233,7 +233,7 @@ const CaseNavian = () => {
                         transition={{ duration: 0.6 }}
                         className="flex items-baseline gap-4 mb-12"
                     >
-                        <span className="text-6xl font-bold text-gray-200 font-heading">02</span>
+                        <span className="text-3xl font-light text-gray-300 font-heading">02</span>
                         <h2 className="text-2xl font-bold tracking-tight text-[#141414]">Discovery & Architecture</h2>
                     </motion.div>
 
@@ -249,7 +249,7 @@ const CaseNavian = () => {
 
                     {/* User Ecosystem Accordion */}
                     <div className="mb-16">
-                        <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground mb-6">
+                        <h3 className="text-xs font-medium tracking-wide text-muted-foreground mb-6">
                             The User Ecosystem
                         </h3>
                         <div className="space-y-2">
@@ -260,7 +260,7 @@ const CaseNavian = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.05, duration: 0.4 }}
-                                    className="border border-gray-200 rounded-lg overflow-hidden bg-white"
+                                    className="rounded-lg overflow-hidden bg-white"
                                 >
                                     <button
                                         onClick={() => setExpandedRole(expandedRole === index ? null : index)}
@@ -290,9 +290,9 @@ const CaseNavian = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="p-8 border border-gray-200 rounded-2xl bg-white"
+                        className="p-8 rounded-2xl bg-white"
                     >
-                        <p className="text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground mb-3">
+                        <p className="text-xs font-medium tracking-wide text-muted-foreground mb-3">
                             Strategic Decision
                         </p>
                         <h3 className="text-2xl font-bold text-[#141414] mb-4">Desktop First</h3>
@@ -329,7 +329,7 @@ const CaseNavian = () => {
                         transition={{ duration: 0.6 }}
                         className="flex items-baseline gap-4 mb-16"
                     >
-                        <span className="text-6xl font-bold text-gray-200 font-heading">03</span>
+                        <span className="text-3xl font-light text-gray-300 font-heading">03</span>
                         <h2 className="text-2xl font-bold tracking-tight text-[#141414]">Key Design Challenges</h2>
                     </motion.div>
 
@@ -341,7 +341,7 @@ const CaseNavian = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.15, duration: 0.6 }}
-                                className="border border-gray-200 rounded-2xl p-8 hover:border-gray-400 transition-colors"
+                                className="rounded-2xl p-8 bg-gray-50 hover:bg-gray-100 transition-colors"
                             >
                                 <div className="flex items-center gap-3 mb-6">
                                     <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
@@ -355,15 +355,15 @@ const CaseNavian = () => {
 
                                 <div className="space-y-4">
                                     <div>
-                                        <p className="text-xs font-bold uppercase tracking-[0.15em] text-red-500 mb-1">Problem</p>
+                                        <p className="text-xs font-medium tracking-wide text-red-500 mb-1">Problem</p>
                                         <p className="text-sm text-gray-600">{challenge.problem}</p>
                                     </div>
                                     <div>
-                                        <p className="text-xs font-bold uppercase tracking-[0.15em] text-green-600 mb-1">Solution</p>
+                                        <p className="text-xs font-medium tracking-wide text-green-600 mb-1">Solution</p>
                                         <p className="text-sm text-gray-600">{challenge.solution}</p>
                                     </div>
                                     <div>
-                                        <p className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600 mb-1">Result</p>
+                                        <p className="text-xs font-medium tracking-wide text-blue-600 mb-1">Result</p>
                                         <p className="text-sm text-gray-600">{challenge.result}</p>
                                     </div>
                                 </div>
@@ -407,7 +407,7 @@ const CaseNavian = () => {
                         transition={{ duration: 0.6 }}
                         className="flex items-baseline gap-4 mb-16"
                     >
-                        <span className="text-6xl font-bold text-gray-700 font-heading">04</span>
+                        <span className="text-3xl font-light text-gray-600 font-heading">04</span>
                         <h2 className="text-2xl font-bold tracking-tight">The Solution</h2>
                     </motion.div>
 
@@ -433,7 +433,7 @@ const CaseNavian = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                                className="border border-gray-700 rounded-2xl p-8"
+                                className="rounded-2xl p-8 bg-gray-800/50"
                             >
                                 <span className="text-sm font-bold text-gray-500 mb-4 block">{feature.num}</span>
                                 <h4 className="text-xl font-bold mb-3">{feature.title}</h4>
@@ -466,7 +466,7 @@ const CaseNavian = () => {
                         transition={{ duration: 0.6 }}
                         className="flex items-baseline gap-4 mb-16"
                     >
-                        <span className="text-6xl font-bold text-gray-200 font-heading">05</span>
+                        <span className="text-3xl font-light text-gray-300 font-heading">05</span>
                         <h2 className="text-2xl font-bold tracking-tight text-[#141414]">Results & Learnings</h2>
                     </motion.div>
 
@@ -505,7 +505,7 @@ const CaseNavian = () => {
                         transition={{ duration: 0.8 }}
                         className="border-l-4 border-[#141414] pl-8 py-4"
                     >
-                        <p className="text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                        <p className="text-xs font-medium tracking-wide text-muted-foreground mb-4">
                             Reflection
                         </p>
                         <p className="text-xl text-gray-600 leading-relaxed italic">
