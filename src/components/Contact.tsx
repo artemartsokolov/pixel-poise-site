@@ -1,46 +1,91 @@
 import { motion } from "framer-motion";
+import { ArrowRight, Download } from "lucide-react";
+
+const contactLinks = [
+  { label: "Email", value: "hello@artemsokolov.design", href: "mailto:hello@artemsokolov.design" },
+  { label: "LinkedIn", value: "/artemsokolov", href: "https://linkedin.com/in/artemsokolov" },
+  { label: "Telegram", value: "@artemsokolov", href: "https://t.me/artemsokolov" },
+];
 
 const Contact = () => {
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center">
-      <div className="container mx-auto px-6 py-20">
-        <div className="max-w-4xl">
-          <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-16 tracking-tighter font-heading leading-none">
-            LET'S <span className="text-primary italic">WORK</span> TOGETHER
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-          {[
-            { label: 'Email', value: 'hello@alexmorgan.design', href: 'mailto:hello@alexmorgan.design' },
-            { label: 'LinkedIn', value: '/alexmorgan', href: 'https://linkedin.com' },
-            { label: 'Twitter', value: '@alexmorgan', href: 'https://twitter.com' }
-          ].map((link, index) => (
-            <motion.a
-              key={index}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="p-10 border border-foreground/10 rounded-3xl hover:bg-foreground hover:text-background transition-all duration-500 group flex flex-col justify-between aspect-square md:aspect-auto"
-            >
-              <span className="text-xs font-bold tracking-[0.3em] uppercase mb-8 text-muted-foreground group-hover:text-background/50 transition-colors">
-                {link.label}
-              </span>
-              <span className="text-2xl font-bold tracking-tight">
-                {link.value}
-              </span>
-            </motion.a>
-          ))}
-        </div>
-        <div className="mt-24 w-full pt-12 border-t border-foreground/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground">
-            © 2024 Alex Morgan. Built with precision.
+    <section id="contact" className="py-28 px-8 lg:px-16 bg-[#D4D0C8]">
+      <div className="w-full">
+        {/* Two Column Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-[450px]"
+        >
+          {/* Left: Section Title */}
+          <div>
+            <h2 className="text-2xl lg:text-3xl font-light font-heading text-[#141414]">
+              Contact
+            </h2>
+          </div>
+
+          {/* Right: Content */}
+          <div className="space-y-12">
+            {/* Main CTA */}
+            <div>
+              <p className="text-2xl lg:text-3xl font-light text-[#141414] leading-[1.4] mb-8">
+                Let's build something <strong className="font-semibold">exceptional</strong> together.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="mailto:hello@artemsokolov.design"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#141414] text-white rounded-full text-sm font-medium hover:bg-[#333] transition-colors"
+                >
+                  Get in Touch
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <a
+                  href="/cv-artem-sokolov.pdf"
+                  download
+                  className="inline-flex items-center gap-2 px-6 py-3 border border-[#141414] text-[#141414] rounded-full text-sm font-medium hover:bg-[#141414] hover:text-white transition-colors"
+                >
+                  Download CV
+                  <Download className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Contact Links */}
+            <div className="border-t border-[#141414]/20 pt-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {contactLinks.map((link, index) => (
+                  <motion.a
+                    key={index}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="group"
+                  >
+                    <p className="text-sm font-semibold text-[#141414] mb-1">{link.label}</p>
+                    <p className="text-sm font-light text-[#141414]/60 group-hover:text-[#141414] transition-colors">
+                      {link.value}
+                    </p>
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Footer */}
+        <div className="mt-24 pt-8 border-t border-[#141414]/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm font-light text-[#141414]/50">
+            © 2024 Artem Sokolov. Built with precision.
           </p>
-          <div className="flex gap-8">
-            <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground hover:text-primary cursor-pointer transition-colors">Privacy</span>
-            <span className="text-xs font-bold tracking-widest uppercase text-muted-foreground hover:text-primary cursor-pointer transition-colors">Terms</span>
+          <div className="flex gap-6">
+            <span className="text-sm font-light text-[#141414]/50 hover:text-[#141414] cursor-pointer transition-colors">Privacy</span>
+            <span className="text-sm font-light text-[#141414]/50 hover:text-[#141414] cursor-pointer transition-colors">Terms</span>
           </div>
         </div>
       </div>

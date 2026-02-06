@@ -1,28 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calculator, Swords, Moon } from "lucide-react";
+import { ArrowLeft, Calculator, Swords, Moon, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 const CaseNavian = () => {
-    const [expandedRole, setExpandedRole] = useState<number | null>(null);
-
-    const metadata = [
-        { label: "Role", value: "Lead Product Designer" },
-        { label: "Timeline", value: "14 months" },
-        { label: "Platform", value: "B2B SaaS (Web)" },
-        { label: "Stack", value: "Figma, Storybook, MUI, Python" },
-    ];
-
-    const userRoles = [
-        { title: "Project Manager", desc: '"God view" of the entire pipeline.' },
-        { title: "Broker", desc: "Finds and logs land plots." },
-        { title: "Analyst", desc: "Deep financial modeling (IRR/NPV)." },
-        { title: "Financier", desc: "Generates bank reports & negotiates loans." },
-        { title: "Equity Manager", desc: "Raises funds from private investors." },
-        { title: "Investors", desc: "Track their portfolio ROI." },
-        { title: "Construction Partners", desc: "Bid on tenders." },
-    ];
-
     const challenges = [
         {
             icon: Calculator,
@@ -59,8 +40,42 @@ const CaseNavian = () => {
         { emoji: "📉", title: "Smart Resources", desc: "MUI decision saved huge amounts of budget and time." },
     ];
 
+    const galleryImages = [
+        { src: "/placeholder-gallery-1.jpg", alt: "Dashboard Overview", caption: "Main Dashboard — Project Pipeline View" },
+        { src: "/placeholder-gallery-2.jpg", alt: "Deal Calculator", caption: "Deal Calculator — Financial Modeling Interface" },
+        { src: "/placeholder-gallery-3.jpg", alt: "Kanban Board", caption: "Kanban Board — Task Management" },
+        { src: "/placeholder-gallery-4.jpg", alt: "Investor Portal", caption: "Investor Portal — Portfolio Tracking" },
+        { src: "/placeholder-gallery-5.jpg", alt: "Bank Tender", caption: "Bank Tender — Comparison View" },
+    ];
+
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxIndex, setLightboxIndex] = useState(0);
+    const [activeRole, setActiveRole] = useState(0);
+
+    const roleViews = [
+        { name: "Project Manager", label: "PM", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/PM.png" },
+        { name: "Analyst", label: "Analyst", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Analyst.png" },
+        { name: "Financier", label: "Financier", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/financier.jpg" },
+        { name: "Contractor", label: "Contractor", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/tendering%20manager%20(1).png" },
+        { name: "Equity Manager", label: "Equity", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/equity%20manager.png" },
+        { name: "Investor", label: "Investor", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/equity%20partner%20admin.png" },
+    ];
+
+    const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+    const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+
+    const openLightbox = (index: number) => {
+        setLightboxIndex(index);
+        setLightboxOpen(true);
+    };
+
+    const closeLightbox = () => setLightboxOpen(false);
+    const nextLightbox = () => setLightboxIndex((prev) => (prev + 1) % galleryImages.length);
+    const prevLightbox = () => setLightboxIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+
     return (
-        <div className="bg-background text-foreground min-h-screen">
+        <div className="bg-[#F5F3EE] text-foreground min-h-screen">
             {/* Back Navigation */}
             <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -70,464 +85,777 @@ const CaseNavian = () => {
             >
                 <Link
                     to="/"
-                    className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 text-sm font-light text-gray-600 hover:text-[#141414] transition-colors"
                 >
                     <ArrowLeft className="w-4 h-4" />
-                    Back to Work
+                    All Work
                 </Link>
             </motion.div>
 
-            {/* Hero Section */}
-            <section className="min-h-[70vh] flex flex-col justify-end px-6 lg:px-12 pb-16 pt-24">
-                <div className="max-w-[1200px] mx-auto w-full">
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="text-sm font-medium text-muted-foreground mb-4"
-                    >
-                        Case Study — 2024/2025
-                    </motion.p>
+            {/* Hero Section - Estrela Style */}
+            <section>
+                {/* Hero Image - Full width, 50vh, edge-to-edge */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    className="w-full h-[50vh] bg-[#C8C4BC] overflow-hidden"
+                >
+                    <img
+                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/navianos_1.jpg"
+                        alt="Navian Dashboard Preview"
+                        className="w-full h-full object-cover"
+                    />
+                </motion.div>
 
-                    <motion.h1
-                        initial={{ y: 80, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-[4rem] lg:text-[6rem] font-bold tracking-tighter font-heading leading-[0.9] text-[#141414] mb-8"
-                    >
-                        Navian
-                    </motion.h1>
+                {/* Title + Metadata */}
+                <div className="px-8 lg:px-16 py-12 lg:py-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px] items-start">
+                        {/* Left: Title */}
+                        <div>
+                            <motion.h1
+                                initial={{ y: 30, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 0.6, ease: "easeOut" }}
+                                className="text-[2rem] lg:text-[2.5rem] font-normal tracking-tight font-heading leading-[1.15] text-[#141414]"
+                            >
+                                Navian<br />
+                                <span className="text-gray-400">A Real Estate Operating<br />System with Purpose</span>
+                            </motion.h1>
+                        </div>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.8 }}
-                        className="text-2xl lg:text-3xl font-medium text-gray-600 max-w-3xl leading-tight"
-                    >
-                        The Real Estate Operating System
-                    </motion.p>
-                </div>
-            </section>
-
-            {/* Metadata Bar */}
-            <section className="px-6 lg:px-12 py-12 border-t border-gray-200">
-                <div className="max-w-[1200px] mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        {metadata.map((item, index) => (
+                        {/* Right: Metadata + Button */}
+                        <div className="flex justify-between items-start">
+                            {/* Column 1: Date, Location, Services */}
                             <motion.div
-                                key={item.label}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
+                                transition={{ delay: 0.2, duration: 0.6 }}
+                                className="space-y-6"
                             >
-                                <p className="text-xs font-medium tracking-wide text-muted-foreground mb-2">
-                                    {item.label}
-                                </p>
-                                <p className="text-base font-medium text-[#141414]">{item.value}</p>
+                                <div>
+                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Date</p>
+                                    <p className="text-sm font-light text-gray-500">2024 – Present</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Location</p>
+                                    <p className="text-sm font-light text-gray-500">Sweden</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Services</p>
+                                    <p className="text-sm font-light text-gray-500">Product Design<br />UX Strategy<br />Design System</p>
+                                </div>
                             </motion.div>
-                        ))}
+
+                            {/* Column 2: Role, Timeline, Platform */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.25, duration: 0.6 }}
+                                className="space-y-6"
+                            >
+                                <div>
+                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Role</p>
+                                    <p className="text-sm font-light text-gray-500">Lead Product Designer</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Timeline</p>
+                                    <p className="text-sm font-light text-gray-500">14 months</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Platform</p>
+                                    <p className="text-sm font-light text-gray-500">B2B SaaS (Web)</p>
+                                </div>
+                            </motion.div>
+
+                            {/* Visit Website Button */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3, duration: 0.6 }}
+                            >
+                                <a
+                                    href="#"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#141414] rounded-full text-sm font-medium text-[#141414] hover:bg-[#141414] hover:text-white transition-colors"
+                                >
+                                    Visit Website
+                                    <span className="text-xs">•</span>
+                                </a>
+                            </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Image Placeholder 1 */}
-            <section className="px-6 lg:px-12 py-8">
+            {/* Horizontal Divider */}
+            <div className="w-full h-px bg-gray-300"></div>
+
+            {/* The Brief - Estrela Style */}
+            <section className="py-28">
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="max-w-[1200px] mx-auto"
+                    className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px] px-8 lg:px-16"
                 >
-                    <div className="aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center">
-                        <p className="text-sm text-gray-400 font-medium">📸 Hero Image — Dashboard Overview</p>
+                    {/* Left: Section Title */}
+                    <div>
+                        <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">
+                            The Brief
+                        </h2>
+                    </div>
+
+                    {/* Right: Content */}
+                    <div className="space-y-12">
+                        {/* Overview */}
+                        <div>
+                            <h3 className="text-base font-semibold text-[#141414] mb-4">Overview</h3>
+                            <p className="text-base font-light text-gray-600 leading-relaxed">
+                                Navian is a real estate development platform for Swedish developers navigating the complex 80/20 funding split (80% Bank loans, 20% Private Equity). Small and mid-sized developers were operating in chaos — managing deals across WhatsApp, email threads, and fragile Excel files that only one person understood.
+                            </p>
+                        </div>
+
+                        {/* Challenge */}
+                        <div>
+                            <h3 className="text-base font-semibold text-[#141414] mb-4">Challenge</h3>
+                            <p className="text-base font-light text-gray-600 leading-relaxed">
+                                The task was to create a unified operating system that could digitize the entire deal lifecycle — from Land Sourcing through Financial Modeling, Bank Tendering, Construction Bidding, and Equity Fundraising. The system needed to serve 7 distinct user roles, each viewing the process from a different angle, while replacing a 50-sheet Excel monster.
+                            </p>
+                        </div>
+
+                        {/* Solution */}
+                        <div>
+                            <h3 className="text-base font-semibold text-[#141414] mb-4">Solution</h3>
+                            <p className="text-base font-light text-gray-600 leading-relaxed">
+                                I designed a modular B2B SaaS platform with role-based dashboards, a Deal Calculator wizard that tames complex Python-powered financial modeling, and a Presentation Engine that auto-generates investment brochures. The MUI design system decision saved ~40% of frontend resources while maintaining premium aesthetics.
+                            </p>
+                        </div>
                     </div>
                 </motion.div>
             </section>
 
-            {/* Section 01: Context */}
-            <section className="px-6 lg:px-12 py-20">
-                <div className="max-w-[1200px] mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="flex items-baseline gap-4 mb-12"
-                    >
-                        <span className="text-3xl font-light text-gray-300 font-heading">01</span>
-                        <h2 className="text-2xl font-bold tracking-tight text-[#141414]">The Context</h2>
-                    </motion.div>
+            {/* Horizontal Divider */}
+            <div className="w-full h-px bg-gray-300"></div>
 
+            {/* My Role - Estrela Style */}
+            <section className="px-8 lg:px-16 py-28 bg-[#D4D0C8]">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px]"
+                >
+                    {/* Left: Section Title */}
+                    <div>
+                        <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">
+                            My Role
+                        </h2>
+                    </div>
+
+                    {/* Right: Role list */}
+                    <div className="space-y-0">
+                        {[
+                            { role: "UX Strategy", desc: "Mapping user journeys across 7 distinct roles — Project Managers, Brokers, Analysts, Financiers, Equity Managers, Investors, and Construction Partners." },
+                            { role: "UI Design", desc: "Designing a data-dense, professional interface with generous spacing and refined typography for complex financial workflows." },
+                            { role: "Design System", desc: "Implementing MUI with Storybook customization to save 40% of frontend resources while maintaining premium aesthetics." },
+                            { role: "Product Strategy", desc: "Leading the Desktop-First decision based on user research — our core users work exclusively on large screens with complex documents." },
+                        ].map((item, index) => (
+                            <motion.div
+                                key={item.role}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1, duration: 0.6 }}
+                                className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 py-6 border-t border-[#141414]/20"
+                            >
+                                <p className="text-base font-semibold text-[#141414]">{item.role}</p>
+                                <p className="text-base font-light text-[#141414]/70 leading-relaxed">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+            </section>
+
+            {/* Horizontal Divider */}
+            <div className="w-full h-px bg-gray-300"></div>
+
+            {/* Discovery & Architecture - Fullscreen Diagram */}
+            <section className="min-h-screen bg-[#141414] text-white py-28 px-8 lg:px-16">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="max-w-[1400px] mx-auto"
+                >
+                    {/* Header */}
+                    <div className="mb-16">
+                        <h2 className="text-4xl lg:text-5xl font-light font-heading text-white mb-6">
+                            Discovery & Architecture
+                        </h2>
+                        <p className="text-lg text-gray-400 max-w-2xl">
+                            The system had to serve 7 distinct user roles, each viewing the "elephant" from a different angle. Designing for this interconnected complexity was the main challenge.
+                        </p>
+                    </div>
+
+                    {/* User Ecosystem Diagram */}
+                    <div className="mb-16">
+                        <p className="text-sm text-gray-500 mb-8 tracking-wide">The User Ecosystem</p>
+
+                        {/* Central Hub + Surrounding Roles */}
+                        <div className="relative">
+                            {/* Grid of Role Cards */}
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-1">
+                                {/* Project Manager */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.1, duration: 0.5 }}
+                                    className="bg-[#1F1F1F] px-6 pt-6 pb-14 rounded-sm"
+                                >
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="w-3 h-3 rounded-full bg-white"></div>
+                                        <span className="text-xs text-gray-500 tracking-wide">Central Hub</span>
+                                    </div>
+                                    <h4 className="text-xl font-normal text-white mb-3">Project Manager</h4>
+                                    <ul className="text-xs text-gray-400 space-y-1">
+                                        <li>• Oversees entire deal pipeline</li>
+                                        <li>• Manages construction tenders</li>
+                                        <li>• Signs Term Sheets</li>
+                                    </ul>
+                                </motion.div>
+
+                                {/* Broker */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.15, duration: 0.5 }}
+                                    className="bg-[#1F1F1F] px-6 pt-6 pb-14 rounded-sm"
+                                >
+                                    <div className="w-2 h-2 rounded-full bg-emerald-500 mb-4"></div>
+                                    <h4 className="text-base font-normal text-white mb-2">Broker</h4>
+                                    <ul className="text-xs text-gray-400 space-y-1">
+                                        <li>• Finds & logs land plots</li>
+                                        <li>• Initial deal screening</li>
+                                        <li>• Passes approved plots to Analyst</li>
+                                    </ul>
+                                </motion.div>
+
+                                {/* Analyst */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.2, duration: 0.5 }}
+                                    className="bg-[#1F1F1F] px-6 pt-6 pb-14 rounded-sm"
+                                >
+                                    <div className="w-2 h-2 rounded-full bg-blue-500 mb-4"></div>
+                                    <h4 className="text-base font-normal text-white mb-2">Analyst</h4>
+                                    <ul className="text-xs text-gray-400 space-y-1">
+                                        <li>• Deep financial modeling (IRR/NPV)</li>
+                                        <li>• Uses custom calculation tool</li>
+                                        <li>• Creates investment report</li>
+                                    </ul>
+                                </motion.div>
+
+                                {/* Financier */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.25, duration: 0.5 }}
+                                    className="bg-[#1F1F1F] px-6 pt-6 pb-14 rounded-sm"
+                                >
+                                    <div className="w-2 h-2 rounded-full bg-amber-500 mb-4"></div>
+                                    <h4 className="text-base font-normal text-white mb-2">Financier</h4>
+                                    <ul className="text-xs text-gray-400 space-y-1">
+                                        <li>• Requests docs from landowner</li>
+                                        <li>• Sends applications to banks</li>
+                                        <li>• Collects & compares offers</li>
+                                        <li>• Signs Letter of Intent</li>
+                                    </ul>
+                                </motion.div>
+
+                                {/* Equity Manager */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.3, duration: 0.5 }}
+                                    className="bg-[#1F1F1F] px-6 pt-6 pb-14 rounded-sm"
+                                >
+                                    <div className="w-2 h-2 rounded-full bg-purple-500 mb-4"></div>
+                                    <h4 className="text-base font-normal text-white mb-2">Equity Manager</h4>
+                                    <ul className="text-xs text-gray-400 space-y-1">
+                                        <li>• Creates equity pitch report</li>
+                                        <li>• Sends to investment funds</li>
+                                        <li>• Runs tender, signs with multiple funds</li>
+                                    </ul>
+                                </motion.div>
+
+                                {/* Investment Fund */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.35, duration: 0.5 }}
+                                    className="bg-[#1F1F1F] px-6 pt-6 pb-14 rounded-sm"
+                                >
+                                    <div className="w-2 h-2 rounded-full bg-rose-500 mb-4"></div>
+                                    <h4 className="text-base font-normal text-white mb-2">Investment Fund</h4>
+                                    <ul className="text-xs text-gray-400 space-y-1">
+                                        <li>• Publishes deals to investor network</li>
+                                        <li>• Uses white-label portal</li>
+                                        <li>• Tracks fundraising progress</li>
+                                    </ul>
+                                </motion.div>
+
+                                {/* Investor */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.4, duration: 0.5 }}
+                                    className="bg-[#1F1F1F] px-6 pt-6 pb-14 rounded-sm"
+                                >
+                                    <div className="w-2 h-2 rounded-full bg-cyan-500 mb-4"></div>
+                                    <h4 className="text-base font-normal text-white mb-2">Investor</h4>
+                                    <ul className="text-xs text-gray-400 space-y-1">
+                                        <li>• Reviews deal presentation</li>
+                                        <li>• Decides investment amount</li>
+                                        <li>• Tracks portfolio ROI</li>
+                                    </ul>
+                                </motion.div>
+
+                                {/* Bank Officer */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.45, duration: 0.5 }}
+                                    className="bg-[#1F1F1F] px-6 pt-6 pb-14 rounded-sm"
+                                >
+                                    <div className="w-2 h-2 rounded-full bg-orange-500 mb-4"></div>
+                                    <h4 className="text-base font-normal text-white mb-2">Bank Officer</h4>
+                                    <ul className="text-xs text-gray-400 space-y-1">
+                                        <li>• Reviews project presentation</li>
+                                        <li>• Inputs bank's offer terms</li>
+                                        <li>• Sends offer back to Financier</li>
+                                    </ul>
+                                </motion.div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Role Tabs */}
+                    <div className="flex flex-wrap gap-6 mb-6 border-b border-gray-700 pb-4">
+                        {roleViews.map((role, index) => (
+                            <button
+                                key={role.name}
+                                onClick={() => setActiveRole(index)}
+                                className={`text-xs tracking-wide transition-all duration-200 pb-2 border-b-2 ${activeRole === index
+                                    ? 'text-white border-white'
+                                    : 'text-gray-500 hover:text-white border-transparent'
+                                    }`}
+                            >
+                                {role.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Full-width Image Placeholder */}
+                    <motion.div
+                        key={activeRole}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="aspect-[21/9] rounded-sm overflow-hidden flex items-center justify-center relative"
+                    >
+                        {roleViews[activeRole].image ? (
+                            <>
+                                {/* Blurred Background */}
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center blur-md scale-110 opacity-40"
+                                    style={{ backgroundImage: `url(${roleViews[activeRole].image})` }}
+                                />
+                                <div className="absolute inset-0 bg-black/50" />
+                                {/* Main Image */}
+                                <img
+                                    src={roleViews[activeRole].image}
+                                    alt={roleViews[activeRole].name}
+                                    className="w-full h-full object-contain relative z-10"
+                                />
+                            </>
+                        ) : (
+                            <p className="text-sm text-gray-600 font-light">📸 {roleViews[activeRole].name} View</p>
+                        )}
+                    </motion.div>
+                </motion.div>
+            </section>
+
+            {/* The Solution - Premium Zig-Zag Layout */}
+            <section className="bg-[#D4D0C8]">
+                {/* Intro */}
+                <div className="px-8 lg:px-16 py-20">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.2, duration: 0.8 }}
-                        className="grid grid-cols-1 lg:grid-cols-2 gap-16"
+                        transition={{ duration: 0.8 }}
+                        className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px]"
                     >
                         <div>
-                            <h3 className="text-3xl lg:text-4xl font-bold leading-tight text-[#141414] mb-8">
-                                A Bureaucratic Nightmare
-                            </h3>
-                            <p className="text-lg text-gray-500 leading-relaxed mb-6">
-                                In Sweden, real estate development involves a complex <span className="font-semibold text-[#141414]">80/20 funding split</span> (80% Bank loans, 20% Private Equity).
-                            </p>
-                            <p className="text-lg text-gray-500 leading-relaxed">
-                                Small and mid-sized developers were operating in chaos — managing deals across WhatsApp, email threads, and a fragile 50-sheet Excel file that only one person understood.
+                            <p className="text-sm text-gray-500 mb-4 tracking-wide">The Solution</p>
+                        </div>
+                        <div>
+                            <h2 className="text-4xl lg:text-5xl font-light font-heading text-[#141414] mb-8">
+                                A Unified Real Estate OS
+                            </h2>
+                            <p className="text-lg text-gray-700 leading-relaxed">
+                                I engineered a comprehensive Operating System that replaces fragmented tools (Excel, Email, Dropbox) with a synchronized digital pipeline. The platform serves as a <span className="text-[#141414] font-medium">Single Source of Truth</span> for 7 distinct user roles, orchestrating the entire lifecycle—from land acquisition to the final exit.
                             </p>
                         </div>
-
-                        <div className="space-y-6">
-                            <h4 className="text-xs font-medium tracking-wide text-muted-foreground border-b border-gray-200 pb-3">
-                                The Problems
-                            </h4>
-                            {[
-                                { title: "Fragmented Workflow", desc: "Deals managed across WhatsApp, email, and local files." },
-                                { title: "The Excel Monster", desc: "50-sheet file — fragile, opaque, and prone to breaking." },
-                                { title: "Disconnected Roles", desc: "Brokers, Analysts, Financiers working in silos." },
-                            ].map((problem, index) => (
-                                <motion.div
-                                    key={problem.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
-                                    className="flex gap-4"
-                                >
-                                    <div className="w-2 h-2 rounded-full bg-[#141414] mt-2 flex-shrink-0" />
-                                    <div>
-                                        <p className="font-semibold text-[#141414]">{problem.title}</p>
-                                        <p className="text-sm text-gray-500">{problem.desc}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
-
-                    {/* Mission Statement */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2, duration: 0.8 }}
-                        className="mt-16 p-8 bg-gray-100 rounded-2xl"
-                    >
-                        <p className="text-xs font-medium tracking-wide text-muted-foreground mb-4">
-                            The Mission
-                        </p>
-                        <p className="text-xl lg:text-2xl font-medium text-[#141414] leading-relaxed">
-                            Build a unified <span className="italic">Operating System</span> that digitizes the entire deal lifecycle: Land Sourcing → Financial Modeling → Bank Tendering → Construction Bidding → Equity Fundraising.
-                        </p>
                     </motion.div>
                 </div>
-            </section>
 
-            {/* Section 02: Discovery */}
-            <section className="px-6 lg:px-12 py-20 bg-gray-50">
-                <div className="max-w-[1200px] mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="flex items-baseline gap-4 mb-12"
-                    >
-                        <span className="text-3xl font-light text-gray-300 font-heading">02</span>
-                        <h2 className="text-2xl font-bold tracking-tight text-[#141414]">Discovery & Architecture</h2>
-                    </motion.div>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-xl text-gray-600 mb-12 max-w-3xl"
-                    >
-                        The system had to serve <span className="font-semibold text-[#141414]">7 distinct user roles</span>, each viewing the "elephant" from a different angle.
-                    </motion.p>
-
-                    {/* User Ecosystem Accordion */}
-                    <div className="mb-16">
-                        <h3 className="text-xs font-medium tracking-wide text-muted-foreground mb-6">
-                            The User Ecosystem
-                        </h3>
-                        <div className="space-y-2">
-                            {userRoles.map((role, index) => (
-                                <motion.div
-                                    key={role.title}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.05, duration: 0.4 }}
-                                    className="rounded-lg overflow-hidden bg-white"
-                                >
-                                    <button
-                                        onClick={() => setExpandedRole(expandedRole === index ? null : index)}
-                                        className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-gray-50 transition-colors"
-                                    >
-                                        <span className="font-semibold text-[#141414]">{role.title}</span>
-                                        <span className="text-gray-400 text-xl">{expandedRole === index ? "−" : "+"}</span>
-                                    </button>
-                                    {expandedRole === index && (
-                                        <motion.div
-                                            initial={{ opacity: 0, height: 0 }}
-                                            animate={{ opacity: 1, height: "auto" }}
-                                            transition={{ duration: 0.3 }}
-                                            className="px-6 pb-4"
-                                        >
-                                            <p className="text-gray-500">{role.desc}</p>
-                                        </motion.div>
-                                    )}
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Strategic Decision */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="p-8 rounded-2xl bg-white"
-                    >
-                        <p className="text-xs font-medium tracking-wide text-muted-foreground mb-3">
-                            Strategic Decision
-                        </p>
-                        <h3 className="text-2xl font-bold text-[#141414] mb-4">Desktop First</h3>
-                        <p className="text-gray-500 leading-relaxed">
-                            Research showed that our core users (Analysts, Financiers) work exclusively on large screens with complex documents. We cut scope by deprioritizing mobile to focus on a high-density Pro-Interface.
-                        </p>
-                    </motion.div>
-
-                    {/* Image Placeholder */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="mt-16"
-                    >
-                        <div className="aspect-[16/9] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl flex items-center justify-center">
-                            <p className="text-sm text-gray-500 font-medium">📸 User Flow / Mind Map</p>
-                        </div>
-                        <p className="text-sm text-gray-400 mt-3 text-center italic">
-                            Mapping the complex dependencies between 7 user roles.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Section 03: Challenges */}
-            <section className="px-6 lg:px-12 py-20">
-                <div className="max-w-[1200px] mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="flex items-baseline gap-4 mb-16"
-                    >
-                        <span className="text-3xl font-light text-gray-300 font-heading">03</span>
-                        <h2 className="text-2xl font-bold tracking-tight text-[#141414]">Key Design Challenges</h2>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {challenges.map((challenge, index) => (
-                            <motion.div
-                                key={challenge.letter}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.15, duration: 0.6 }}
-                                className="rounded-2xl p-8 bg-gray-50 hover:bg-gray-100 transition-colors"
-                            >
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-                                        <challenge.icon className="w-5 h-5 text-[#141414]" />
-                                    </div>
-                                    <span className="text-sm font-bold text-gray-400">Challenge {challenge.letter}</span>
-                                </div>
-
-                                <h3 className="text-xl font-bold text-[#141414] mb-1">{challenge.title}</h3>
-                                <p className="text-sm text-gray-400 mb-6">{challenge.subtitle}</p>
-
-                                <div className="space-y-4">
-                                    <div>
-                                        <p className="text-xs font-medium tracking-wide text-red-500 mb-1">Problem</p>
-                                        <p className="text-sm text-gray-600">{challenge.problem}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs font-medium tracking-wide text-green-600 mb-1">Solution</p>
-                                        <p className="text-sm text-gray-600">{challenge.solution}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs font-medium tracking-wide text-blue-600 mb-1">Result</p>
-                                        <p className="text-sm text-gray-600">{challenge.result}</p>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* Image Placeholders */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+                {/* Block 1: Command Center - Text Left, Image Right */}
+                <div className="px-8 lg:px-16 py-20 border-t border-[#C5C0B8]">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.98 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
+                            className="max-w-md"
                         >
-                            <div className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center">
-                                <p className="text-sm text-gray-400 font-medium">📸 Calculator UI</p>
-                            </div>
+                            <p className="text-xs text-gray-500 tracking-wide mb-6">01 / The Core</p>
+                            <h3 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-4">The Command Center</h3>
+                            <p className="text-sm text-gray-500 mb-6">Designed for: Project Managers & Admins</p>
+                            <p className="text-base text-gray-600 leading-relaxed mb-8">
+                                At the heart of the system is the <span className="text-[#141414]">Master Pipeline</span>, giving the Project Manager full control over the deal flow.
+                            </p>
+                            <ul className="space-y-4 text-sm text-gray-600">
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Orchestration:</span> As a deal moves from Acquisition to Construction, the system automatically triggers tasks for the next department.</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Role-Based Access:</span> The interface morphs based on the user. A Broker sees map pins; a PM sees the Gantt chart; an Investor sees ROI.</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Smart Presets:</span> "Developer Presets" automate 40% of the manual setup for new deals.</span>
+                                </li>
+                            </ul>
                         </motion.div>
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.98 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.1, duration: 0.8 }}
+                            transition={{ delay: 0.2, duration: 0.8 }}
+                            className="aspect-video rounded-sm overflow-hidden bg-[#E8E4DC]"
                         >
-                            <div className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center">
-                                <p className="text-sm text-gray-400 font-medium">📸 Design System / Storybook</p>
-                            </div>
+                            <video
+                                src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/pm.mp4"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-contain"
+                            />
+                        </motion.div>
+                    </div>
+                </div>
+
+                {/* Block 2: Intelligence Engine - Image Left, Text Right */}
+                <div className="px-8 lg:px-16 py-20 border-t border-[#C5C0B8]">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="aspect-[3/2] rounded-sm overflow-hidden order-2 lg:order-1"
+                        >
+                            <video
+                                src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Unit%20Structure%202-1.mov"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-contain"
+                            />
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2, duration: 0.8 }}
+                            className="order-1 lg:order-2 max-w-md"
+                        >
+                            <p className="text-xs text-gray-500 tracking-wide mb-6">02 / The Brain</p>
+                            <h3 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-4">The Intelligence Engine</h3>
+                            <p className="text-sm text-gray-500 mb-6">Designed for: Analysts</p>
+                            <p className="text-base text-gray-600 leading-relaxed mb-8">
+                                I replaced the legacy "50-sheet Excel" with a specialized microservice—the <span className="text-[#141414]">Deal Calculator</span>.
+                            </p>
+                            <ul className="space-y-4 text-sm text-gray-600">
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Wizard Flow:</span> Guides analysts through hundreds of variables (Rent Rolls, OPEX, Taxes) without overwhelming them.</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Python Backend:</span> Communicates with a Python engine to calculate IRR/NPV in milliseconds.</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Dual UI:</span> Internal tool is minimalist; output is a board-ready investment brochure.</span>
+                                </li>
+                            </ul>
+                        </motion.div>
+                    </div>
+                </div>
+
+                {/* Block 3: Tendering Hub - Text Left, Image Right */}
+                <div className="px-8 lg:px-16 py-20 border-t border-[#C5C0B8]">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="max-w-md"
+                        >
+                            <p className="text-xs text-gray-500 tracking-wide mb-6">03 / The Execution</p>
+                            <h3 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-4">The Tendering Hub</h3>
+                            <p className="text-sm text-gray-500 mb-6">Designed for: Financiers & Project Managers</p>
+                            <p className="text-base text-gray-600 leading-relaxed mb-8">
+                                This module handles the execution phase, managing <span className="text-[#141414]">external negotiations</span> securely.
+                            </p>
+                            <ul className="space-y-4 text-sm text-gray-600">
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Bank Tender:</span> Send brochures to multiple banks instantly. Compare offers (Interest Rates, LTV) side-by-side.</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Construction Bidding:</span> Issue RFPs to construction firms. Platform standardizes bids for easy comparison.</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Digital Term Sheets:</span> Winning offers lock budget data directly into the project model.</span>
+                                </li>
+                            </ul>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2, duration: 0.8 }}
+                            className="aspect-video rounded-sm overflow-hidden bg-[#E8E4DC]"
+                        >
+                            <video
+                                src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Financier.mp4"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-contain"
+                            />
+                        </motion.div>
+                    </div>
+                </div>
+
+                {/* Block 4: Growth Engine - Image Left, Text Right */}
+                <div className="px-8 lg:px-16 py-20 border-t border-[#C5C0B8]">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="aspect-video rounded-sm overflow-hidden bg-[#E8E4DC] order-2 lg:order-1"
+                        >
+                            <video
+                                src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Partners%20Demo.mov"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-contain"
+                            />
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2, duration: 0.8 }}
+                            className="order-1 lg:order-2 max-w-md"
+                        >
+                            <p className="text-xs text-gray-500 tracking-wide mb-6">04 / The Network</p>
+                            <h3 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-4">The Growth Engine</h3>
+                            <p className="text-sm text-gray-500 mb-6">Designed for: Equity Managers & Private Investors</p>
+                            <p className="text-base text-gray-600 leading-relaxed mb-8">
+                                The final stage connects developers with private capital. I built this as a <span className="text-[#141414]">scalable B2B2C solution</span>.
+                            </p>
+                            <ul className="space-y-4 text-sm text-gray-600">
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">White-Label:</span> Partner Funds can "skin" the platform with their own branding (Logo, Colors, Domain).</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Marketplace:</span> Public-facing gallery where investors browse vetted projects and commit funds.</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <span className="text-[#141414]">•</span>
+                                    <span><span className="text-[#141414]">Investor Portal:</span> Dashboard to track portfolio, view construction progress, and download tax documents.</span>
+                                </li>
+                            </ul>
                         </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* Section 04: Solution */}
-            <section className="px-6 lg:px-12 py-20 bg-[#141414] text-white">
-                <div className="max-w-[1200px] mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="flex items-baseline gap-4 mb-16"
-                    >
-                        <span className="text-3xl font-light text-gray-600 font-heading">04</span>
-                        <h2 className="text-2xl font-bold tracking-tight">The Solution</h2>
-                    </motion.div>
 
-                    <motion.h3
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="text-3xl lg:text-4xl font-bold leading-tight mb-16"
-                    >
-                        A Unified Pipeline
-                    </motion.h3>
+            {/* TEMPORARILY HIDDEN - Project Gallery & Lightbox
+            <section className="py-28 bg-[#141414] overflow-hidden">
+                <div className="px-8 lg:px-16 mb-12">
+                    ... gallery code hidden ...
+                </div>
+            </section>
+            {lightboxOpen && (
+                ... lightbox code hidden ...
+            )}
+            END TEMPORARILY HIDDEN */}
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-                        {[
-                            { num: "01", title: "Kanban Dashboard", desc: "Central hub for Project Managers to track deals moving through stages." },
-                            { num: "02", title: "Construction Tendering", desc: "Comparison tool for collecting and evaluating bids side-by-side." },
-                            { num: "03", title: "White-Label Marketplace", desc: "Equity Funds can skin the platform with their own branding." },
-                        ].map((feature, index) => (
-                            <motion.div
-                                key={feature.num}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1, duration: 0.6 }}
-                                className="rounded-2xl p-8 bg-gray-800/50"
-                            >
-                                <span className="text-sm font-bold text-gray-500 mb-4 block">{feature.num}</span>
-                                <h4 className="text-xl font-bold mb-3">{feature.title}</h4>
-                                <p className="text-gray-400 text-sm leading-relaxed">{feature.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
 
-                    {/* Final Image */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <div className="aspect-[16/9] bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl flex items-center justify-center">
-                            <p className="text-sm text-gray-500 font-medium">📸 Dashboard / Marketplace View</p>
-                        </div>
-                    </motion.div>
+            {/* Key Challenges - Estrela Style */}
+            <section className="px-8 lg:px-16 py-28">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-16"
+                >
+                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">Key Challenges</h2>
+                </motion.div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {challenges.map((challenge, index) => (
+                        <motion.div
+                            key={challenge.letter}
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.15, duration: 0.6 }}
+                            className="bg-[#FAFAF8] px-14 py-16 rounded-sm"
+                        >
+                            <div className="flex items-center gap-4 mb-8">
+                                <challenge.icon className="w-5 h-5 text-[#141414]" strokeWidth={1.5} />
+                                <span className="text-xs font-medium text-gray-400">{challenge.letter}</span>
+                            </div>
+
+                            <h3 className="text-2xl font-normal text-[#141414] mb-2">{challenge.title}</h3>
+                            <p className="text-sm text-gray-400 mb-10">{challenge.subtitle}</p>
+
+                            <div className="space-y-6">
+                                <div>
+                                    <p className="text-sm font-semibold text-[#141414] mb-2">Problem</p>
+                                    <p className="text-sm text-gray-500 leading-relaxed">{challenge.problem}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm font-semibold text-[#141414] mb-2">Solution</p>
+                                    <p className="text-sm text-gray-500 leading-relaxed">{challenge.solution}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm font-semibold text-[#141414] mb-2">Result</p>
+                                    <p className="text-sm text-gray-500 leading-relaxed">{challenge.result}</p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
 
-            {/* Section 05: Results */}
-            <section className="px-6 lg:px-12 py-20">
-                <div className="max-w-[1200px] mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="flex items-baseline gap-4 mb-16"
-                    >
-                        <span className="text-3xl font-light text-gray-300 font-heading">05</span>
-                        <h2 className="text-2xl font-bold tracking-tight text-[#141414]">Results & Learnings</h2>
-                    </motion.div>
+            {/* Results & Learnings - Estrela Style */}
+            <section className="px-8 lg:px-16 py-28">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-8"
+                >
+                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">Results & Learnings</h2>
+                </motion.div>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-xl text-gray-600 mb-12"
-                    >
-                        The platform successfully launched in <span className="font-semibold text-[#141414]">Summer 2025</span>.
-                    </motion.p>
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-base text-gray-500 mb-10"
+                >
+                    The platform successfully launched in <span className="text-[#141414]">Summer 2025</span>.
+                </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                        {results.map((result, index) => (
-                            <motion.div
-                                key={result.title}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1, duration: 0.6 }}
-                                className="text-center p-8 bg-gray-50 rounded-2xl"
-                            >
-                                <span className="text-4xl mb-4 block">{result.emoji}</span>
-                                <h4 className="text-lg font-bold text-[#141414] mb-2">{result.title}</h4>
-                                <p className="text-sm text-gray-500">{result.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* Reflection */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="border-l-4 border-[#141414] pl-8 py-4"
-                    >
-                        <p className="text-xs font-medium tracking-wide text-muted-foreground mb-4">
-                            Reflection
-                        </p>
-                        <p className="text-xl text-gray-600 leading-relaxed italic">
-                            "Designing for Navian taught me how to handle Operational Complexity. I learned that in B2B, 'Clarity and Data Density' always beat 'Creative Visuals.' If I were to do it again, I would involve developers even earlier in the process."
-                        </p>
-                    </motion.div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+                    {results.map((result, index) => (
+                        <motion.div
+                            key={result.title}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1, duration: 0.6 }}
+                            className="bg-[#FAFAF8] px-8 py-10 rounded-sm"
+                        >
+                            <span className="text-xs font-light text-gray-400 mb-4 block">0{index + 1}</span>
+                            <h4 className="text-lg font-normal text-[#141414] mb-2">{result.title}</h4>
+                            <p className="text-sm text-gray-500 leading-relaxed">{result.desc}</p>
+                        </motion.div>
+                    ))}
                 </div>
+
+                {/* Reflection */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="border-l-2 border-gray-300 pl-8 py-4"
+                >
+                    <p className="text-sm font-semibold text-[#141414] mb-4">
+                        Reflection
+                    </p>
+                    <p className="text-base text-gray-500 leading-relaxed">
+                        "Designing for Navian taught me how to handle Operational Complexity. I learned that in B2B, 'Clarity and Data Density' always beat 'Creative Visuals.' If I were to do it again, I would involve developers even earlier in the process."
+                    </p>
+                </motion.div>
             </section>
 
             {/* Footer CTA */}
-            <section className="px-6 lg:px-12 py-20 border-t border-gray-200">
-                <div className="max-w-[1200px] mx-auto text-center">
+            <section className="px-8 lg:px-16 py-28 border-t border-gray-200">
+                <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px] items-center">
+                    <div>
+                        <p className="text-sm text-gray-400">Want to see more?</p>
+                    </div>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <p className="text-lg text-gray-500 mb-6">Want to see more?</p>
                         <Link
                             to="/"
-                            className="inline-block bg-[#141414] text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-colors"
+                            className="inline-block bg-[#141414] text-white px-8 py-4 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors"
                         >
                             Back to all projects
                         </Link>

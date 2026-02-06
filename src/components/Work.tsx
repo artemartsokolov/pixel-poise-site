@@ -1,179 +1,98 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-} from "@/components/ui/drawer";
-import { X } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { ArrowRight } from "lucide-react";
 
-interface SelectedWork {
-  id: string;
-  title: string;
-  description: string;
-  year: string;
-  role: string;
-  gradient: string;
-  project_overview?: string;
-  role_description?: string;
-  sort_order: number;
-  cover_image_url?: string | null;
-}
+// Hardcoded case studies with business-focused copy
+const caseStudies = [
+  {
+    id: "navian",
+    title: "Navian OS",
+    description: "Replaced fragmented Excel workflows with a unified B2B SaaS pipeline.",
+    year: "2023",
+    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/navianos_1.jpg",
+    link: "/case/navian",
+  },
+  {
+    id: "reviero",
+    title: "Reviero Invest",
+    description: "Scaled a PropTech startup from MVP to a full-cycle product with AI search.",
+    year: "2022",
+    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/reviero-cover.jpg",
+    link: null,
+  },
+  {
+    id: "flowhealth",
+    title: "Flow Workforce",
+    description: "A safety management platform used by Disney and JPMorgan Chase.",
+    year: "2021",
+    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/flow-cover.jpg",
+    link: null,
+  },
+];
 
 const Work = () => {
-  const [selectedProject, setSelectedProject] = useState<SelectedWork | null>(null);
   const navigate = useNavigate();
 
-  const { data: projects = [] } = useQuery({
-    queryKey: ["selected_works"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("selected_works")
-        .select("*")
-        .order("sort_order", { ascending: true });
-
-      if (error) throw error;
-      return data as SelectedWork[];
-    },
-  });
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleProjectClick = (project: SelectedWork) => {
-    // Check if this is the Navian project - navigate to dedicated case study page
-    if (project.title.toLowerCase().includes("navian") || project.title.toLowerCase().includes("navain")) {
-      navigate("/case/navian");
-      return;
+  const handleCaseClick = (study: typeof caseStudies[0]) => {
+    if (study.link) {
+      navigate(study.link);
     }
-    // For other projects, open the drawer
-    setSelectedProject(project);
-    setIsOpen(true);
   };
 
   return (
-    <section id="work" className="py-20 border-b border-foreground relative z-10 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="group cursor-pointer w-full"
-              onClick={() => handleProjectClick(project)}
-            >
-              <div className="relative overflow-hidden rounded-2xl aspect-[4/3] mb-5 bg-gray-100">
-                {project.cover_image_url ? (
-                  <img
-                    src={project.cover_image_url}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                ) : (
-                  <div
-                    className="w-full h-full transition-transform duration-700 group-hover:scale-105"
-                    style={{ background: project.gradient }}
-                  />
-                )}
-                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </div>
+    <section id="work" className="relative z-10 bg-background px-6 pt-4 pb-16">
+      {/* Case Studies List */}
+      <div className="w-full">
+        {caseStudies.map((study, index) => (
+          <motion.div
+            key={study.id}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className={`group ${study.link ? 'cursor-pointer' : ''} mb-4`}
+            onClick={() => handleCaseClick(study)}
+          >
+            {/* Full-width Image with overlay text */}
+            <div className="relative w-full aspect-[16/9] bg-[#C8C4BC] overflow-hidden">
+              <img
+                src={study.image}
+                alt={study.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              />
 
-              <div className="space-y-3">
-                <div className="flex justify-between items-baseline">
-                  <h3 className="text-2xl font-semibold tracking-tight text-[#141414]">
-                    {project.title}
-                  </h3>
-                  <span className="text-sm text-gray-400">
-                    {project.year}
-                  </span>
-                </div>
+              {/* Dark gradient overlay at bottom */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-                <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">
-                  {project.description}
-                </p>
-
-                <div className="pt-2 flex items-center justify-between">
-                  <span className="px-3 py-1 border border-gray-200 rounded-full text-xs font-medium text-gray-600 bg-transparent">
-                    {project.role}
-                  </span>
-
-                  <button className="text-xs font-medium text-[#141414] border-b border-[#141414] pb-px hover:opacity-70 transition-opacity">
-                    View case
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      <Drawer open={isOpen} onOpenChange={setIsOpen}>
-        <DrawerContent className="h-[90vh] max-h-[90vh] w-full max-w-full">
-          <DrawerClose className="absolute right-6 top-6 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground z-50">
-            <X className="h-6 w-6" />
-            <span className="sr-only">Close</span>
-          </DrawerClose>
-
-          {selectedProject && (
-            <div className="h-full overflow-y-auto">
-              <DrawerHeader className="text-left px-6 md:px-12 pt-12">
-                <div className="flex justify-between items-start mb-4">
-                  <DrawerTitle className="text-4xl md:text-6xl font-bold tracking-tight font-heading">
-                    {selectedProject.title}
-                  </DrawerTitle>
-                  <span className="text-sm tracking-wider uppercase opacity-70">
-                    {selectedProject.year}
-                  </span>
-                </div>
-                <DrawerDescription className="text-lg opacity-80">
-                  {selectedProject.description}
-                </DrawerDescription>
-                <p className="text-sm tracking-wider uppercase opacity-70 mt-4">
-                  {selectedProject.role}
-                </p>
-              </DrawerHeader>
-
-              <div className="px-6 md:px-12 pb-12">
-                {selectedProject.cover_image_url ? (
-                  <img
-                    src={selectedProject.cover_image_url}
-                    alt={selectedProject.title}
-                    className="w-full h-[400px] rounded-lg mb-8 object-cover"
-                  />
-                ) : (
-                  <div
-                    className="w-full h-[400px] rounded-lg mb-8"
-                    style={{ background: selectedProject.gradient }}
-                  />
-                )}
-
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 tracking-tight font-heading">PROJECT OVERVIEW</h3>
-                    <p className="text-base leading-relaxed opacity-80">
-                      {selectedProject.project_overview || "Detailed information about the project will be displayed here. This includes the challenge, solution, and impact of the work."}
-                    </p>
+              {/* Case Study Info - Overlaid on image */}
+              <div className="absolute bottom-0 left-0 right-0 px-8 lg:px-16 py-12 lg:py-16">
+                <div className="flex items-end justify-between">
+                  {/* Left: Title + Year */}
+                  <div className="flex items-baseline gap-4">
+                    <h3 className="text-[2rem] lg:text-[2.5rem] font-normal tracking-tight font-heading leading-[1.15] text-white">
+                      {study.title}
+                    </h3>
+                    <span className="text-sm text-white/60">{study.year}</span>
                   </div>
 
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 tracking-tight font-heading">MY ROLE</h3>
-                    <p className="text-base leading-relaxed opacity-80">
-                      {selectedProject.role_description || "Information about responsibilities and contributions to the project."}
-                    </p>
-                  </div>
+                  {/* Center: Description */}
+                  <p className="text-sm font-light text-white/80 max-w-md hidden lg:block">
+                    {study.description}
+                  </p>
+
+                  {/* Right: CTA Button */}
+                  {study.link && (
+                    <button className="inline-flex items-center gap-2 px-5 py-2.5 border border-white/50 rounded-full text-sm font-medium text-white hover:bg-white hover:text-[#141414] transition-colors">
+                      View Case Study
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
-          )}
-        </DrawerContent>
-      </Drawer>
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 };

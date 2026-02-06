@@ -1,6 +1,7 @@
-import profilePhoto from "@/assets/profile-photo-new.jpg";
 import { motion } from "framer-motion";
 import { useHeroScrollEffect } from "@/hooks/useHeroScrollEffect";
+
+const profilePhoto = "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/me_final.jpg";
 
 const Hero = () => {
   useHeroScrollEffect();
@@ -16,20 +17,20 @@ const Hero = () => {
         className="absolute top-8 left-1/2 transform -translate-x-1/2 z-10"
       >
         <div className="flex flex-col items-start space-y-0 ml-8">
-          <div className="text-3xl font-bold tracking-tight font-heading leading-tight">Home</div>
-          <div className="text-3xl font-bold tracking-tight font-heading leading-tight">About</div>
-          <div className="text-3xl font-bold tracking-tight font-heading leading-tight relative">
+          <a href="#hero" className="text-3xl font-normal tracking-tight font-heading leading-tight hover:opacity-60 transition-opacity cursor-pointer">Home</a>
+          <a href="#about-me" className="text-3xl font-normal tracking-tight font-heading leading-tight hover:opacity-60 transition-opacity cursor-pointer">About</a>
+          <a href="#work" className="text-3xl font-normal tracking-tight font-heading leading-tight relative hover:opacity-60 transition-opacity cursor-pointer">
             Work
-            <span className="absolute -right-8 top-0 text-sm font-bold">(6)</span>
-          </div>
-          <div className="text-3xl font-bold tracking-tight font-heading leading-tight">Contact</div>
+            <span className="absolute -right-8 top-0 text-sm font-light">(3)</span>
+          </a>
+          <a href="#contact" className="text-3xl font-normal tracking-tight font-heading leading-tight hover:opacity-60 transition-opacity cursor-pointer">Contact</a>
         </div>
       </motion.nav>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex relative">
-        {/* Left Side - Empty space for description at bottom */}
-        <div className="w-1/2 relative">
+      <div className="flex-1 flex relative isolate">
+        {/* Left Side - White background for blend mode */}
+        <div className="w-1/2 relative bg-white">
         </div>
 
         {/* Right Side - Photo */}
@@ -37,7 +38,7 @@ const Hero = () => {
           <motion.img
             src={profilePhoto}
             alt="Product Designer Portrait"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
@@ -52,20 +53,20 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          <p className="text-xs font-bold mb-2 text-foreground">Digital Designer</p>
-          <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px]">
-            I help designers and agencies elevate their branding with creative development support.
+          <p className="text-sm font-semibold mb-2 text-[#141414]">Senior Product Designer</p>
+          <p className="text-sm font-light text-gray-500 leading-relaxed max-w-[280px]">
+            Specializing in complex B2B SaaS and Data-Driven Interfaces. I transform heavy logic into intuitive ecosystems for Fintech, PropTech, and Enterprise clients.
           </p>
         </motion.div>
       </div>
 
-      {/* Bottom - Large Name (full width, smaller size) */}
-      <div className="absolute bottom-0 left-4 right-4 z-10">
+      {/* Bottom - Large Name */}
+      <div className="absolute bottom-0 left-4 right-4 z-10 pointer-events-none">
         <motion.h1
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
-          className="text-[10rem] font-bold tracking-tighter font-heading leading-[0.85] whitespace-nowrap text-[#141414]"
+          className="text-[10rem] font-light tracking-tighter font-heading leading-[0.85] whitespace-nowrap text-[#141414]"
         >
           ARTEM SOKOLOV
         </motion.h1>
