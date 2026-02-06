@@ -16,13 +16,87 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #fff;
-            color: #141414;
+            background: #F8F6F1;
+            color: #1A1A1A;
             font-size: 11px;
             line-height: 1.5;
-            padding: 48px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cv-wrapper {
             max-width: 800px;
             margin: 0 auto;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section backgrounds */
+        .section-cream {
+            background: #1A1A1A;
+            padding: 48px;
+            color: #F8F6F1;
+        }
+
+        .section-cream h1 {
+            color: #F8F6F1;
+        }
+
+        .section-cream .title {
+            color: #AAA;
+        }
+
+        .section-cream .summary {
+            color: #999;
+        }
+
+        .section-cream .contact-row a {
+            color: #888;
+        }
+
+        .section-beige {
+            background: #D5D0C8;
+            padding: 32px 48px;
+        }
+
+        .section-dark {
+            background: #F8F6F1;
+            padding: 32px 48px;
+            color: #1A1A1A;
+        }
+
+        .section-dark h2 {
+            color: #888;
+            border-bottom: none;
+            margin-bottom: 24px;
+        }
+
+        .section-dark .competency-label {
+            color: #1A1A1A;
+        }
+
+        .section-dark .competency-skills span {
+            color: #666;
+        }
+
+        .section-dark .competency-row {
+            border-bottom-color: #E5E5E5;
+        }
+
+        .section-dark .languages-inline span {
+            color: #666;
+        }
+
+        .section-beige h2 {
+            color: #777;
+            border-bottom-color: #C5C0B8;
+        }
+
+        .section-beige .description {
+            color: #555;
+        }
+
+        .section-beige .description strong {
+            color: #1A1A1A;
         }
 
         /* Header */
@@ -30,9 +104,9 @@
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 32px;
-            margin-bottom: 40px;
+            margin-bottom: 0;
             padding-bottom: 24px;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: none;
             align-items: start;
         }
 
@@ -120,14 +194,13 @@
 
         /* Section */
         section {
-            margin-bottom: 32px;
+            margin-bottom: 0;
         }
 
         h2 {
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
+            letter-spacing: 0.05em;
             color: #999;
             margin-bottom: 16px;
             padding-bottom: 8px;
@@ -140,7 +213,7 @@
             grid-template-columns: 140px 1fr 140px;
             gap: 24px;
             padding: 12px 0;
-            border-bottom: 1px solid #f5f5f5;
+            border-bottom: 1px solid #C5C0B8;
         }
 
         .experience-item:last-child {
@@ -192,20 +265,67 @@
             font-weight: 400;
         }
 
-        /* Skills */
-        .skills-grid {
+        /* Competencies Section */
+        .competencies-section {
+            margin-bottom: 0;
+        }
+
+        .skills-category {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .skills-category:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .category-label {
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: #888;
+        }
+
+        .skills-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
 
         .skill-tag {
+            display: inline-block;
             padding: 6px 14px;
-            background: #f5f5f5;
-            border-radius: 20px;
+            background: #E8E4DD;
+            color: #1A1A1A;
+            border-radius: 0;
             font-size: 10px;
             font-weight: 500;
-            color: #444;
+            letter-spacing: 0.02em;
+        }
+
+        /* Languages */
+        .languages-section-inner {
+            margin-top: 32px;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .languages-section-inner h2 {
+            color: #888;
+            border-bottom: none;
+            margin-bottom: 12px;
+        }
+
+        .languages-inline {
+            display: flex;
+            gap: 32px;
+        }
+
+        .languages-inline span {
+            font-size: 11px;
+            color: #AAA;
         }
 
         /* Two columns for skills and education */
@@ -232,131 +352,152 @@
         }
 
         @page {
-            margin: 1cm;
+            margin: 0;
             size: A4;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="header-left">
-            <div>
-                <h1>Artem Sokolov</h1>
-                <p class="title">Senior Product Designer</p>
-                <p class="summary">
-                    Specializing in complex B2B SaaS and Data-Driven Interfaces.
-                    I transform heavy logic into intuitive ecosystems for Fintech, PropTech, and Enterprise clients.
-                    10+ years of experience creating user-centered digital products.
-                </p>
+    <div class="cv-wrapper">
+        <header class="section-cream">
+            <div class="header-left">
+                <div>
+                    <h1>Artem Sokolov</h1>
+                    <p class="title">Senior Product Designer</p>
+                    <p class="summary">
+                        Specializing in complex B2B SaaS and Data-Driven Interfaces.
+                        I transform heavy logic into intuitive ecosystems for Fintech, PropTech, and Enterprise clients.
+                        10+ years of experience creating user-centered digital products.
+                    </p>
+                </div>
+                <div class="contact-row">
+                    <a href="mailto:artem@pixelpoise.com">artem@pixelpoise.com</a>
+                    <a href="https://pixelpoise.com">pixelpoise.com</a>
+                    <a href="https://linkedin.com/in/artemsokolov">linkedin.com/in/artemsokolov</a>
+                </div>
             </div>
-            <div class="contact-row">
-                <a href="mailto:artem@pixelpoise.com">artem@pixelpoise.com</a>
-                <a href="https://pixelpoise.com">pixelpoise.com</a>
-                <a href="https://linkedin.com/in/artemsokolov">linkedin.com/in/artemsokolov</a>
-            </div>
-        </div>
-        <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/me_final.jpg"
-            alt="Artem Sokolov" class="profile-photo">
-    </header>
+            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/me_final.jpg"
+                alt="Artem Sokolov" class="profile-photo">
+        </header>
 
-    <section>
-        <h2>Experience</h2>
+        <section class="section-beige">
+            <div class="experience-item">
+                <div class="company-info">
+                    <h3>Stimul8 <span class="location">UK</span></h3>
+                    <p class="years">2024 — Present</p>
+                </div>
+                <div class="description">
+                    <strong>0-to-1 Product Launch.</strong> Architected a dual-role family banking app.
+                    Gamification mechanics <strong>reduced onboarding time by 70%</strong>.
+                </div>
+                <div class="position-info">
+                    <p class="role">Senior Product Designer</p>
+                    <p class="note">(Contract)</p>
+                </div>
+            </div>
 
-        <div class="experience-item">
-            <div class="company-info">
-                <h3>Stimul8 <span class="location">UK</span></h3>
-                <p class="years">2024 — Present</p>
+            <div class="experience-item">
+                <div class="company-info">
+                    <h3>Reviero <span class="location">Spain</span></h3>
+                    <p class="years">2023 — 2024</p>
+                </div>
+                <div class="description">
+                    Orchestrated end-to-end design for a PropTech ecosystem (iOS/Android).
+                    Launched <strong>AI-Search</strong> and Booking features that drove <strong>2x user
+                        retention</strong>.
+                </div>
+                <div class="position-info">
+                    <p class="role">Senior Product Designer</p>
+                </div>
             </div>
-            <div class="description">
-                <strong>0-to-1 Product Launch.</strong> Architected a dual-role family banking app.
-                Gamification mechanics <strong>reduced onboarding time by 70%</strong>.
-            </div>
-            <div class="position-info">
-                <p class="role">Senior Product Designer</p>
-                <p class="note">(Contract)</p>
-            </div>
-        </div>
 
-        <div class="experience-item">
-            <div class="company-info">
-                <h3>Reviero <span class="location">Spain</span></h3>
-                <p class="years">2023 — 2024</p>
+            <div class="experience-item">
+                <div class="company-info">
+                    <h3>Flow Health <span class="location">USA</span></h3>
+                    <p class="years">2022 — 2023</p>
+                </div>
+                <div class="description">
+                    Enterprise safety platform deployed at <strong>Disney</strong> and <strong>JPMorgan Chase</strong>.
+                    Migrated the Design System to Storybook, standardizing <strong>55+ components</strong> across web &
+                    mobile.
+                </div>
+                <div class="position-info">
+                    <p class="role">Senior Product Designer</p>
+                </div>
             </div>
-            <div class="description">
-                Orchestrated end-to-end design for a PropTech ecosystem (iOS/Android).
-                Launched <strong>AI-Search</strong> and Booking features that drove <strong>2x user retention</strong>.
-            </div>
-            <div class="position-info">
-                <p class="role">Senior Product Designer</p>
-            </div>
-        </div>
 
-        <div class="experience-item">
-            <div class="company-info">
-                <h3>Flow Health <span class="location">USA</span></h3>
-                <p class="years">2022 — 2023</p>
+            <div class="experience-item">
+                <div class="company-info">
+                    <h3>Navian <span class="location">Sweden</span></h3>
+                    <p class="years">2021 — 2022</p>
+                </div>
+                <div class="description">
+                    Transformed a complex <strong>50-sheet Excel model</strong> into a SaaS Deal Calculator.
+                    Automated financial reporting, cutting analyst workflow by <strong>60%</strong>.
+                </div>
+                <div class="position-info">
+                    <p class="role">Senior Product Designer</p>
+                </div>
             </div>
-            <div class="description">
-                Enterprise safety platform deployed at <strong>Disney</strong> and <strong>JPMorgan Chase</strong>.
-                Migrated the Design System to Storybook, standardizing <strong>55+ components</strong> across web &
-                mobile.
-            </div>
-            <div class="position-info">
-                <p class="role">Senior Product Designer</p>
-            </div>
-        </div>
 
-        <div class="experience-item">
-            <div class="company-info">
-                <h3>Navian <span class="location">Sweden</span></h3>
-                <p class="years">2021 — 2022</p>
-            </div>
-            <div class="description">
-                Transformed a complex <strong>50-sheet Excel model</strong> into a SaaS Deal Calculator.
-                Automated financial reporting, cutting analyst workflow by <strong>60%</strong>.
-            </div>
-            <div class="position-info">
-                <p class="role">Senior Product Designer</p>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="company-info">
-                <h3>Its.agency <span class="location">Russia</span></h3>
-                <p class="years">2019 — 2021</p>
-            </div>
-            <div class="description">
-                Delivered <strong>12+ turnkey projects</strong> including Fintech admin panels and SaaS marketplaces.
-                Focused on rapid MVP delivery.
-            </div>
-            <div class="position-info">
-                <p class="role">Product Designer</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="two-columns">
-        <section>
-            <h2>Skills & Tools</h2>
-            <div class="skills-grid">
-                <span class="skill-tag">User Research</span>
-                <span class="skill-tag">Prototyping</span>
-                <span class="skill-tag">Visual Design</span>
-                <span class="skill-tag">Interaction Design</span>
-                <span class="skill-tag">Design Systems</span>
-                <span class="skill-tag">Figma</span>
-                <span class="skill-tag">Adobe Suite</span>
-                <span class="skill-tag">Front-end Dev</span>
+            <div class="experience-item">
+                <div class="company-info">
+                    <h3>Its.agency <span class="location">Russia</span></h3>
+                    <p class="years">2019 — 2021</p>
+                </div>
+                <div class="description">
+                    Delivered <strong>12+ turnkey projects</strong> including Fintech admin panels and SaaS
+                    marketplaces.
+                    Focused on rapid MVP delivery.
+                </div>
+                <div class="position-info">
+                    <p class="role">Product Designer</p>
+                </div>
             </div>
         </section>
 
-        <section>
-            <h2>Languages</h2>
-            <div class="skills-grid">
-                <span class="skill-tag">English — Fluent</span>
-                <span class="skill-tag">Russian — Native</span>
-                <span class="skill-tag">Spanish — Intermediate</span>
+        <!-- Competencies Section -->
+        <section class="competencies-section section-dark">
+            <h2>Competencies</h2>
+
+            <div class="skills-category">
+                <div class="category-label">Strategy</div>
+                <div class="skills-tags">
+                    <span class="skill-tag">Product Discovery</span>
+                    <span class="skill-tag">User Research</span>
+                    <span class="skill-tag">Data-Driven UX</span>
+                    <span class="skill-tag">System Architecture</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <div class="category-label">Execution</div>
+                <div class="skills-tags">
+                    <span class="skill-tag">UI/Visual Design</span>
+                    <span class="skill-tag">Design Systems</span>
+                    <span class="skill-tag">Rapid Prototyping</span>
+                    <span class="skill-tag">Interaction Design</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <div class="category-label">Tech & Tools</div>
+                <div class="skills-tags">
+                    <span class="skill-tag">Figma (Advanced)</span>
+                    <span class="skill-tag">Storybook</span>
+                    <span class="skill-tag">Frontend (React/Tailwind)</span>
+                    <span class="skill-tag">AI-Assisted Prototyping</span>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="languages-section-inner">
+                <h2>Languages</h2>
+                <div class="languages-inline">
+                    <span>English — B2</span>
+                    <span>Russian — Native</span>
+                </div>
             </div>
         </section>
     </div>
