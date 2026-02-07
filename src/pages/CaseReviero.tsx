@@ -64,7 +64,7 @@ const CaseReviero = () => {
                     className="w-full h-[50vh] bg-[#1A1A2E] overflow-hidden"
                 >
                     <img
-                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/revierohero4.png"
+                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/revierohero6%20(1).png"
                         alt="Reviero Hero"
                         className="w-full h-full object-cover"
                     />
