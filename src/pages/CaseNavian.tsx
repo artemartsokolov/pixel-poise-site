@@ -54,12 +54,12 @@ const CaseNavian = () => {
     const [activeRole, setActiveRole] = useState(0);
 
     const roleViews = [
-        { name: "Project Manager", label: "PM", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/PM.png" },
-        { name: "Analyst", label: "Analyst", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Analyst.png" },
-        { name: "Financier", label: "Financier", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/financier.jpg" },
-        { name: "Contractor", label: "Contractor", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/tendering%20manager%20(1).png" },
-        { name: "Equity Manager", label: "Equity", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/equity%20manager.png" },
-        { name: "Investor", label: "Investor", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/equity%20partner%20admin.png" },
+        { name: "Financier", label: "Financier", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/financier2.jpg" },
+        { name: "Project Manager", label: "PM", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/pm.png" },
+        { name: "Analyst", label: "Analyst", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/Analyst2.png" },
+        { name: "Contractor", label: "Contractor", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/tendering%20manager2.png" },
+        { name: "Equity Manager", label: "Equity", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/equity%20manager2.png" },
+        { name: "Investor", label: "Investor", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/equity%20partner%20admin2.png" },
     ];
 
     const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
@@ -102,7 +102,7 @@ const CaseNavian = () => {
                     className="w-full h-[50vh] bg-[#C8C4BC] overflow-hidden"
                 >
                     <img
-                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/navianos_1.jpg"
+                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/navian_top.png"
                         alt="Navian Dashboard Preview"
                         className="w-full h-full object-cover"
                     />
@@ -120,7 +120,7 @@ const CaseNavian = () => {
                                 className="text-[2rem] lg:text-[2.5rem] font-normal tracking-tight font-heading leading-[1.15] text-[#141414]"
                             >
                                 Navian<br />
-                                <span className="text-gray-400">A Real Estate Operating<br />System with Purpose</span>
+                                <span className="text-gray-400">Digitizing the Real Estate<br />Capital Lifecycle</span>
                             </motion.h1>
                         </div>
 
@@ -487,13 +487,92 @@ const CaseNavian = () => {
                                 <img
                                     src={roleViews[activeRole].image}
                                     alt={roleViews[activeRole].name}
-                                    className="w-full h-full object-contain relative z-10"
+                                    className="w-full h-full object-contain relative z-10 opacity-80 grayscale"
                                 />
                             </>
                         ) : (
                             <p className="text-sm text-gray-600 font-light">📸 {roleViews[activeRole].name} View</p>
                         )}
                     </motion.div>
+                </motion.div>
+            </section>
+
+            {/* Strategic Architecture */}
+            <section className="px-8 lg:px-16 py-28 bg-[#141414] border-t border-[#2A2A2A]">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-16"
+                >
+                    <p className="text-xs text-[#8A8680] tracking-widest uppercase mb-4">02 / Strategy & Logic</p>
+                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">Co-Architecting the Business Model</h2>
+                    <div className="max-w-2xl">
+                        <p className="text-base text-[#A09A92] leading-relaxed mb-4">
+                            The product vision was ambitious but abstract. We had a complex ecosystem with 9 distinct user roles—from Land Owners to Investment Bankers—but no clear definition of who sees what, or how monetization would actually work.
+                        </p>
+                        <p className="text-base text-[#A09A92] leading-relaxed">
+                            I stepped out of the traditional design role to partner directly with the CEO and CPO. In a series of "War Room" workshops, we reverse-engineered the business goals into a concrete system.
+                        </p>
+                    </div>
+                </motion.div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0, duration: 0.6 }}
+                        className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
+                    >
+                        <p className="text-xs text-[#8A8680] tracking-wide mb-6">01</p>
+                        <h3 className="text-lg font-normal text-white mb-3">The Monetization Matrix</h3>
+                        <p className="text-sm text-[#8A8680] leading-relaxed">
+                            We broke down the platform into specific sellable modules ("Packaging Labs", "Collaboration Hubs"). This allowed the business to create flexible pricing tiers instead of a "one size fits all" model.
+                        </p>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.15, duration: 0.6 }}
+                        className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
+                    >
+                        <p className="text-xs text-[#8A8680] tracking-wide mb-6">02</p>
+                        <h3 className="text-lg font-normal text-white mb-3">RBAC Architecture</h3>
+                        <p className="text-sm text-[#8A8680] leading-relaxed">
+                            I mapped permissions for every stakeholder. This massive matrix (see below) became the Single Source of Truth for the Backend team to build API security gates.
+                        </p>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3, duration: 0.6 }}
+                        className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
+                    >
+                        <p className="text-xs text-[#8A8680] tracking-wide mb-6">03</p>
+                        <h3 className="text-lg font-normal text-white mb-3">Adaptive UI</h3>
+                        <p className="text-sm text-[#8A8680] leading-relaxed">
+                            Instead of building separate apps, I designed a Morphing Sidebar that dynamically rebuilds itself based on the user's license.
+                        </p>
+                    </motion.div>
+                </div>
+
+                {/* Large Image */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, duration: 0.8 }}
+                    className="rounded-sm overflow-hidden"
+                >
+                    <img
+                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/subscripotion.png"
+                        alt="Subscription & RBAC Architecture"
+                        className="w-full h-auto object-contain"
+                    />
                 </motion.div>
             </section>
 
@@ -558,16 +637,26 @@ const CaseNavian = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2, duration: 0.8 }}
-                            className="aspect-video rounded-sm overflow-hidden bg-[#E8E4DC]"
+                            className="lg:col-span-1 lg:-mr-8"
                         >
-                            <video
-                                src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/pm.mp4"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="w-full h-full object-contain"
-                            />
+                            <div className="rounded-lg overflow-hidden shadow-2xl border border-black/10">
+                                <div className="bg-[#E8E4DC] px-4 py-2.5 flex items-center gap-2">
+                                    <div className="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#28C840]"></div>
+                                    <span className="ml-4 text-[10px] text-gray-500 font-mono">app.navian.io</span>
+                                </div>
+                                <div className="aspect-video bg-[#E8E4DC]">
+                                    <video
+                                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/pm.mp4"
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="w-full h-full object-contain"
+                                    />
+                                </div>
+                            </div>
                         </motion.div>
                     </div>
                 </div>
@@ -580,16 +669,26 @@ const CaseNavian = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
-                            className="aspect-[3/2] rounded-sm overflow-hidden order-2 lg:order-1"
+                            className="order-2 lg:order-1 lg:-ml-8"
                         >
-                            <video
-                                src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Unit%20Structure%202-1.mov"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="w-full h-full object-contain"
-                            />
+                            <div className="rounded-lg overflow-hidden shadow-2xl border border-black/10">
+                                <div className="bg-[#E8E4DC] px-4 py-2.5 flex items-center gap-2">
+                                    <div className="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#28C840]"></div>
+                                    <span className="ml-4 text-[10px] text-gray-500 font-mono">app.navian.io/calculator</span>
+                                </div>
+                                <div className="aspect-video bg-white">
+                                    <video
+                                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Unit%20Structure%202-1.mov"
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="w-full h-full object-contain"
+                                    />
+                                </div>
+                            </div>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -658,16 +757,26 @@ const CaseNavian = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2, duration: 0.8 }}
-                            className="aspect-video rounded-sm overflow-hidden bg-[#E8E4DC]"
+                            className="lg:col-span-1 lg:-mr-8"
                         >
-                            <video
-                                src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Financier.mp4"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="w-full h-full object-contain"
-                            />
+                            <div className="rounded-lg overflow-hidden shadow-2xl border border-black/10">
+                                <div className="bg-[#E8E4DC] px-4 py-2.5 flex items-center gap-2">
+                                    <div className="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#28C840]"></div>
+                                    <span className="ml-4 text-[10px] text-gray-500 font-mono">app.navian.io/tender</span>
+                                </div>
+                                <div className="aspect-video bg-[#E8E4DC]">
+                                    <video
+                                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Financier.mp4"
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="w-full h-full object-contain"
+                                    />
+                                </div>
+                            </div>
                         </motion.div>
                     </div>
                 </div>
@@ -680,16 +789,26 @@ const CaseNavian = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
-                            className="aspect-video rounded-sm overflow-hidden bg-[#E8E4DC] order-2 lg:order-1"
+                            className="order-2 lg:order-1 lg:-ml-8"
                         >
-                            <video
-                                src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Partners%20Demo.mov"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="w-full h-full object-contain"
-                            />
+                            <div className="rounded-lg overflow-hidden shadow-2xl border border-black/10">
+                                <div className="bg-[#E8E4DC] px-4 py-2.5 flex items-center gap-2">
+                                    <div className="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                                    <div className="w-3 h-3 rounded-full bg-[#28C840]"></div>
+                                    <span className="ml-4 text-[10px] text-gray-500 font-mono">app.navian.io/partners</span>
+                                </div>
+                                <div className="aspect-video bg-[#E8E4DC]">
+                                    <video
+                                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Partners%20Demo.mov"
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="w-full h-full object-contain"
+                                    />
+                                </div>
+                            </div>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -758,8 +877,7 @@ const CaseNavian = () => {
                             transition={{ delay: index * 0.15, duration: 0.6 }}
                             className="bg-[#FAFAF8] px-14 py-16 rounded-sm"
                         >
-                            <div className="flex items-center gap-4 mb-8">
-                                <challenge.icon className="w-5 h-5 text-[#141414]" strokeWidth={1.5} />
+                            <div className="mb-8">
                                 <span className="text-xs font-medium text-gray-400">{challenge.letter}</span>
                             </div>
 

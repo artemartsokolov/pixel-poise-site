@@ -17,8 +17,8 @@ const caseStudies = [
     title: "Reviero Invest",
     description: "Scaled a PropTech startup from MVP to a full-cycle product with AI search.",
     year: "2022",
-    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/reviero-cover.jpg",
-    link: null,
+    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/revierohero2.png",
+    link: "/case/reviero",
   },
   {
     id: "flowhealth",
