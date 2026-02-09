@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 
 const contactLinks = [
-  { label: "Email", value: "hello@artemsokolov.design", href: "mailto:hello@artemsokolov.design" },
-  { label: "LinkedIn", value: "/artemsokolov", href: "https://linkedin.com/in/artemsokolov" },
-  { label: "Telegram", value: "@artemsokolov", href: "https://t.me/artemsokolov" },
+  { label: "Email", value: "artemartsokolov@gmail.com", href: "mailto:artemartsokolov@gmail.com" },
+  { label: "LinkedIn", value: "/artem-sokolov", href: "https://www.linkedin.com/in/artem-sokolov-3238a71a1" },
+  { label: "Telegram", value: "@artemartsokolov", href: "https://t.me/artemartsokolov" },
 ];
 
 const Contact = () => {
@@ -35,7 +35,7 @@ const Contact = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="mailto:hello@artemsokolov.design"
+                  href="mailto:artemartsokolov@gmail.com"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#141414] text-white rounded-full text-sm font-medium hover:bg-[#333] transition-colors"
                 >
                   Get in Touch
@@ -81,7 +81,7 @@ const Contact = () => {
         {/* Footer */}
         <div className="mt-24 pt-8 border-t border-[#141414]/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm font-light text-[#141414]/50">
-            © 2024 Artem Sokolov. Built with precision.
+            © 2025 Artem Sokolov. Built with precision.
           </p>
           <div className="flex gap-6">
             <span className="text-sm font-light text-[#141414]/50 hover:text-[#141414] cursor-pointer transition-colors">Privacy</span>

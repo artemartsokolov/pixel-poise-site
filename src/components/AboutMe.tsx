@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const AboutMe = () => {
     return (
-        <section id="about-me" className="min-h-screen flex items-start relative z-10 bg-background pt-20 pb-16 px-8 lg:px-16">
+        <section id="about-me" className="min-h-screen flex items-start relative z-10 bg-background pt-20 pb-8 px-8 lg:px-16">
             <div className="w-full max-w-[1200px]">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -44,21 +44,8 @@ const AboutMe = () => {
                         </motion.div>
                     </div>
 
-                    {/* CTA Button */}
-                    <motion.div
-                        className="flex justify-start mt-8 ml-0 lg:ml-[280px]"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                    >
-                        <a
-                            href="#work"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#141414] rounded-full text-sm font-medium text-[#141414] hover:bg-[#141414] hover:text-white transition-colors"
-                        >
-                            View Case Studies
-                        </a>
-                    </motion.div>
+
+
                 </motion.div>
             </div>
         </section>

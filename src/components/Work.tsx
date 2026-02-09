@@ -1,9 +1,31 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { RevealWaveImage } from "./RevealWaveImage";
+
+/* ── Detect mobile (no hover = no shader benefit) ── */
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+};
 
 // Hardcoded case studies with business-focused copy
 const caseStudies = [
+  {
+    id: "reviero",
+    title: "Reviero Invest",
+    description: "Scaled a PropTech startup from MVP to a full-cycle product with AI search.",
+    year: "2025",
+    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/revierohero2.png",
+    link: "/case/reviero",
+  },
   {
     id: "navian",
     title: "Navian OS",
@@ -13,25 +35,18 @@ const caseStudies = [
     link: "/case/navian",
   },
   {
-    id: "reviero",
-    title: "Reviero Invest",
-    description: "Scaled a PropTech startup from MVP to a full-cycle product with AI search.",
-    year: "2022",
-    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/revierohero2.png",
-    link: "/case/reviero",
-  },
-  {
     id: "flowhealth",
     title: "Flow Workforce",
     description: "A safety management platform used by Disney and JPMorgan Chase.",
-    year: "2021",
-    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/flow-cover.jpg",
-    link: null,
+    year: "2023",
+    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/2.png",
+    link: "/case/flowhealth",
   },
 ];
 
 const Work = () => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   const handleCaseClick = (study: typeof caseStudies[0]) => {
     if (study.link) {
@@ -40,7 +55,7 @@ const Work = () => {
   };
 
   return (
-    <section id="work" className="relative z-10 bg-background px-6 pt-4 pb-16">
+    <section id="work" className="relative z-10 bg-background px-4 lg:px-6 pt-4 pb-16">
       {/* Case Studies List */}
       <div className="w-full">
         {caseStudies.map((study, index) => (
@@ -54,37 +69,53 @@ const Work = () => {
             onClick={() => handleCaseClick(study)}
           >
             {/* Full-width Image with overlay text */}
-            <div className="relative w-full aspect-[16/9] bg-[#C8C4BC] overflow-hidden">
-              <img
-                src={study.image}
-                alt={study.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-              />
+            <div className="relative w-full aspect-[4/5] lg:aspect-[16/9] bg-[#C8C4BC] overflow-hidden rounded-xl lg:rounded-none">
+              {/* Conditional: shader on desktop, plain img on mobile */}
+              {isMobile ? (
+                <img
+                  src={study.image}
+                  alt={study.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-left lg:object-center"
+                />
+              ) : (
+                <RevealWaveImage
+                  src={study.image}
+                  className="w-full h-full"
+                  pixelSize={2}
+                  revealRadius={0.3}
+                  waveSpeed={0.15}
+                  waveAmplitude={0.02}
+                  mouseRadius={1}
+                />
+              )}
 
               {/* Dark gradient overlay at bottom */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
 
               {/* Case Study Info - Overlaid on image */}
-              <div className="absolute bottom-0 left-0 right-0 px-8 lg:px-16 py-12 lg:py-16">
-                <div className="flex items-end justify-between">
+              <div className="absolute bottom-0 left-0 right-0 px-5 lg:px-16 py-6 lg:py-16 pointer-events-none">
+                <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3">
                   {/* Left: Title + Year */}
-                  <div className="flex items-baseline gap-4">
-                    <h3 className="text-[2rem] lg:text-[2.5rem] font-normal tracking-tight font-heading leading-[1.15] text-white">
-                      {study.title}
-                    </h3>
-                    <span className="text-sm text-white/60">{study.year}</span>
+                  <div>
+                    <div className="flex items-baseline gap-3">
+                      <h3 className="text-2xl lg:text-[2.5rem] font-normal tracking-tight font-heading leading-[1.15] text-white">
+                        {study.title}
+                      </h3>
+                      <span className="text-xs lg:text-sm text-white/60">{study.year}</span>
+                    </div>
+                    {/* Description — visible on mobile too */}
+                    <p className="text-xs lg:text-sm font-light text-white/70 mt-2 max-w-md">
+                      {study.description}
+                    </p>
                   </div>
-
-                  {/* Center: Description */}
-                  <p className="text-sm font-light text-white/80 max-w-md hidden lg:block">
-                    {study.description}
-                  </p>
 
                   {/* Right: CTA Button */}
                   {study.link && (
-                    <button className="inline-flex items-center gap-2 px-5 py-2.5 border border-white/50 rounded-full text-sm font-medium text-white hover:bg-white hover:text-[#141414] transition-colors">
+                    <button className="pointer-events-auto self-start lg:self-auto inline-flex items-center gap-2 px-4 lg:px-5 py-2 lg:py-2.5 border border-white/50 rounded-full text-xs lg:text-sm font-medium text-white hover:bg-white hover:text-[#141414] transition-colors">
                       View Case Study
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
                     </button>
                   )}
                 </div>

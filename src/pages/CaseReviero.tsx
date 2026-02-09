@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Smartphone, TrendingUp, Shield } from "lucide-react";
 
+/* ── Premium easing curve (matches Hero.tsx) ── */
+const smooth = [0.22, 1, 0.36, 1] as const;
+
 const CaseReviero = () => {
     const challenges = [
         {
@@ -38,103 +41,133 @@ const CaseReviero = () => {
 
     return (
         <div className="bg-[#F5F3EE] text-foreground min-h-screen">
-            {/* Back Navigation */}
-            <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                className="fixed top-8 left-8 z-50"
-            >
-                <Link
-                    to="/"
-                    className="flex items-center gap-2 text-sm font-light text-gray-600 hover:text-[#141414] transition-colors"
+            {/* Back Navigation — Masked slide-in */}
+            <div className="fixed top-8 left-8 z-50 overflow-hidden">
+                <motion.div
+                    initial={{ x: "-110%" }}
+                    animate={{ x: "0%" }}
+                    transition={{ delay: 0.3, duration: 0.7, ease: smooth }}
                 >
-                    <ArrowLeft className="w-4 h-4" />
-                    All Work
-                </Link>
-            </motion.div>
+                    <Link
+                        to="/"
+                        className="flex items-center gap-2 text-sm font-light text-gray-600 hover:text-[#141414] transition-colors"
+                    >
+                        <ArrowLeft className="w-4 h-4" />
+                        All Work
+                    </Link>
+                </motion.div>
+            </div>
 
             {/* Hero Section */}
             <section>
-                {/* Hero Image */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
-                    className="w-full h-[50vh] bg-[#1A1A2E] overflow-hidden"
-                >
-                    <img
+                {/* Hero Image — Curtain wipe + Ken Burns zoom */}
+                <div className="w-full h-[50vh] bg-[#1A1A2E] overflow-hidden relative">
+                    <motion.img
                         src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/revierohero6%20(1).png"
                         alt="Reviero Hero"
                         className="w-full h-full object-cover"
+                        initial={{ scale: 1.15 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                            duration: 1.8,
+                            ease: smooth,
+                        }}
                     />
-                </motion.div>
+                    {/* White curtain overlay */}
+                    <motion.div
+                        className="absolute inset-0 bg-[#F5F3EE]"
+                        initial={{ scaleY: 1 }}
+                        animate={{ scaleY: 0 }}
+                        transition={{ duration: 1.2, ease: smooth }}
+                        style={{ transformOrigin: "top" }}
+                    />
+                </div>
 
                 {/* Title + Metadata */}
                 <div className="px-8 lg:px-16 py-12 lg:py-16">
                     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px] items-start">
                         {/* Left: Title */}
                         <div>
-                            <motion.h1
-                                initial={{ y: 30, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ duration: 0.6, ease: "easeOut" }}
-                                className="text-[2rem] lg:text-[2.5rem] font-normal tracking-tight font-heading leading-[1.15] text-[#141414]"
-                            >
-                                Reviero<br />
-                                <span className="text-gray-400">AI-Powered Real Estate<br />Ecosystem</span>
-                            </motion.h1>
+                            <h1 className="text-[2rem] lg:text-[2.5rem] font-normal tracking-tight font-heading leading-[1.15] text-[#141414]">
+                                {/* Title — masked slide-up */}
+                                <div className="overflow-hidden">
+                                    <motion.span
+                                        className="block"
+                                        initial={{ y: "110%" }}
+                                        animate={{ y: "0%" }}
+                                        transition={{ delay: 0.6, duration: 0.8, ease: smooth }}
+                                    >
+                                        Reviero
+                                    </motion.span>
+                                </div>
+                                {/* Subtitle lines — staggered mask reveals */}
+                                <span className="text-gray-400">
+                                    {["AI-Powered Real Estate", "Ecosystem"].map((line, i) => (
+                                        <div key={line} className="overflow-hidden">
+                                            <motion.span
+                                                className="block"
+                                                initial={{ y: "110%" }}
+                                                animate={{ y: "0%" }}
+                                                transition={{ delay: 0.75 + i * 0.1, duration: 0.8, ease: smooth }}
+                                            >
+                                                {line}
+                                            </motion.span>
+                                        </div>
+                                    ))}
+                                </span>
+                            </h1>
                         </div>
 
                         {/* Right: Metadata + Button */}
-                        <div className="flex justify-between items-start">
-                            {/* Column 1 */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2, duration: 0.6 }}
-                                className="space-y-6"
-                            >
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Date</p>
-                                    <p className="text-sm font-light text-gray-500">2023 – 2024</p>
+                        <div className="flex flex-col lg:flex-row lg:justify-between items-start gap-8 lg:gap-0">
+                            <div className="grid grid-cols-2 gap-x-8 gap-y-6 lg:contents">
+                                {/* Column 1 */}
+                                <div className="space-y-6">
+                                    {[
+                                        { label: "Date", value: "2024 – 2025" },
+                                        { label: "Location", value: "Spain" },
+                                        { label: "Services", value: "Product Design\nUX Strategy\nService Design" },
+                                    ].map((item, i) => (
+                                        <div key={item.label} className="overflow-hidden">
+                                            <motion.div
+                                                initial={{ y: "110%" }}
+                                                animate={{ y: "0%" }}
+                                                transition={{ delay: 0.9 + i * 0.08, duration: 0.7, ease: smooth }}
+                                            >
+                                                <p className="text-sm font-semibold text-[#141414] mb-0.5">{item.label}</p>
+                                                <p className="text-sm font-light text-gray-500" style={{ whiteSpace: 'pre-line' }}>{item.value}</p>
+                                            </motion.div>
+                                        </div>
+                                    ))}
                                 </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Location</p>
-                                    <p className="text-sm font-light text-gray-500">Spain</p>
-                                </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Services</p>
-                                    <p className="text-sm font-light text-gray-500">Product Design<br />UX Strategy<br />Service Design</p>
-                                </div>
-                            </motion.div>
 
-                            {/* Column 2 */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.25, duration: 0.6 }}
-                                className="space-y-6"
-                            >
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Role</p>
-                                    <p className="text-sm font-light text-gray-500">Founding Product Designer</p>
+                                {/* Column 2 */}
+                                <div className="space-y-6">
+                                    {[
+                                        { label: "Role", value: "Lead Product Designer (End-to-End Ecosystem)" },
+                                        { label: "Target", value: "Primary: HNW Investors (B2C)\nInternal: Brokerage Team (B2B)" },
+                                        { label: "Platform", value: "iOS / Android (React Native)\n+ Web Admin" },
+                                    ].map((item, i) => (
+                                        <div key={item.label} className="overflow-hidden">
+                                            <motion.div
+                                                initial={{ y: "110%" }}
+                                                animate={{ y: "0%" }}
+                                                transition={{ delay: 1.0 + i * 0.08, duration: 0.7, ease: smooth }}
+                                            >
+                                                <p className="text-sm font-semibold text-[#141414] mb-0.5">{item.label}</p>
+                                                <p className="text-sm font-light text-gray-500" style={{ whiteSpace: 'pre-line' }}>{item.value}</p>
+                                            </motion.div>
+                                        </div>
+                                    ))}
                                 </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Target</p>
-                                    <p className="text-sm font-light text-gray-500">HNWIs (European CEOs, 45+)</p>
-                                </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Platform</p>
-                                    <p className="text-sm font-light text-gray-500">iOS / Android (React Native)<br />+ Web Admin</p>
-                                </div>
-                            </motion.div>
+                            </div>
 
                             {/* Visit Website Button */}
+                            {/* CTA — Late entrance with scale */}
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3, duration: 0.6 }}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 1.3, duration: 0.6, ease: smooth }}
                             >
                                 <a
                                     href="#"
@@ -245,11 +278,11 @@ const CaseReviero = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <p className="text-xs text-[#8A8680] tracking-widest uppercase mb-4">01 / Service Design</p>
-                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">Bridging the "Offline Gap"</h2>
+                    <p className="text-xs text-[#8A8680] tracking-widest uppercase mb-4">01 / UX Architecture</p>
+                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">Architecting the Investor's Journey</h2>
                     <div className="max-w-2xl">
                         <p className="text-base text-[#A09A92] leading-relaxed">
-                            Real estate deals inevitably go offline — Notary, physical viewings. My challenge was to keep the digital thread alive during this gap.
+                            Instead of a standard e-commerce flow, I designed a "Trust Funnel". The goal was to convert casual browsers into educated investors by using proprietary AI data as the primary hook, deferring the sign-up friction until high intent was proven.
                         </p>
                     </div>
                 </motion.div>
@@ -263,9 +296,10 @@ const CaseReviero = () => {
                         className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
                     >
                         <p className="text-xs text-[#8A8680] tracking-wide mb-6">01</p>
-                        <h3 className="text-lg font-normal text-white mb-3">Digital Qualification</h3>
+                        <h3 className="text-lg font-normal text-white mb-1">The "Insight Hook"</h3>
+                        <p className="text-sm text-[#A09A92] mb-3">Value-First Strategy</p>
                         <p className="text-sm text-[#8A8680] leading-relaxed">
-                            The App qualifies users based on behavior — time spent on specific assets, saved properties, and engagement patterns.
+                            We removed the traditional "Login Wall". Users get full access to AI Financial Reports (Yield, ROI) upfront. This "Glass Box" transparency builds authority and trust before we ever ask for a phone number.
                         </p>
                     </motion.div>
                     <motion.div
@@ -276,9 +310,10 @@ const CaseReviero = () => {
                         className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
                     >
                         <p className="text-xs text-[#8A8680] tracking-wide mb-6">02</p>
-                        <h3 className="text-lg font-normal text-white mb-3">Human Handover</h3>
+                        <h3 className="text-lg font-normal text-white mb-1">Silent Qualification</h3>
+                        <p className="text-sm text-[#A09A92] mb-3">Behavioral Scoring</p>
                         <p className="text-sm text-[#8A8680] leading-relaxed">
-                            An Agent conducts a deep interview, logging all data into the internal CRM. The conversation goes offline for viewings and notary.
+                            The interface acts as a passive filter. While users explore charts, the system tracks dwell time and asset preferences. We use this data to build a "Shadow Profile" and score leads without forcing them to fill out tedious forms.
                         </p>
                     </motion.div>
                     <motion.div
@@ -289,9 +324,10 @@ const CaseReviero = () => {
                         className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
                     >
                         <p className="text-xs text-[#8A8680] tracking-wide mb-6">03</p>
-                        <h3 className="text-lg font-normal text-white mb-3">The Loop Back</h3>
+                        <h3 className="text-lg font-normal text-white mb-1">Contextual Activation</h3>
+                        <p className="text-sm text-[#A09A92] mb-3">High-Intent Trigger</p>
                         <p className="text-sm text-[#8A8680] leading-relaxed">
-                            Instead of switching to WhatsApp, the Agent pushes a curated collection of properties back into the App's Chat — keeping the digital thread alive.
+                            Registration isn't a barrier; it's an exchange. We ask for contact details only when High Intent is detected (e.g., saving a property). This ensures the Sales Team only receives warm, educated leads.
                         </p>
                     </motion.div>
                 </div>
@@ -562,7 +598,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-[#E8E4DC] rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Catalog.png" alt="Marketplace Catalog" className="w-full h-full object-cover" />
+                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Catalog.png" alt="Marketplace Catalog" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -570,7 +606,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-[#E8E4DC] rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Booking%20old%20aprt.png" alt="Property Detail" className="w-full h-full object-cover" />
+                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Booking%20old%20aprt.png" alt="Property Detail" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -594,7 +630,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-white rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/ai%20assistent.png" alt="AI Assistant" className="w-full h-full object-cover" />
+                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/ai%20assistent.png" alt="AI Assistant" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -602,7 +638,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-white rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/ai%20selection.png" alt="AI Selection" className="w-full h-full object-cover" />
+                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/ai%20selection.png" alt="AI Selection" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -674,7 +710,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-[#E8E4DC] rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Dashboard.png" alt="Owner Dashboard" className="w-full h-full object-cover" />
+                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Dashboard.png" alt="Owner Dashboard" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -682,7 +718,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-[#E8E4DC] rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Detailed%20Calculations%20Page.png" alt="Detailed Calculations" className="w-full h-full object-cover" />
+                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Detailed%20Calculations%20Page.png" alt="Detailed Calculations" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -1033,7 +1069,7 @@ const CaseReviero = () => {
                             transition={{ duration: 0.6 }}
                             className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-[56px] items-center py-12 border-t border-gray-200"
                         >
-                            <p className="text-7xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-right">7,000+</p>
+                            <p className="text-5xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-left lg:text-right">7,000+</p>
                             <div>
                                 <p className="text-sm font-semibold text-[#141414] mb-2">Users acquired</p>
                                 <p className="text-sm text-gray-500 leading-relaxed">Built a high-ticket audience of European business owners and investors through a value-first product strategy.</p>
@@ -1048,7 +1084,7 @@ const CaseReviero = () => {
                             transition={{ delay: 0.1, duration: 0.6 }}
                             className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-[56px] items-center py-12 border-t border-gray-200"
                         >
-                            <p className="text-7xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-right">~200</p>
+                            <p className="text-5xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-left lg:text-right">~200</p>
                             <div>
                                 <p className="text-sm font-semibold text-[#141414] mb-2">Deals closed</p>
                                 <p className="text-sm text-gray-500 leading-relaxed">Facilitated approximately 200 property transactions through the platform, proving the end-to-end digital pipeline.</p>
@@ -1063,7 +1099,7 @@ const CaseReviero = () => {
                             transition={{ delay: 0.2, duration: 0.6 }}
                             className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-[56px] items-center py-12 border-t border-gray-200"
                         >
-                            <p className="text-7xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-right">1,000+</p>
+                            <p className="text-5xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-left lg:text-right">1,000+</p>
                             <div>
                                 <p className="text-sm font-semibold text-[#141414] mb-2">Sales Qualified Leads</p>
                                 <p className="text-sm text-gray-500 leading-relaxed">Generated over 1,000 SQLs with dramatically improved quality by shifting from lead volume to lead liquidity.</p>

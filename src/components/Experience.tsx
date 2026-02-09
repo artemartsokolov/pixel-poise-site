@@ -3,28 +3,23 @@ import { motion } from "framer-motion";
 // Hardcoded experience data with rich formatting
 const experiences = [
   {
-    id: "stimul8",
-    company: "Stimul8",
-    location: "UK",
-    years: "2024 — Present",
-    position: "Senior Product Designer",
-    positionNote: "(Contract)",
+    id: "navian-group",
+    company: "Navian Group",
+    location: "EU",
+    years: "2023 — Present",
+    position: "Lead Product Designer",
+    positionNote: "Ecosystem Architect",
     description: (
       <>
-        <strong className="text-white">0-to-1 Product Launch.</strong> Architected a dual-role family banking app. Gamification mechanics <strong className="text-white">reduced onboarding time by 70%</strong>.
-      </>
-    ),
-  },
-  {
-    id: "reviero",
-    company: "Reviero",
-    location: "Spain",
-    years: "2023 — 2024",
-    position: "Senior Product Designer",
-    positionNote: null,
-    description: (
-      <>
-        Orchestrated end-to-end design for a PropTech ecosystem (iOS/Android). Launched <strong className="text-white">AI-Search</strong> and Booking features that drove <strong className="text-white">2x user retention</strong>.
+        <span className="block mb-1">Orchestrating product architecture across the group's two core verticals:</span>
+
+        <span className="block mb-3">
+          • <strong className="text-white">Reviero</strong> (B2B2C): Designed the business infrastructure end-to-end. Built the Consumer Marketplace and the internal <strong className="text-white">AI-Powered Agency OS</strong>. Engineered a <strong className="text-white">Node-Based Logic Editor</strong> that automates sales workflows with AI agents.
+        </span>
+
+        <span className="block">
+          • <strong className="text-white">Navian</strong> (Enterprise SaaS): Engineered a comprehensive Capital Lifecycle OS. Mapped a complex <strong className="text-white">9-role permission matrix</strong> (RBAC) to digitize the workflow for Developers, Banks, and Investors.
+        </span>
       </>
     ),
   },
@@ -32,25 +27,26 @@ const experiences = [
     id: "flowhealth",
     company: "Flow Health",
     location: "USA",
-    years: "2022 — 2023",
+    years: "2021 — 2023",
     position: "Senior Product Designer",
-    positionNote: null,
+    positionNote: "Solo, End-to-End",
     description: (
       <>
-        Enterprise safety platform deployed at <strong className="text-white">Disney</strong> and <strong className="text-white">JPMorgan Chase</strong>. Migrated the Design System to Storybook, standardizing <strong className="text-white">55+ components</strong> across web & mobile.
+        Designed a mission-critical <strong className="text-white">Enterprise Biosecurity OS</strong> deployed at <strong className="text-white">Disney</strong>, <strong className="text-white">Netflix</strong>, and <strong className="text-white">JPMorgan</strong>.
+        {" "}Transformed raw medical data into a "Traffic Light" Command Center for managing safety risks. The premium UX became the key sales asset, enabling clients to manage <strong className="text-white">50k+ employees</strong> without production shutdowns.
       </>
     ),
   },
   {
-    id: "navian",
-    company: "Navian",
-    location: "Sweden",
-    years: "2021 — 2022",
-    position: "Senior Product Designer",
+    id: "propetly",
+    company: "Propetly",
+    location: "UK",
+    years: "2019 — 2021",
+    position: "Product Designer",
     positionNote: null,
     description: (
       <>
-        Transformed a complex <strong className="text-white">50-sheet Excel model</strong> into a SaaS Deal Calculator. Automated financial reporting, cutting analyst workflow by <strong className="text-white">60%</strong>.
+        UK-based PropTech startup. Architected <strong className="text-white">Real-Time Auction Bidding</strong> engines and <strong className="text-white">Market Intelligence</strong> tools. Translated complex investment data into actionable signals for property traders.
       </>
     ),
   },
@@ -58,12 +54,12 @@ const experiences = [
     id: "itsagency",
     company: "Its.agency",
     location: "Russia",
-    years: "2019 — 2021",
+    years: "2017 — 2019",
     position: "Product Designer",
     positionNote: null,
     description: (
       <>
-        Delivered <strong className="text-white">12+ turnkey projects</strong> including Fintech admin panels and SaaS marketplaces. Focused on rapid MVP delivery.
+        High-velocity agency environment. Delivered <strong className="text-white">12+ Turnkey MVPs</strong> including FinTech admin panels and SaaS marketplaces. Specialized in rapid prototyping and "Zero-to-Launch" delivery.
       </>
     ),
   },
@@ -104,7 +100,7 @@ const Experience = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="grid grid-cols-1 md:grid-cols-[180px_1fr_160px] gap-4 md:gap-8 py-6 border-b border-white/10"
+                className={`grid grid-cols-1 md:grid-cols-[180px_1fr_160px] gap-4 md:gap-8 py-6 ${index < experiences.length - 1 ? 'border-b border-white/10' : ''}`}
               >
                 {/* Left: Company + Location + Years */}
                 <div>

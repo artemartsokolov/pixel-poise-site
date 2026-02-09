@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CaseNavian from "./pages/CaseNavian";
 import CaseReviero from "./pages/CaseReviero";
+import CaseFlowHealth from "./pages/CaseFlowHealth";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/case/navian" element={<CaseNavian />} />
           <Route path="/case/reviero" element={<CaseReviero />} />
+          <Route path="/case/flowhealth" element={<CaseFlowHealth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calculator, Swords, Moon, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calculator, Swords, Moon, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
+
+/* ── Premium easing curve (matches Hero.tsx) ── */
+const smooth = [0.22, 1, 0.36, 1] as const;
 
 const CaseNavian = () => {
     const challenges = [
@@ -76,103 +80,132 @@ const CaseNavian = () => {
 
     return (
         <div className="bg-[#F5F3EE] text-foreground min-h-screen">
-            {/* Back Navigation */}
-            <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                className="fixed top-8 left-8 z-50"
-            >
-                <Link
-                    to="/"
-                    className="flex items-center gap-2 text-sm font-light text-gray-600 hover:text-[#141414] transition-colors"
+            {/* Back Navigation — Masked slide-in */}
+            <div className="fixed top-8 left-8 z-50 overflow-hidden">
+                <motion.div
+                    initial={{ x: "-110%" }}
+                    animate={{ x: "0%" }}
+                    transition={{ delay: 0.3, duration: 0.7, ease: smooth }}
                 >
-                    <ArrowLeft className="w-4 h-4" />
-                    All Work
-                </Link>
-            </motion.div>
+                    <Link
+                        to="/"
+                        className="flex items-center gap-2 text-sm font-light text-gray-600 hover:text-[#141414] transition-colors"
+                    >
+                        <ArrowLeft className="w-4 h-4" />
+                        All Work
+                    </Link>
+                </motion.div>
+            </div>
 
             {/* Hero Section - Estrela Style */}
             <section>
-                {/* Hero Image - Full width, 50vh, edge-to-edge */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
-                    className="w-full h-[50vh] bg-[#C8C4BC] overflow-hidden"
-                >
-                    <img
+                {/* Hero Image — Curtain wipe + Ken Burns zoom */}
+                <div className="w-full h-[50vh] bg-[#C8C4BC] overflow-hidden relative">
+                    <motion.img
                         src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/navian_top.png"
                         alt="Navian Dashboard Preview"
                         className="w-full h-full object-cover"
+                        initial={{ scale: 1.15 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                            duration: 1.8,
+                            ease: smooth,
+                        }}
                     />
-                </motion.div>
+                    {/* Curtain overlay */}
+                    <motion.div
+                        className="absolute inset-0 bg-[#F5F3EE]"
+                        initial={{ scaleY: 1 }}
+                        animate={{ scaleY: 0 }}
+                        transition={{ duration: 1.2, ease: smooth }}
+                        style={{ transformOrigin: "top" }}
+                    />
+                </div>
 
                 {/* Title + Metadata */}
                 <div className="px-8 lg:px-16 py-12 lg:py-16">
                     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px] items-start">
                         {/* Left: Title */}
                         <div>
-                            <motion.h1
-                                initial={{ y: 30, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ duration: 0.6, ease: "easeOut" }}
-                                className="text-[2rem] lg:text-[2.5rem] font-normal tracking-tight font-heading leading-[1.15] text-[#141414]"
-                            >
-                                Navian<br />
-                                <span className="text-gray-400">Digitizing the Real Estate<br />Capital Lifecycle</span>
-                            </motion.h1>
+                            <h1 className="text-[2rem] lg:text-[2.5rem] font-normal tracking-tight font-heading leading-[1.15] text-[#141414]">
+                                {/* Title — masked slide-up */}
+                                <div className="overflow-hidden">
+                                    <motion.span
+                                        className="block"
+                                        initial={{ y: "110%" }}
+                                        animate={{ y: "0%" }}
+                                        transition={{ delay: 0.6, duration: 0.8, ease: smooth }}
+                                    >
+                                        Navian
+                                    </motion.span>
+                                </div>
+                                {/* Subtitle lines — staggered mask reveals */}
+                                <span className="text-gray-400">
+                                    {["Digitizing the Real Estate", "Capital Lifecycle"].map((line, i) => (
+                                        <div key={line} className="overflow-hidden">
+                                            <motion.span
+                                                className="block"
+                                                initial={{ y: "110%" }}
+                                                animate={{ y: "0%" }}
+                                                transition={{ delay: 0.75 + i * 0.1, duration: 0.8, ease: smooth }}
+                                            >
+                                                {line}
+                                            </motion.span>
+                                        </div>
+                                    ))}
+                                </span>
+                            </h1>
                         </div>
 
                         {/* Right: Metadata + Button */}
-                        <div className="flex justify-between items-start">
-                            {/* Column 1: Date, Location, Services */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2, duration: 0.6 }}
-                                className="space-y-6"
-                            >
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Date</p>
-                                    <p className="text-sm font-light text-gray-500">2024 – Present</p>
+                        <div className="flex flex-col lg:flex-row lg:justify-between items-start gap-8 lg:gap-0">
+                            <div className="grid grid-cols-2 gap-x-8 gap-y-6 lg:contents">
+                                {/* Column 1: Date, Location, Services */}
+                                <div className="space-y-6">
+                                    {[
+                                        { label: "Date", value: "2023 – 2024" },
+                                        { label: "Location", value: "Sweden" },
+                                        { label: "Services", value: "Product Design\nUX Strategy\nDesign System" },
+                                    ].map((item, i) => (
+                                        <div key={item.label} className="overflow-hidden">
+                                            <motion.div
+                                                initial={{ y: "110%" }}
+                                                animate={{ y: "0%" }}
+                                                transition={{ delay: 0.9 + i * 0.08, duration: 0.7, ease: smooth }}
+                                            >
+                                                <p className="text-sm font-semibold text-[#141414] mb-0.5">{item.label}</p>
+                                                <p className="text-sm font-light text-gray-500" style={{ whiteSpace: 'pre-line' }}>{item.value}</p>
+                                            </motion.div>
+                                        </div>
+                                    ))}
                                 </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Location</p>
-                                    <p className="text-sm font-light text-gray-500">Sweden</p>
-                                </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Services</p>
-                                    <p className="text-sm font-light text-gray-500">Product Design<br />UX Strategy<br />Design System</p>
-                                </div>
-                            </motion.div>
 
-                            {/* Column 2: Role, Timeline, Platform */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.25, duration: 0.6 }}
-                                className="space-y-6"
-                            >
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Role</p>
-                                    <p className="text-sm font-light text-gray-500">Lead Product Designer</p>
+                                {/* Column 2: Role, Timeline, Platform */}
+                                <div className="space-y-6">
+                                    {[
+                                        { label: "Role", value: "Lead Product Designer" },
+                                        { label: "Timeline", value: "14 months" },
+                                        { label: "Platform", value: "B2B SaaS (Web)" },
+                                    ].map((item, i) => (
+                                        <div key={item.label} className="overflow-hidden">
+                                            <motion.div
+                                                initial={{ y: "110%" }}
+                                                animate={{ y: "0%" }}
+                                                transition={{ delay: 1.0 + i * 0.08, duration: 0.7, ease: smooth }}
+                                            >
+                                                <p className="text-sm font-semibold text-[#141414] mb-0.5">{item.label}</p>
+                                                <p className="text-sm font-light text-gray-500" style={{ whiteSpace: 'pre-line' }}>{item.value}</p>
+                                            </motion.div>
+                                        </div>
+                                    ))}
                                 </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Timeline</p>
-                                    <p className="text-sm font-light text-gray-500">14 months</p>
-                                </div>
-                                <div>
-                                    <p className="text-sm font-semibold text-[#141414] mb-0.5">Platform</p>
-                                    <p className="text-sm font-light text-gray-500">B2B SaaS (Web)</p>
-                                </div>
-                            </motion.div>
+                            </div>
 
-                            {/* Visit Website Button */}
+                            {/* CTA — Late entrance with scale */}
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3, duration: 0.6 }}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 1.3, duration: 0.6, ease: smooth }}
                             >
                                 <a
                                     href="#"
