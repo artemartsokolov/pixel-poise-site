@@ -170,7 +170,9 @@ const CaseReviero = () => {
                                 transition={{ delay: 1.3, duration: 0.6, ease: smooth }}
                             >
                                 <a
-                                    href="#"
+                                    href="https://app.reviero.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#141414] rounded-full text-sm font-medium text-[#141414] hover:bg-[#141414] hover:text-white transition-colors"
                                 >
                                     Visit Website
