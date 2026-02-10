@@ -16,7 +16,7 @@ const navLinks = [
 ];
 
 /* ── Description lines (split for staggered reveal) ── */
-const descTitle = "Senior Product Designer";
+const descTitle = "Lead Product Designer";
 const descLines = [
   "Specializing in complex B2B SaaS",
   "and Data-Driven Interfaces. I transform",

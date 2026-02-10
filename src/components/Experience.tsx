@@ -28,7 +28,7 @@ const experiences = [
     company: "Flow Health",
     location: "USA",
     years: "2021 — 2023",
-    position: "Senior Product Designer",
+    position: "Lead Product Designer",
     positionNote: "Solo, End-to-End",
     description: (
       <>
