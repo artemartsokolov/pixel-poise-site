@@ -18,8 +18,8 @@ const experiences = [
     ),
   },
   {
-    id: "reviero",
-    company: "Reviero",
+    id: "stayte",
+    company: "Stayte",
     location: "EU",
     years: "2024 — Feb 2026",
     position: "Design Engineer",

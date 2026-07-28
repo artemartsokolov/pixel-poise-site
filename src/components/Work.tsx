@@ -27,12 +27,12 @@ const caseStudies = [
     link: "/case/datox",
   },
   {
-    id: "reviero",
-    title: "Reviero Invest",
-    description: "Scaled a PropTech startup from MVP to a full-cycle product with AI search.",
+    id: "stayte",
+    title: "Stayte",
+    description: "Built the operating system a real-estate agency runs on — intake to closed deal, design and code both.",
     year: "2026",
     image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/revierohero2.png",
-    link: "/case/reviero",
+    link: "/case/stayte",
   },
   {
     id: "navian",

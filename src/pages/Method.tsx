@@ -147,7 +147,7 @@ const Method = () => {
                         transition={{ delay: 1.2, duration: 0.8 }}
                         className="text-sm text-gray-500 mt-12 pt-8 border-t border-gray-300 max-w-2xl"
                     >
-                        Written from two products I designed and shipped: <Link to="/case/datox" className="text-[#141414] underline underline-offset-4 decoration-gray-400 hover:decoration-[#141414] transition-colors">Datox</Link>, a compliance platform for investment funds, and <Link to="/case/reviero" className="text-[#141414] underline underline-offset-4 decoration-gray-400 hover:decoration-[#141414] transition-colors">Reviero</Link>, a lead-generation system wired into five third-party services.
+                        Written from two products I designed and shipped: <Link to="/case/datox" className="text-[#141414] underline underline-offset-4 decoration-gray-400 hover:decoration-[#141414] transition-colors">Datox</Link>, a compliance platform for investment funds, and <Link to="/case/stayte" className="text-[#141414] underline underline-offset-4 decoration-gray-400 hover:decoration-[#141414] transition-colors">Stayte</Link>, the operating system a real-estate agency runs on.
                     </motion.p>
                 </div>
             </section>
@@ -312,7 +312,7 @@ const Method = () => {
                         <div className="space-y-px">
                             {[
                                 { to: "/case/datox", title: "Datox", sub: "Regulatory reporting for investment funds" },
-                                { to: "/case/reviero", title: "Reviero", sub: "Lead generation across five wired-in systems" },
+                                { to: "/case/stayte", title: "Stayte", sub: "The operating system a real-estate agency runs on" },
                             ].map((c) => (
                                 <Link
                                     key={c.to}
