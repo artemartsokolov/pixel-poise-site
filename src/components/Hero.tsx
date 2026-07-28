@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useHeroScrollEffect } from "@/hooks/useHeroScrollEffect";
+import { useFirstPaint } from "@/hooks/useFirstPaint";
 
 const profilePhoto = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/me-final.jpg";
 
@@ -25,6 +26,8 @@ const descLines = [
 ];
 
 const Hero = () => {
+    const firstPaint = useFirstPaint();
+
   useHeroScrollEffect();
 
   return (
@@ -32,8 +35,9 @@ const Hero = () => {
       {/* Darkening overlay */}
       <div className="absolute inset-0 bg-black opacity-0 z-[5] pointer-events-none will-change-[opacity]" id="hero-overlay" />
 
-      {/* ═══ TOP RIGHT — where I am, and the one file a recruiter opens ═══ */}
-      <div className="absolute top-6 right-4 lg:top-9 lg:right-8 z-20 flex items-center gap-4 lg:gap-5">
+      {/* ═══ TOP LEFT — where I am, and the one file a recruiter opens.
+           Stays right on small screens: below lg the nav owns the left corner. ═══ */}
+      <div className="absolute top-6 right-4 lg:top-9 lg:right-auto lg:left-8 z-20 flex items-center gap-4 lg:gap-5">
         {["Spain", "CV"].map((label, i) => (
           <div key={label} className="overflow-hidden">
             <motion.div
@@ -115,7 +119,7 @@ const Hero = () => {
           {/* Photo curtain wipe (slides up to reveal) */}
           <motion.div
             className="absolute inset-0 bg-white origin-bottom"
-            initial={{ scaleY: 1 }}
+            initial={{ scaleY: firstPaint ? 1 : 0 }}
             animate={{ scaleY: 0 }}
             transition={{
               delay: 0.05,

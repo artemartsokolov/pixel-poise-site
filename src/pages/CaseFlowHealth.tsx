@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useFirstPaint } from "@/hooks/useFirstPaint";
 
 /* ── Premium easing curve (matches Hero.tsx) ── */
 const smooth = [0.22, 1, 0.36, 1] as const;
@@ -35,6 +36,8 @@ const BrowserSlider = ({ images, alt, interval = 3000 }: { images: string[]; alt
 };
 
 const CaseFlowHealth = () => {
+    const firstPaint = useFirstPaint();
+
     const challenges = [
         {
             letter: "A",
@@ -99,7 +102,7 @@ const CaseFlowHealth = () => {
                     {/* Curtain overlay */}
                     <motion.div
                         className="absolute inset-0 bg-[#F5F3EE]"
-                        initial={{ scaleY: 1 }}
+                        initial={{ scaleY: firstPaint ? 1 : 0 }}
                         animate={{ scaleY: 0 }}
                         transition={{ duration: 1.2, ease: smooth }}
                         style={{ transformOrigin: "top" }}
