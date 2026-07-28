@@ -1,71 +1,94 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, usePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
+import { useFirstPaint } from "@/hooks/useFirstPaint";
 
-/* How long the outgoing page is allowed to linger before it is removed whether
-   or not anything animated. Slightly longer than the CSS fade so the two overlap. */
-const EXIT_MS = 420;
+/* Matches the 0.7s in the reference. The outgoing copy is removed on this timer
+   rather than on an animation finishing, and the incoming copy drops back into
+   normal flow on it too. */
+const TRANSITION_MS = 700;
 
 /* Where the reader actually was, tracked outside React.
 
-   The first version read window.scrollY during render, which is wrong in a way
-   that only shows up once you are scrolled: scrolling does not re-render, so the
-   value was whatever it had been at the last render — nearly always 0 — and the
-   outgoing page snapped to its own top instead of staying put. */
+   Reading window.scrollY during render is wrong in a way that only shows up once
+   you are scrolled: scrolling does not re-render, so the value is whatever it was
+   at the last one — nearly always 0 — and the outgoing page snaps to its own top
+   instead of staying put. */
 let lastScrollY = 0;
 if (typeof window !== "undefined") {
     lastScrollY = window.scrollY;
     window.addEventListener("scroll", () => { lastScrollY = window.scrollY; }, { passive: true });
 }
 
-/* One route, mounted alongside its neighbour so the two genuinely cross-fade.
+/* One route, animated against its neighbour.
 
-   Both fades are CSS, not JS tweens, and that is the whole point rather than a
-   preference. A JS tween that never ticks — a backgrounded tab, throttled
-   requestAnimationFrame — is stuck at its *start* value, so the page arriving
-   would sit at opacity 0 and the page leaving would stay opaque on top of it. A
-   CSS animation with fill-mode forwards ends at its final value even if every
-   frame in between was dropped.
+   The effect is the one from the reference implementation, read out of its source
+   rather than guessed at: the outgoing page recedes — up 30vh, down to 0.8 scale
+   and 0.4 opacity — while the incoming page is uncovered by a clip sweeping up
+   from the bottom edge. Not a cross-fade, which is what this was before and why
+   it looked like nothing.
 
-   AnimatePresence is used only to keep the outgoing subtree mounted; the removal
-   is driven by a timer calling safeToRemove, not by an animation finishing. The
-   lightbox in this project carries a comment about an exit tween that failed to
-   complete and left a full-screen node swallowing every click — a whole page is
-   a bigger version of that, so nothing here waits on an animation to clean up.
+   The incoming page has to be pinned to the viewport for the length of the sweep.
+   clip-path insets are relative to the element's own box, and in normal flow that
+   box is the whole document, so the clip would crawl down thousands of pixels
+   instead of across one screen. It returns to normal flow on the timer, which is
+   also what makes it scrollable again.
 
-   The outgoing copy is taken out of flow (two pages in normal flow would stack
-   vertically) and pinned at -scrollY, so it appears frozen where the reader was
-   looking instead of snapping to its own top. pointer-events: none means that
-   even in the worst case it is inert. */
-const Fading = ({ children }: { children: ReactNode }) => {
+   Both animations are CSS, not JS tweens, and that is load-bearing rather than a
+   preference. A tween that never ticks — backgrounded tab, throttled rAF — sits
+   at its start value, which here would mean an incoming page clipped to nothing.
+   A CSS animation with fill-mode forwards lands on its final value even if every
+   frame between was dropped. For the same reason the outgoing copy is removed by
+   a timer, never by an animation completing: the lightbox in this project has a
+   comment about an exit tween that failed to finish and left a full-screen node
+   swallowing every click. */
+const Staged = ({ children }: { children: ReactNode }) => {
     const [isPresent, safeToRemove] = usePresence();
-    /* Latched on the first render where this copy is the outgoing one, and never
-       recomputed. ScrollToTop's window.scrollTo fires a scroll event, which resets
-       the tracker to 0 — so any later re-render of this same node would otherwise
-       re-pin it to the top mid-fade. */
+    const firstPaint = useFirstPaint();
+
+    /* Latched once: window.scrollTo fires a scroll event that resets the tracker,
+       so recomputing on a later re-render would re-pin this copy to the top. */
     const frozenAt = useRef<number | null>(null);
     if (!isPresent && frozenAt.current === null) frozenAt.current = lastScrollY;
 
+    /* The page a session opens on has nothing to be revealed from behind. */
+    const [revealing, setRevealing] = useState(() => isPresent && !firstPaint);
+
     useEffect(() => {
-        if (isPresent) return;
-        const t = setTimeout(() => safeToRemove?.(), EXIT_MS);
+        if (!isPresent) {
+            const t = setTimeout(() => safeToRemove?.(), TRANSITION_MS);
+            return () => clearTimeout(t);
+        }
+        if (!revealing) return;
+        const t = setTimeout(() => setRevealing(false), TRANSITION_MS);
         return () => clearTimeout(t);
-    }, [isPresent, safeToRemove]);
+    }, [isPresent, revealing, safeToRemove]);
+
+    if (!isPresent) {
+        return (
+            <div
+                className="page-recede"
+                style={{
+                    position: "fixed",
+                    left: 0,
+                    right: 0,
+                    top: -(frozenAt.current ?? 0),
+                    pointerEvents: "none",
+                    zIndex: 1,
+                }}
+            >
+                {children}
+            </div>
+        );
+    }
 
     return (
         <div
-            className={isPresent ? "page-enter" : "page-exit"}
+            className={revealing ? "page-reveal" : undefined}
             style={
-                isPresent
-                    ? undefined
-                    : {
-                          position: "fixed",
-                          left: 0,
-                          right: 0,
-                          top: -(frozenAt.current ?? 0),
-                          pointerEvents: "none",
-                          zIndex: 40,
-                      }
+                revealing
+                    ? { position: "fixed", inset: 0, height: "100vh", zIndex: 10, overflow: "hidden" }
+                    : undefined
             }
         >
             {children}
@@ -79,7 +102,7 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
     return (
         <AnimatePresence initial={false}>
             {/* A new key is what marks the previous subtree as leaving. */}
-            <Fading key={location.pathname}>{children}</Fading>
+            <Staged key={location.pathname}>{children}</Staged>
         </AnimatePresence>
     );
 };
