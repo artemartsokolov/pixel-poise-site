@@ -70,7 +70,7 @@ const CaseFlowHealth = () => {
             {/* Back Navigation — Masked slide-in */}
             <div className="fixed top-8 left-8 z-50 overflow-hidden">
                 <motion.div
-                    initial={{ x: "-110%" }}
+                    initial={firstPaint ? { x: "-110%" } : false}
                     animate={{ x: "0%" }}
                     transition={{ delay: 0.3, duration: 0.7, ease: smooth }}
                 >
@@ -92,7 +92,7 @@ const CaseFlowHealth = () => {
                         src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/222.png"
                         alt="Flow Health — Enterprise Biosecurity OS"
                         className="w-full h-full object-cover"
-                        initial={{ scale: 1.15 }}
+                        initial={firstPaint ? { scale: 1.15 } : false}
                         animate={{ scale: 1 }}
                         transition={{
                             duration: 1.8,
@@ -120,7 +120,7 @@ const CaseFlowHealth = () => {
                                 <div className="overflow-hidden">
                                     <motion.span
                                         className="block"
-                                        initial={{ y: "110%" }}
+                                        initial={firstPaint ? { y: "110%" } : false}
                                         animate={{ y: "0%" }}
                                         transition={{ delay: 0.6, duration: 0.8, ease: smooth }}
                                     >
@@ -132,7 +132,7 @@ const CaseFlowHealth = () => {
                                     <div className="overflow-hidden">
                                         <motion.span
                                             className="block"
-                                            initial={{ y: "110%" }}
+                                            initial={firstPaint ? { y: "110%" } : false}
                                             animate={{ y: "0%" }}
                                             transition={{ delay: 0.75, duration: 0.8, ease: smooth }}
                                         >
@@ -142,7 +142,7 @@ const CaseFlowHealth = () => {
                                 </span>
                             </h1>
                             <motion.div
-                                initial={{ opacity: 0, y: 15 }}
+                                initial={firstPaint ? { opacity: 0, y: 15 } : false}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 1.1, duration: 0.7, ease: smooth }}
                             >
@@ -167,7 +167,7 @@ const CaseFlowHealth = () => {
                                     ].map((item, i) => (
                                         <div key={item.label} className="overflow-hidden">
                                             <motion.div
-                                                initial={{ y: "110%" }}
+                                                initial={firstPaint ? { y: "110%" } : false}
                                                 animate={{ y: "0%" }}
                                                 transition={{ delay: 0.9 + i * 0.08, duration: 0.7, ease: smooth }}
                                             >
@@ -187,7 +187,7 @@ const CaseFlowHealth = () => {
                                     ].map((item, i) => (
                                         <div key={item.label} className="overflow-hidden">
                                             <motion.div
-                                                initial={{ y: "110%" }}
+                                                initial={firstPaint ? { y: "110%" } : false}
                                                 animate={{ y: "0%" }}
                                                 transition={{ delay: 1.0 + i * 0.08, duration: 0.7, ease: smooth }}
                                             >
