@@ -17,8 +17,7 @@ const shots: Shot[] = [
     { src: `${SHOT_BASE}/routing-poster.jpg`, video: `${SHOT_BASE}/routing.mp4`, label: "Workflow step", alt: "A step in a sequence: immediate send, AI auto-reply, and the reply timeout that decides which path is taken next" },
     { src: `${SHOT_BASE}/qualification-poster.jpg`, video: `${SHOT_BASE}/qualification.mp4`, label: "Call configuration", alt: "Retry logic as settings — attempts, per-attempt fallback rules, one call per window, and the calling-hours grid" },
     { src: `${SHOT_BASE}/selection-poster.jpg`, video: `${SHOT_BASE}/selection.mp4`, label: "Selection", alt: "A selection already sent to this lead, three properties from the agency's MLS, with the option to continue from it or start a new one" },
-    { src: `${SHOT_BASE}/delivery-poster.jpg`, video: `${SHOT_BASE}/delivery.mp4`, label: "WhatsApp", alt: "The selection as it arrives — a swipeable carousel of properties in the thread the client already uses, each card carrying its own Like control" },
-    { src: `${SHOT_BASE}/learning-poster.jpg`, video: `${SHOT_BASE}/learning.mp4`, label: "WhatsApp", alt: "The Like control on a card — one tap is the whole preference signal, and it is what the next selection is built from" },
+    { src: `${SHOT_BASE}/delivery-poster.jpg`, video: `${SHOT_BASE}/delivery.mp4`, label: "WhatsApp", alt: "The selection as it arrives — a swipeable carousel in the thread the client already uses, each card carrying the Like that the next selection is built from" },
     { src: `${SHOT_BASE}/enrichment-poster.jpg`, video: `${SHOT_BASE}/enrichment.mp4`, label: "Lead record", alt: "The profile on the left, the calls that built it on the right — every attempt, its outcome, and the fields it filled in" },
     { src: `${SHOT_BASE}/crm-sync-poster.jpg`, video: `${SHOT_BASE}/crm-sync.mp4`, label: "Data Sync", alt: "The CRM connector: two-way sync of contacts and deals, with the last sync timestamped" },
     { src: `${SHOT_BASE}/dashboard-poster.jpg`, video: `${SHOT_BASE}/dashboard.mp4`, label: "Dashboard", alt: "Conversion by source, leads over time, and what the automation is currently carrying" },
@@ -158,8 +157,8 @@ const Walkthrough = () => {
     );
 };
 
-/* The nine stages of a run, in the order a lead moves through them.
-   Stage 06 feeds back into stage 04 — that loop is the product. */
+/* The eight stages of a run, in the order a lead moves through them.
+   Stage 05 feeds back into stage 04 — that loop is the product. */
 const stages = [
     {
         n: "01 / Intake",
@@ -202,26 +201,18 @@ const stages = [
         ],
     },
     {
-        n: "05 / Delivery",
-        title: "Sent Where the Client Already Is",
-        meta: "WhatsApp API",
-        body: "The selection goes out over WhatsApp. No app to install, no portal to log into, no email that sits unread — the shortlist arrives in the thread the client uses for everything else.",
+        n: "05 / Delivery & Learning",
+        title: "Sent and Answered in the Same Thread",
+        meta: "WhatsApp API · Preference Signal · Feeds Stage 04",
+        body: "The selection goes out over WhatsApp — no app to install, no portal to log into, no email that sits unread. The answer comes back through the same surface: every property in the carousel carries a Like, so the client replies by tapping rather than by writing.",
         bullets: [
-            ["Zero adoption cost:", "The surface with the highest open rate is the one the client did not have to be persuaded to use."],
-        ],
-    },
-    {
-        n: "06 / Learning",
-        title: "Like, Dislike, and the Next One Is Closer",
-        meta: "Preference Signal · Feeds Stage 04",
-        body: "Every property in a selection can be liked or disliked. Those signals are not a rating for its own sake — they feed straight back into the selection stage.",
-        bullets: [
-            ["The loop is the product:", "Without it this is a scheduler with extra steps. With it, the fourth selection is meaningfully better than the first."],
+            ["Zero adoption cost:", "The surface with the highest open rate is the one the client did not have to be persuaded to use — and making it the reply channel too means there is nowhere else to go and not bother."],
+            ["The loop is the product:", "Those taps are not a rating for its own sake. They feed straight back into the selection stage, so the fourth shortlist is meaningfully better than the first. Without the loop this is a scheduler with extra steps."],
             ["Preference beats a brief:", "What someone taps is more honest than what they said they wanted on a form."],
         ],
     },
     {
-        n: "07 / Enrichment",
+        n: "06 / Enrichment",
         title: "What Was Learned on the Phone Stops Living There",
         meta: "Call Outcomes · Agent Notes · Aggregation",
         body: "Call outcomes, and what the agent actually heard while speaking to the person, get aggregated, sorted into the right tables and written back.",
@@ -230,7 +221,7 @@ const stages = [
         ],
     },
     {
-        n: "08 / CRM Sync",
+        n: "07 / CRM Sync",
         title: "Two-Way, with HubSpot and Pipedrive",
         meta: "Bidirectional · Automatic Stage Progression",
         body: "Everything a run produces updates the agency's CRM automatically, and changes made in the CRM come back the other way. Pipedrive is the one live in this deployment; the same connector covers HubSpot.",
@@ -240,7 +231,7 @@ const stages = [
         ],
     },
     {
-        n: "09 / Dashboard",
+        n: "08 / Dashboard",
         title: "Everything Scheduled and Everything Done",
         meta: "By Agent · Planned vs. Completed",
         body: "One surface for the whole operation: what is planned, what has run, and what each agent is carrying.",
@@ -414,7 +405,7 @@ const CaseStayte = () => {
                         <div className="pt-10">
                             <h3 className="text-base font-semibold text-[#141414] mb-4">Impact</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                <span className="text-[#141414] font-medium">Nine stages</span> from a lead appearing to a deal advancing, none of them left to a spreadsheet or a group chat, with the qualification rules <span className="text-[#141414] font-medium">configurable by the agency</span> rather than written into the code.
+                                <span className="text-[#141414] font-medium">Eight stages</span> from a lead appearing to a deal advancing, none of them left to a spreadsheet or a group chat, with the qualification rules <span className="text-[#141414] font-medium">configurable by the agency</span> rather than written into the code.
                             </p>
                         </div>
                     </div>
@@ -477,7 +468,7 @@ const CaseStayte = () => {
                     <p className="text-xs text-[#8A8680] tracking-wide mb-6">00 / The Run</p>
                     <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">One Lead, End to End</h2>
                     <p className="text-base text-[#A09A92] leading-relaxed">
-                        Nine stages between a lead appearing and a deal moving. Stage six loops back into stage four — that loop is what separates this from a scheduler.
+                        Eight stages between a lead appearing and a deal moving. Stage five loops back into stage four — that loop is what separates this from a scheduler.
                     </p>
                 </motion.div>
 
@@ -488,7 +479,7 @@ const CaseStayte = () => {
                     transition={{ duration: 0.8 }}
                     className="bg-[#1A1A1A] rounded-sm overflow-x-auto"
                 >
-                    <svg viewBox="0 0 1300 300" className="w-full h-auto min-w-[1060px]" fill="none" style={{ padding: '28px 20px 16px' }} role="img" aria-label="Nine-stage pipeline from intake to dashboard, with a feedback loop from learning back to selection">
+                    <svg viewBox="0 0 1300 300" className="w-full h-auto min-w-[1060px]" fill="none" style={{ padding: '28px 20px 16px' }} role="img" aria-label="Eight-stage pipeline from intake to dashboard, with a feedback loop from delivery back to selection">
                         <defs>
                             <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
                                 <path d="M0,0 L6,3 L0,6" fill="none" stroke="#3A3A3A" strokeWidth="1" />
@@ -515,40 +506,40 @@ const CaseStayte = () => {
                         {/* main chain */}
                         {[
                             { x: 215, t: "Intake", n: "01" },
-                            { x: 350, t: "Routing", n: "02" },
-                            { x: 485, t: "Qualification", n: "03" },
-                            { x: 620, t: "Selection", n: "04" },
-                            { x: 755, t: "Delivery", n: "05" },
-                            { x: 890, t: "Learning", n: "06" },
-                            { x: 1025, t: "Enrichment", n: "07" },
-                            { x: 1160, t: "CRM sync", n: "08" },
+                            { x: 370, t: "Routing", n: "02" },
+                            { x: 525, t: "Qualification", n: "03" },
+                            { x: 680, t: "Selection", n: "04" },
+                            { x: 835, t: "Delivery", label2: "& Learning", n: "05" },
+                            { x: 990, t: "Enrichment", n: "06" },
+                            { x: 1145, t: "CRM sync", n: "07" },
                         ].map((s, i) => (
                             <g key={s.n}>
-                                <rect x={s.x} y="84" width="115" height="46" rx="3" fill="#1F1F1F" stroke={s.n === "04" || s.n === "06" ? "#8A8078" : "#3A3A3A"} />
+                                <rect x={s.x} y="84" width="135" height="46" rx="3" fill="#1F1F1F" stroke={s.n === "04" || s.n === "05" ? "#8A8078" : "#3A3A3A"} />
                                 <text x={s.x + 10} y="101" fill="#5A5A5A" fontSize="9">{s.n}</text>
-                                <text x={s.x + 57} y="119" textAnchor="middle" fill="#E8E4DE" fontSize="12">{s.t}</text>
-                                {i < 7 && <line x1={s.x + 115} y1="107" x2={s.x + 135} y2="107" stroke="#3A3A3A" strokeWidth="1" markerEnd="url(#ar)" />}
+                                <text x={s.x + 67} y={s.label2 ? 114 : 119} textAnchor="middle" fill="#E8E4DE" fontSize="12">{s.t}</text>
+                                {s.label2 && <text x={s.x + 67} y="126" textAnchor="middle" fill="#E8E4DE" fontSize="12">{s.label2}</text>}
+                                {i < 6 && <line x1={s.x + 135} y1="107" x2={s.x + 155} y2="107" stroke="#3A3A3A" strokeWidth="1" markerEnd="url(#ar)" />}
                             </g>
                         ))}
 
                         {/* feedback loop: Learning (06) back into Selection (04) */}
-                        <path d="M 947 130 L 947 185 L 677 185 L 677 132" fill="none" stroke="#8A8078" strokeWidth="1" strokeDasharray="3 3" markerEnd="url(#arL)" />
-                        <text x="812" y="201" textAnchor="middle" fill="#8A8078" fontSize="10">likes and dislikes refine the next selection</text>
+                        <path d="M 902 130 L 902 178 L 747 178 L 747 132" fill="none" stroke="#8A8078" strokeWidth="1" strokeDasharray="3 3" markerEnd="url(#arL)" />
+                        <text x="825" y="196" textAnchor="middle" fill="#8A8078" fontSize="10">each Like refines the next selection</text>
 
                         {/* MLS feeds selection */}
-                        <rect x="560" y="228" width="180" height="26" rx="3" fill="none" stroke="#3A3A3A" />
-                        <text x="650" y="245" textAnchor="middle" fill="#A09A92" fontSize="11">Client MLS · via API key</text>
-                        <line x1="650" y1="228" x2="662" y2="132" stroke="#3A3A3A" strokeWidth="1" markerEnd="url(#ar)" />
+                        <rect x="620" y="228" width="180" height="26" rx="3" fill="none" stroke="#3A3A3A" />
+                        <text x="710" y="245" textAnchor="middle" fill="#A09A92" fontSize="11">Client MLS · via API key</text>
+                        <line x1="710" y1="228" x2="722" y2="132" stroke="#3A3A3A" strokeWidth="1" markerEnd="url(#ar)" />
 
                         {/* CRM two-way */}
-                        <rect x="1130" y="228" width="170" height="26" rx="3" fill="none" stroke="#3A3A3A" />
-                        <text x="1215" y="245" textAnchor="middle" fill="#A09A92" fontSize="11">HubSpot · Pipedrive</text>
-                        <line x1="1215" y1="228" x2="1218" y2="134" stroke="#3A3A3A" strokeWidth="1" />
-                        <text x="1240" y="180" fill="#5A5A5A" fontSize="9">two-way</text>
+                        <rect x="1115" y="228" width="170" height="26" rx="3" fill="none" stroke="#3A3A3A" />
+                        <text x="1200" y="245" textAnchor="middle" fill="#A09A92" fontSize="11">HubSpot · Pipedrive</text>
+                        <line x1="1200" y1="228" x2="1205" y2="134" stroke="#3A3A3A" strokeWidth="1" />
+                        <text x="1225" y="180" fill="#5A5A5A" fontSize="9">two-way</text>
 
                         {/* dashboard reads everything */}
                         <rect x="215" y="228" width="180" height="26" rx="3" fill="none" stroke="#3A3A3A" />
-                        <text x="305" y="245" textAnchor="middle" fill="#A09A92" fontSize="11">09 · Dashboard</text>
+                        <text x="305" y="245" textAnchor="middle" fill="#A09A92" fontSize="11">08 · Dashboard</text>
                         <line x1="305" y1="228" x2="290" y2="134" stroke="#3A3A3A" strokeWidth="1" strokeDasharray="2 3" />
                     </svg>
                 </motion.div>
@@ -607,7 +598,7 @@ const CaseStayte = () => {
                                 What I Built, Stage by Stage
                             </h2>
                             <p className="text-lg text-gray-700 leading-relaxed">
-                                Nine stages, and the number is the point — none of them was left to a spreadsheet or a group chat. Each one is a decision the agency used to make by hand, moved into the system and made configurable, from the moment a lead appears to the moment a deal advances on its own.
+                                Eight stages, and the number is the point — none of them was left to a spreadsheet or a group chat. Each one is a decision the agency used to make by hand, moved into the system and made configurable, from the moment a lead appears to the moment a deal advances on its own.
                             </p>
                         </div>
                     </motion.div>
@@ -675,7 +666,7 @@ const CaseStayte = () => {
                             Agents do most of their work away from a desk, so the system needed a surface that travelled with them: their deals, their clients, and the automations they would otherwise have to be at a computer to run — build a selection, send it to a client, without opening the OS.
                         </p>
                         <p className="text-base font-light text-gray-600 leading-relaxed">
-                            The part I cared most about was the notes. An agent finishes a viewing and speaks into their phone; the note is transcribed and lands in the CRM as a proper record. It is the same principle as stage seven — what gets learned out in the world should not stay there.
+                            The part I cared most about was the notes. An agent finishes a viewing and speaks into their phone; the note is transcribed and lands in the CRM as a proper record. It is the same principle as stage six — what gets learned out in the world should not stay there.
                         </p>
                         <p className="text-sm text-gray-500 leading-relaxed pt-6 border-t border-gray-300">
                             I designed this. I did not build it — the app was the one part of the system that was not mine to write.
@@ -756,7 +747,7 @@ const CaseStayte = () => {
                                 body: "Deals that moved through the pipeline to completion, with the CRM kept in step automatically rather than by hand.",
                             },
                             {
-                                stat: "9",
+                                stat: "8",
                                 label: "Stages, one system",
                                 body: "From a lead appearing to a deal advancing, with the learning loop folded in. None of it was left to a spreadsheet or a group chat.",
                             },
