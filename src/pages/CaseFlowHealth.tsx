@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react";
 const smooth = [0.22, 1, 0.36, 1] as const;
 
 /* ── Auto-cycling image slider for browser mockups ── */
-const BrowserSlider = ({ images, interval = 3000 }: { images: string[]; interval?: number }) => {
+const BrowserSlider = ({ images, alt, interval = 3000 }: { images: string[]; alt: string; interval?: number }) => {
     const [current, setCurrent] = useState(0);
     useEffect(() => {
         if (images.length <= 1) return;
@@ -20,7 +20,7 @@ const BrowserSlider = ({ images, interval = 3000 }: { images: string[]; interval
                 <motion.img
                     key={current}
                     src={images[current]}
-                    alt=""
+                    alt={alt}
                     className="absolute inset-0 w-full h-full object-cover object-top"
                     loading="lazy"
                     decoding="async"
@@ -40,8 +40,8 @@ const CaseFlowHealth = () => {
             letter: "A",
             title: "The \"Panic Threshold\"",
             subtitle: "Cognitive Ergonomics",
-            conflict: "Health Executives aren't doctors — they are stressed managers making multi-million dollar decisions under pressure. Showing them raw medical metadata (PCR cycles, viral loads) created \"Analysis Paralysis\" and increased the risk of costly mistakes.",
-            solution: "I designed based on \"Cognitive Triage.\" I hid 90% of the medical data, enforcing a strict Binary Signal System (Traffic Light). The UI doesn't just display data; it interprets it, forcing an instant \"Go/No-Go\" decision.",
+            conflict: "Health Executives aren't doctors — they are stressed managers making multimillion-dollar decisions under pressure. Showing them raw medical metadata (PCR cycles, viral loads) created \"Analysis Paralysis\" and increased the risk of costly mistakes.",
+            solution: "I designed based on \"Cognitive Triage.\" I hid 90% of the medical data, enforcing a strict traffic-light triage. The UI doesn't just display data; it interprets it, forcing an instant \"Go/No-Go\" decision.",
             result: "Cut the go/no-go decision from minutes of reading lab data to a single glance."
         },
         {
@@ -147,7 +147,7 @@ const CaseFlowHealth = () => {
                                 <div className="flex items-center gap-8">
                                     <img src="/logos/netflix.svg" alt="Netflix" className="h-6 w-auto opacity-40" style={{ filter: 'brightness(0)' }} />
                                     <img src="/logos/disney.svg" alt="Disney" className="h-9 w-auto opacity-40" style={{ filter: 'brightness(0)' }} />
-                                    <img src="/logos/jpmorgan.svg" alt="JP Morgan" className="h-5 w-auto opacity-40" style={{ filter: 'brightness(0)' }} />
+                                    <img src="/logos/jpmorgan.svg" alt="JPMorgan" className="h-5 w-auto opacity-40" style={{ filter: 'brightness(0)' }} />
                                 </div>
                             </motion.div>
                         </div>
@@ -179,8 +179,8 @@ const CaseFlowHealth = () => {
                                 <div className="space-y-6">
                                     {[
                                         { label: "Role", value: "Senior Product Designer (Solo, End-to-End)" },
-                                        { label: "End Users", value: "H&S Executives at\nDisney, Netflix, JP Morgan" },
-                                        { label: "Platform", value: "Web App (HIPAA-Compliant)\n+ Internal Tools" },
+                                        { label: "End Users", value: "Health & Safety executives at\nDisney, Netflix, JPMorgan" },
+                                        { label: "Platform", value: "Web App (HIPAA-Compliant)\n+ Native Mobile\n+ Internal Tools" },
                                     ].map((item, i) => (
                                         <div key={item.label} className="overflow-hidden">
                                             <motion.div
@@ -231,14 +231,14 @@ const CaseFlowHealth = () => {
                         <div className="pt-10">
                             <h3 className="text-base font-semibold text-[#141414] mb-4">The Challenge</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                During the pandemic, giants like Netflix and JP Morgan needed to manage the biological status of thousands of employees daily. They were drowning in "Spreadsheet Hell" — manual Excel files and disconnected PDFs. A single missed "Positive" result could shut down a movie set, costing clients <span className="text-[#141414] font-medium">$1M+ per day</span>.
+                                During the pandemic, giants like Netflix and JPMorgan needed to manage the biological status of thousands of employees daily. They were drowning in "Spreadsheet Hell" — manual Excel files and disconnected PDFs. A single missed "Positive" result could shut down a movie set, costing clients <span className="text-[#141414] font-medium">$1M+ per day</span>.
                             </p>
                         </div>
 
                         <div className="pt-10">
                             <h3 className="text-base font-semibold text-[#141414] mb-4">The Mission</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                To build a <span className="text-[#141414] font-medium">"Biosecurity Command Center"</span> — a premium, HIPAA-compliant portal where managers could track safety risks in real-time. The UI became the key asset in securing exclusive multi-million dollar contracts.
+                                To build a <span className="text-[#141414] font-medium">"Biosecurity Command Center"</span> — a premium, HIPAA-compliant portal where managers could track safety risks in real-time. The UI became the key asset in securing exclusive multimillion-dollar contracts.
                             </p>
                         </div>
                     </div>
@@ -265,7 +265,7 @@ const CaseFlowHealth = () => {
 
                     <div className="space-y-0">
                         {[
-                            { role: "Product Design (Solo)", desc: "Solo designer responsible for the entire user experience — from discovery through enterprise deployment. Designed for an audience of VIP executives at Disney, Netflix, and JP Morgan." },
+                            { role: "Product Design (Solo)", desc: "Solo designer responsible for the entire user experience — from discovery through enterprise deployment. Designed for an audience of VIP executives at Disney, Netflix, and JPMorgan." },
                             { role: "Data Visualization", desc: "Translated complex medical data into scannable dashboards using a strict Traffic Light (Red/Yellow/Green) triage system for instant Go/No-Go decisions." },
                             { role: "The Proxy Loop", desc: "With zero direct user access due to HIPAA/NDA constraints, I turned Sales Objections into requirements by building High-Fidelity Prototypes for every client meeting." },
                             { role: "Information Architecture", desc: "Designed a flexible nested hierarchy (Organization → Production → Crew → Employee) enabling Micro-Quarantines without shutting down entire productions." },
@@ -567,7 +567,7 @@ const CaseFlowHealth = () => {
                             <p className="text-xs text-gray-500 tracking-widest uppercase mb-4">Layer A / Cognitive Load Management</p>
                             <h3 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-6">The "Traffic Light" Command Center</h3>
                             <p className="text-base text-gray-600 leading-relaxed mb-6">
-                                Executives don't have time to read medical reports. They need binary signals: <span className="text-[#141414] font-medium">Go / No Go</span>. I designed the dashboard for scanning, not reading.
+                                Executives don't have time to read medical reports. They need a triaged signal: <span className="text-[#141414] font-medium">Go / No-Go / Retest</span>. I designed the dashboard for scanning, not reading.
                             </p>
                             <div className="space-y-3">
                                 <div className="flex items-start gap-3">
@@ -598,7 +598,7 @@ const CaseFlowHealth = () => {
                                     <span className="ml-4 text-[10px] text-gray-500 font-mono">flowhealth.com/dashboard</span>
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC] relative">
-                                    <BrowserSlider images={[
+                                    <BrowserSlider alt="The command centre: every employee's clearance state as a single colour, searchable in real time" images={[
                                         "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/pp-results-filtered-64.png",
                                         "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/dash.png",
                                     ]} />
@@ -632,7 +632,7 @@ const CaseFlowHealth = () => {
                                     <span className="ml-4 text-[10px] text-gray-500 font-mono">flowhealth.com/compliance</span>
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC] relative">
-                                    <BrowserSlider images={[
+                                    <BrowserSlider alt="A test result opened up — the underlying lab data behind the traffic-light call" images={[
                                         "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/vaccination-list.png",
                                         "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/vaccination2.png",
                                     ]} />
@@ -688,7 +688,7 @@ const CaseFlowHealth = () => {
                                     <span className="ml-4 text-[10px] text-gray-500 font-mono">flowhealth.com/org</span>
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC] relative">
-                                    <BrowserSlider images={[
+                                    <BrowserSlider alt="Scheduling and compliance tracking across a production's cast and crew" images={[
                                         "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/practices-list-2.png",
                                         "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/practices-list2.png",
                                     ]} />
@@ -722,7 +722,7 @@ const CaseFlowHealth = () => {
                                     <span className="ml-4 text-[10px] text-gray-500 font-mono">flowhealth.com/inventory</span>
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC] relative">
-                                    <BrowserSlider images={[
+                                    <BrowserSlider alt="The reporting view an executive uses to sign off on a shooting day" images={[
                                         "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/bulk-orders-list.png",
                                     ]} />
                                 </div>
@@ -753,7 +753,7 @@ const CaseFlowHealth = () => {
                         Fully Functional Mobile App
                     </h2>
                     <p className="text-base text-[#A09A92] leading-relaxed">
-                        Every feature available on desktop was mirrored in a native mobile experience. Field managers, on-set medics, and crew members could scan QR codes, view test results, and manage compliance from anywhere on the production lot.
+                        The desktop workflow was mirrored in a native mobile experience so field managers and on-set medics could view results and manage compliance from anywhere on the production lot.
                     </p>
                 </motion.div>
 
@@ -845,7 +845,9 @@ const CaseFlowHealth = () => {
                 </div>
             </section>
 
-            {/* Results — hidden
+            {/* Results — the two stats that were hidden alongside this one were an
+                unverifiable "$0 critical errors" and a "#1 asset" superlative. This is
+                the number the CV leads with, so the case should carry it. */}
             <section className="bg-[#EAE6DE] px-8 lg:px-16 py-28">
                 <div className="grid grid-cols-1 lg:grid-cols-[160px_1fr] gap-12 lg:gap-24">
                     <motion.div
@@ -864,42 +866,15 @@ const CaseFlowHealth = () => {
                             transition={{ duration: 0.6 }}
                             className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-[56px] items-center py-12 border-t border-gray-200"
                         >
-                            <p className="text-7xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-right">$0</p>
-                            <div>
-                                <p className="text-sm font-semibold text-[#141414] mb-2">UX-Induced Critical Errors</p>
-                                <p className="text-sm text-gray-500 leading-relaxed">The system successfully managed the health data of thousands of VIPs with zero UX-induced critical errors — no missed positives, no wrongful clearances.</p>
-                            </div>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1, duration: 0.6 }}
-                            className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-[56px] items-center py-12 border-t border-gray-200"
-                        >
-                            <p className="text-7xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-right">#1</p>
-                            <div>
-                                <p className="text-sm font-semibold text-[#141414] mb-2">The "Closer" Asset</p>
-                                <p className="text-sm text-gray-500 leading-relaxed">The premium, "Apple-like" aesthetic of the portal was the main differentiator against legacy competitors, directly contributing to signing exclusive multi-million dollar contracts.</p>
-                            </div>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2, duration: 0.6 }}
-                            className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-[56px] items-center py-12 border-t border-gray-200"
-                        >
                             <p className="text-7xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-right">50K+</p>
                             <div>
-                                <p className="text-sm font-semibold text-[#141414] mb-2">Records Managed</p>
-                                <p className="text-sm text-gray-500 leading-relaxed">Scaled to manage 50,000+ employee records across Hollywood studios and Fortune 500 companies with real-time search and instant triage.</p>
+                                <p className="text-sm font-semibold text-[#141414] mb-2">Records managed</p>
+                                <p className="text-sm text-gray-500 leading-relaxed">Employee records across Hollywood studios and Fortune 500 companies, with real-time search and instant triage over them.</p>
                             </div>
                         </motion.div>
                     </div>
                 </div>
             </section>
-            */}
 
             {/* Closing Reflection */}
             <section className="bg-[#141414] px-8 lg:px-16 py-28">
@@ -915,7 +890,7 @@ const CaseFlowHealth = () => {
                     </div>
                     <div>
                         <p className="text-xl lg:text-2xl font-light text-[#A09A92] leading-relaxed">
-                            This project proved that <span className="text-white">design is a business weapon</span>. In a market where competitors offered clunky legacy portals, the premium UX became the primary differentiator that closed deals with <span className="text-white">Disney, Netflix, and JP Morgan</span>. I designed not just an interface, but a <span className="text-white">Biosecurity Operating System</span> where a single pixel error could cost a client a million dollars.
+                            This project proved that <span className="text-white">design is a business weapon</span>. In a market where competitors offered clunky legacy portals, the premium UX became the primary differentiator that closed deals with <span className="text-white">Disney, Netflix, and JPMorgan</span>. I designed not just an interface, but a <span className="text-white">Biosecurity Operating System</span> where a single pixel error could cost a client a million dollars.
                         </p>
                     </div>
                 </motion.div>

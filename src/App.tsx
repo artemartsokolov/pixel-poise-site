@@ -18,7 +18,6 @@ const App = () => (
       <Route path="/case/flowhealth" element={<CaseFlowHealth />} />
       <Route path="/case/datox" element={<CaseDatox />} />
       <Route path="/method" element={<Method />} />
-      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>

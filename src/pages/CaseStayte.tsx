@@ -11,14 +11,14 @@ const SHOT_BASE = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/pu
 
 /* Order here is the order the lightbox steps through, one per stage. */
 const shots: Shot[] = [
-    { src: `${SHOT_BASE}/intake-poster.jpg`, video: `${SHOT_BASE}/intake.mp4`, label: "Lead Sources", alt: "Where the four inputs are configured — the ad connector, inbound email parsing, the webhook for custom forms, and the source labels every lead is tagged with" },
-    { src: `${SHOT_BASE}/routing-poster.jpg`, video: `${SHOT_BASE}/routing.mp4`, label: "Workflow step", alt: "A step in a sequence: immediate send, AI auto-reply, and the reply timeout that decides which path is taken next" },
-    { src: `${SHOT_BASE}/qualification-poster.jpg`, video: `${SHOT_BASE}/qualification.mp4`, label: "Call configuration", alt: "Retry logic as settings — attempts, per-attempt fallback rules, one call per window, and the calling-hours grid" },
-    { src: `${SHOT_BASE}/selection-poster.jpg`, video: `${SHOT_BASE}/selection.mp4`, label: "Selection", alt: "A selection already sent to this lead, three properties from the agency's MLS, with the option to continue from it or start a new one" },
+    { src: `${SHOT_BASE}/intake-poster.jpg`, video: `${SHOT_BASE}/intake.mp4`, label: "os.stayte/settings/lead-sources", alt: "Where the four inputs are configured — the ad connector, inbound email parsing, the webhook for custom forms, and the source labels every lead is tagged with" },
+    { src: `${SHOT_BASE}/routing-poster.jpg`, video: `${SHOT_BASE}/routing.mp4`, label: "os.stayte/workflows/step", alt: "A step in a sequence: immediate send, AI auto-reply, and the reply timeout that decides which path is taken next" },
+    { src: `${SHOT_BASE}/qualification-poster.jpg`, video: `${SHOT_BASE}/qualification.mp4`, label: "os.stayte/workflows/calls", alt: "Retry logic as settings — attempts, per-attempt fallback rules, one call per window, and the calling-hours grid" },
+    { src: `${SHOT_BASE}/selection-poster.jpg`, video: `${SHOT_BASE}/selection.mp4`, label: "os.stayte/leads/selection", alt: "A selection already sent to this lead, three properties from the agency's MLS, with the option to continue from it or start a new one" },
     { src: `${SHOT_BASE}/delivery-phone-poster.jpg`, video: `${SHOT_BASE}/delivery-phone.mp4`, phone: true, label: "WhatsApp", alt: "The selection as it arrives — a swipeable carousel in the thread the client already uses, each card carrying the Like that the next selection is built from" },
-    { src: `${SHOT_BASE}/enrichment-poster.jpg`, video: `${SHOT_BASE}/enrichment.mp4`, label: "Lead record", alt: "The profile on the left, the calls that built it on the right — every attempt, its outcome, and the fields it filled in" },
-    { src: `${SHOT_BASE}/crm-sync-poster.jpg`, video: `${SHOT_BASE}/crm-sync.mp4`, label: "Data Sync", alt: "The CRM connector: two-way sync of contacts and deals, with the last sync timestamped" },
-    { src: `${SHOT_BASE}/dashboard-poster.jpg`, video: `${SHOT_BASE}/dashboard.mp4`, label: "Dashboard", alt: "Conversion by source, leads over time, and what the automation is currently carrying" },
+    { src: `${SHOT_BASE}/enrichment-poster.jpg`, video: `${SHOT_BASE}/enrichment.mp4`, label: "os.stayte/leads/record", alt: "The profile on the left, the calls that built it on the right — every attempt, its outcome, and the fields it filled in" },
+    { src: `${SHOT_BASE}/crm-sync-poster.jpg`, video: `${SHOT_BASE}/crm-sync.mp4`, label: "os.stayte/settings/data-sync", alt: "The CRM connector: two-way sync of contacts and deals, with the last sync timestamped" },
+    { src: `${SHOT_BASE}/dashboard-poster.jpg`, video: `${SHOT_BASE}/dashboard.mp4`, label: "os.stayte/dashboard", alt: "Conversion by source, leads over time, and what the automation is currently carrying" },
 ];
 
 /* Browser chrome around a screenshot. Dense UI is unreadable at this size,
@@ -231,7 +231,6 @@ const stages = [
         body: "How many times to call. How long to wait between attempts. How many callbacks before a lead is left alone, and what counts as qualified at the end of it.",
         bullets: [
             ["Configurable, not hard-coded:", "Every agency's patience is different, and none of them wanted to ask a developer to change it."],
-            ["Written as decisions, not fields:", "The settings read as choices an agency manager already makes, which is what keeps a rules engine from becoming programming."],
         ],
     },
     {
@@ -251,8 +250,8 @@ const stages = [
         meta: "WhatsApp API · Preference Signal · Feeds Stage 04",
         body: "The selection goes out over WhatsApp — no app to install, no portal to log into, no email that sits unread. The answer comes back through the same surface: every property in the carousel carries a Like, so the client replies by tapping rather than by writing.",
         bullets: [
-            ["Zero adoption cost:", "The surface with the highest open rate is the one the client did not have to be persuaded to use — and making it the reply channel too removes the second surface where a reply goes to die."],
-            ["The loop is the product:", "Those taps are not a rating for its own sake. They feed straight back into the selection stage, so the fourth shortlist is meaningfully better than the first. Without the loop this is a scheduler with extra steps."],
+            ["Near-zero adoption cost:", "The surface the client already checks hourly is the one nobody had to be persuaded to use — and making it the reply channel too removes the second surface where a reply goes to die."],
+            ["The loop is the product:", "Those taps are not a rating for its own sake. They feed straight back into the selection stage, so each shortlist starts from more than the last. Without the loop this is a scheduler with extra steps."],
             ["Preference beats a brief:", "What someone taps is more honest than what they said they wanted on a form."],
             ["Nurturing is a cadence, not a campaign:", "A lead who is not ready yet stays in a sequence that sends a fresh selection every few days, on an interval the agency sets, until they engage or the sequence ends."],
         ],
@@ -261,7 +260,7 @@ const stages = [
         n: "06 / Enrichment",
         title: "What Was Learned on the Phone Stops Living There",
         meta: "Call Outcomes · Agent Notes · Aggregation",
-        body: "Call outcomes, and what the agent actually heard while speaking to the person, get aggregated, sorted into the right tables and written back.",
+        body: "Call outcomes, and what the human agent actually heard while speaking to the person, get aggregated, sorted into the right tables and written back.",
         bullets: [
             ["The knowledge that normally evaporates:", "Everything useful in a phone call usually ends up in someone's memory. Here it ends up somewhere the rest of the system can read it."],
             ["The profile is a running summary:", "Requirements, budget, timeline and the state of the relationship are rewritten as the history grows, alongside the next action the system has already scheduled."],
@@ -279,7 +278,7 @@ const stages = [
     },
     {
         n: "08 / Dashboard",
-        title: "Everything Scheduled and Everything Done",
+        title: "The Room You No Longer Have to Walk",
         meta: "By Agent · Planned vs. Completed",
         body: "One surface for the whole operation: what is planned, what has run, and what each agent is carrying.",
         bullets: [
@@ -441,14 +440,14 @@ const CaseStayte = () => {
                         <div className="pt-10">
                             <h3 className="text-base font-semibold text-[#141414] mb-4">The Mission</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                Replace the chain with a system. Not a CRM and not a lead source — the agency already has both. This is the layer in between: qualification and nurturing, everything that happens from a lead arriving to a deal moving, with the CRM kept correct as a side effect rather than as a chore. It began as a marketplace for buyers — the part that turned out to matter was the machinery underneath, the thing the brokerage itself runs on.
+                                Replace the chain with a system. Not a CRM and not a lead source — the agency already has both. This is the layer in between: qualification and nurturing, everything that happens from a lead arriving to a deal moving, with the CRM kept correct as a side effect rather than as a chore.
                             </p>
                         </div>
 
                         <div className="pt-10">
                             <h3 className="text-base font-semibold text-[#141414] mb-4">Impact</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                <span className="text-[#141414] font-medium">Eight stages</span> from a lead appearing to a deal advancing, none of them left to a spreadsheet or a group chat, with the qualification rules <span className="text-[#141414] font-medium">configurable by the agency</span> rather than written into the code.
+                                <span className="text-[#141414] font-medium">Eight stages</span> from a lead appearing to a deal advancing, with the qualification rules <span className="text-[#141414] font-medium">configurable by the agency</span> rather than written into the code.
                             </p>
                         </div>
                     </div>
@@ -511,7 +510,7 @@ const CaseStayte = () => {
                     <p className="text-xs text-[#8A8680] tracking-wide mb-6">00 / The Run</p>
                     <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">One Lead, End to End</h2>
                     <p className="text-base text-[#A09A92] leading-relaxed">
-                        Eight stages between a lead appearing and a deal moving. Stage five loops back into stage four — that loop is what separates this from a scheduler.
+                        Eight stages between a lead appearing and a deal moving. Stage five loops back into stage four.
                     </p>
                 </motion.div>
 
@@ -605,7 +604,7 @@ const CaseStayte = () => {
 
                     <div>
                         <p className="text-base font-light text-gray-600 leading-relaxed max-w-xl">
-                            Stage two is this screen, and it is the one the whole system turns on. Each source gets its own sequence — the list shows one per source, including a separate one for Idealista — and each sequence is a graph of steps rather than a setting buried in a form. Inside a step: which channel, how long to wait, whether the AI agent answers replies itself, and which path is taken when nobody answers. How hard to chase, the next stage, is configured elsewhere.
+                            Stage two is this screen. Each source gets its own sequence — the list shows one per source, including a separate one for Idealista — and each sequence is a node editor rather than a setting buried in a form. Inside a step: which channel, how long to wait, whether the AI agent answers replies itself, and which path is taken when nobody answers. How hard to chase, the next stage, is configured elsewhere.
                         </p>
                     </div>
                 </motion.div>
@@ -762,7 +761,7 @@ const CaseStayte = () => {
                             {
                                 stat: "8",
                                 label: "Stages, one system",
-                                body: "From a lead appearing to a deal advancing, with the learning loop folded in. None of it was left to a spreadsheet or a group chat.",
+                                body: "From a lead appearing to a deal advancing, with the learning loop folded in.",
                             },
                         ].map((item, i) => (
                             <motion.div

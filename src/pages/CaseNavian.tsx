@@ -11,7 +11,7 @@ const CaseNavian = () => {
             letter: "A",
             title: "Taming the Logic",
             subtitle: "The Deal Calculator",
-            problem: "The math was so complex it ran on a separate Python microservice.",
+            problem: "The model was too heavy for the browser, so the maths had to live in a separate Python service — and the interface had to stay usable while waiting on it.",
             solution: "Designed a Linear Wizard Flow that guides analysts step-by-step through assumptions, validating data in real-time.",
             result: "A tool that feels as powerful as Excel but is impossible to \"break.\""
         },
@@ -21,7 +21,7 @@ const CaseNavian = () => {
             subtitle: "Leadership Moment",
             problem: "The CEO wanted a fully custom, unique UI design to stand out.",
             solution: "Convinced stakeholders to adopt the MUI Design System with Storybook customization.",
-            result: "Saved ~40% of frontend resources, launching MVP months earlier."
+            result: "Shipped the MVP months earlier than a bespoke component library would have allowed."
         },
         {
             letter: "C",
@@ -207,7 +207,7 @@ const CaseNavian = () => {
                         <div>
                             <h3 className="text-base font-semibold text-[#141414] mb-4">Challenge</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                The task was to create a unified operating system that could digitize the entire deal lifecycle — from Land Sourcing through Financial Modeling, Bank Tendering, Construction Bidding, and Equity Fundraising. The system needed to serve 7 distinct user roles, each viewing the process from a different angle, while replacing a 50-sheet Excel monster.
+                                The task was to create a unified operating system that could digitize the entire deal lifecycle — from Land Sourcing through Financial Modeling, Bank Tendering, Construction Bidding, and Equity Fundraising. The system needed to serve 9 distinct user roles, each viewing the process from a different angle, while replacing a 50-sheet Excel monster.
                             </p>
                         </div>
 
@@ -215,7 +215,7 @@ const CaseNavian = () => {
                         <div>
                             <h3 className="text-base font-semibold text-[#141414] mb-4">Solution</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                I designed a modular B2B SaaS platform with role-based dashboards, a Deal Calculator wizard that tames complex Python-powered financial modeling, and a Presentation Engine that auto-generates investment brochures. The MUI design system decision saved ~40% of frontend resources while maintaining premium aesthetics.
+                                I designed a modular B2B SaaS platform with role-based dashboards, a Deal Calculator wizard that tames complex Python-powered financial modeling, and a Presentation Engine that auto-generates investment brochures. Building on MUI rather than a bespoke component library is what made that scope reachable in the time available.
                             </p>
                         </div>
                     </div>
@@ -244,10 +244,10 @@ const CaseNavian = () => {
                     {/* Right: Role list */}
                     <div className="space-y-0">
                         {[
-                            { role: "UX Strategy", desc: "Mapping user journeys across 7 distinct roles — Project Managers, Brokers, Analysts, Financiers, Equity Managers, Investors, and Construction Partners." },
+                            { role: "UX Strategy", desc: "Mapping user journeys across 9 distinct roles — Land Owners, Project Managers, Brokers, Analysts, Financiers, Equity Managers, Investors, Investment Bankers and Construction Partners." },
                             { role: "UI Design", desc: "Designing a data-dense, professional interface with generous spacing and refined typography for complex financial workflows." },
-                            { role: "Design System", desc: "Implementing MUI with Storybook customization to save 40% of frontend resources while maintaining premium aesthetics." },
-                            { role: "Product Strategy", desc: "Leading the Desktop-First decision based on user research — our core users work exclusively on large screens with complex documents." },
+                            { role: "Design System", desc: "Implementing MUI with Storybook customisation — a component library chosen for delivery speed, then themed to stop looking like one." },
+                            { role: "Product Strategy", desc: "Leading the Desktop-First decision based on user research — these users work on large screens with complex documents, and nowhere else." },
                         ].map((item, index) => (
                             <motion.div
                                 key={item.role}
@@ -283,7 +283,7 @@ const CaseNavian = () => {
                             Discovery & Architecture
                         </h2>
                         <p className="text-lg text-gray-400 max-w-2xl">
-                            The system had to serve 7 distinct user roles, each viewing the "elephant" from a different angle. Designing for this interconnected complexity was the main challenge.
+                            The system had to serve 9 distinct user roles, each viewing the "elephant" from a different angle. Designing for this interconnected complexity was the main challenge.
                         </p>
                     </div>
 
@@ -582,7 +582,7 @@ const CaseNavian = () => {
                                 A Unified Real Estate OS
                             </h2>
                             <p className="text-lg text-gray-700 leading-relaxed">
-                                I engineered a comprehensive Operating System that replaces fragmented tools (Excel, Email, Dropbox) with a synchronized digital pipeline. The platform serves as a <span className="text-[#141414] font-medium">Single Source of Truth</span> for 7 distinct user roles, orchestrating the entire lifecycle—from land acquisition to the final exit.
+                                I engineered a comprehensive Operating System that replaces fragmented tools (Excel, Email, Dropbox) with a synchronized digital pipeline. The platform serves as a <span className="text-[#141414] font-medium">Single Source of Truth</span> for 9 distinct user roles, orchestrating the entire lifecycle—from land acquisition to the final exit.
                             </p>
                         </div>
                     </motion.div>
@@ -636,10 +636,13 @@ const CaseNavian = () => {
                                 <div className="aspect-video bg-[#E8E4DC]">
                                     <video
                                         src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/pm.mp4"
-                                        autoPlay
+                                        poster="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/pm-poster.jpg"
                                         loop
                                         muted
                                         playsInline
+                                        preload="none"
+                                        onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play().catch(() => undefined)}
+                                        onMouseLeave={(e) => { const v = e.currentTarget as HTMLVideoElement; v.pause(); v.currentTime = 0; }}
                                         className="w-full h-full object-contain"
                                     />
                                 </div>
@@ -667,11 +670,14 @@ const CaseNavian = () => {
                                 </div>
                                 <div className="aspect-video bg-white">
                                     <video
-                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/unit-structure-2-1.mov"
-                                        autoPlay
+                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/unit-structure-2-1.mp4"
+                                        poster="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/unit-structure-2-1-poster.jpg"
                                         loop
                                         muted
                                         playsInline
+                                        preload="none"
+                                        onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play().catch(() => undefined)}
+                                        onMouseLeave={(e) => { const v = e.currentTarget as HTMLVideoElement; v.pause(); v.currentTime = 0; }}
                                         className="w-full h-full object-contain"
                                     />
                                 </div>
@@ -756,10 +762,13 @@ const CaseNavian = () => {
                                 <div className="aspect-video bg-[#E8E4DC]">
                                     <video
                                         src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/financier.mp4"
-                                        autoPlay
+                                        poster="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/financier-poster.jpg"
                                         loop
                                         muted
                                         playsInline
+                                        preload="none"
+                                        onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play().catch(() => undefined)}
+                                        onMouseLeave={(e) => { const v = e.currentTarget as HTMLVideoElement; v.pause(); v.currentTime = 0; }}
                                         className="w-full h-full object-contain"
                                     />
                                 </div>
@@ -787,11 +796,14 @@ const CaseNavian = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC]">
                                     <video
-                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/partners-demo.mov"
-                                        autoPlay
+                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/partners-demo.mp4"
+                                        poster="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/partners-demo-poster.jpg"
                                         loop
                                         muted
                                         playsInline
+                                        preload="none"
+                                        onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play().catch(() => undefined)}
+                                        onMouseLeave={(e) => { const v = e.currentTarget as HTMLVideoElement; v.pause(); v.currentTime = 0; }}
                                         className="w-full h-full object-contain"
                                     />
                                 </div>
@@ -909,7 +921,7 @@ const CaseNavian = () => {
                     transition={{ duration: 0.6 }}
                     className="text-base text-gray-500 mb-10"
                 >
-                    The platform successfully launched in <span className="text-[#141414]">Summer 2025</span>.
+                    The platform launched in <span className="text-[#141414]">Summer 2025</span>, after my engagement had ended.
                 </motion.p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">

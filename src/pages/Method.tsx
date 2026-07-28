@@ -306,7 +306,7 @@ const Method = () => {
                     </div>
                     <div>
                         <p className="text-xl lg:text-2xl font-light text-[#A09A92] leading-relaxed mb-12">
-                            Both cases below describe the same working method from the inside — the architecture, the trade-offs I took knowingly, and the parts I would do differently.
+                            Datox below is the case this was written from, in full — the architecture, the trade-offs I took knowingly, and the parts I would do differently. Stayte is where the same working loop produced a different product.
                         </p>
 
                         <div className="space-y-px">

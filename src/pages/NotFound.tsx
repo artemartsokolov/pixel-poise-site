@@ -1,24 +1,30 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
-const NotFound = () => {
-  const location = useLocation();
+const NotFound = () => (
+    <div className="min-h-screen bg-[#F5F3EE] text-foreground flex items-center px-8 lg:px-16">
+        <div className="max-w-xl">
+            <p className="text-xs text-gray-500 tracking-widest uppercase mb-8">404</p>
 
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
+            <h1 className="text-[2.25rem] lg:text-[3.5rem] font-light tracking-tight font-heading leading-[1.1] text-[#141414] mb-8">
+                Nothing lives at this address
+            </h1>
 
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-gray-600">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 underline hover:text-blue-700">
-          Return to Home
-        </a>
-      </div>
+            <p className="text-base font-light text-gray-600 leading-relaxed mb-12">
+                The page was either moved or never existed. The work is one click away.
+            </p>
+
+            {/* Link, not an anchor: an <a href="/"> throws the SPA away and reloads the
+                whole bundle to render a page the router could already render. */}
+            <Link
+                to="/"
+                className="group inline-flex items-center gap-2 bg-[#141414] text-white px-8 py-4 rounded-sm text-sm font-medium hover:bg-[#2A2A2A] transition-colors"
+            >
+                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+                All work
+            </Link>
+        </div>
     </div>
-  );
-};
+);
 
 export default NotFound;

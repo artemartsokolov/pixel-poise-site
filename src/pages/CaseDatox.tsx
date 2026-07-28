@@ -12,13 +12,13 @@ const SHOT_BASE = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/pu
 
 /* Order here is the order the lightbox steps through. */
 const shots: Shot[] = [
-    { src: `${SHOT_BASE}/source-files.jpg`, video: `${SHOT_BASE}/source-files.mov`, label: "compliance.datox.ai/source-files", alt: "Distributing an upload across funds, over the stacked layout that pairs each period with the last" },
+    { src: `${SHOT_BASE}/source-files.jpg`, video: `${SHOT_BASE}/source-files.mp4`, label: "compliance.datox.ai/source-files", alt: "Distributing an upload across funds, over the stacked layout that pairs each period with the last" },
     { src: `${SHOT_BASE}/ai-bot.jpg`, video: `${SHOT_BASE}/ai-bot.mp4`, label: "compliance.datox.ai/assistant", alt: "The assistant reading an upload back — files, sheets and the one question it cannot infer" },
-    { src: `${SHOT_BASE}/extraction.jpg`, video: `${SHOT_BASE}/extraction.mov`, label: "compliance.datox.ai/extraction", alt: "Extraction split-screen — the extracted result above, the raw source data below" },
-    { src: `${SHOT_BASE}/transformation.jpg`, video: `${SHOT_BASE}/transformation.mov`, label: "compliance.datox.ai/transformation", alt: "A transformation step, before and after, with its action editor open" },
+    { src: `${SHOT_BASE}/extraction.jpg`, video: `${SHOT_BASE}/extraction.mp4`, label: "compliance.datox.ai/extraction", alt: "Extraction split-screen — the extracted result above, the raw source data below" },
+    { src: `${SHOT_BASE}/transformation.jpg`, video: `${SHOT_BASE}/transformation.mp4`, label: "compliance.datox.ai/transformation", alt: "A transformation step, before and after, with its action editor open" },
     { src: `${SHOT_BASE}/report.png`, label: "compliance.datox.ai/report", alt: "The assembled report, funds compared in columns, with validation state along the bottom" },
-    { src: `${SHOT_BASE}/approval.jpg`, video: `${SHOT_BASE}/approval.mov`, label: "compliance.datox.ai/approval", alt: "Setting reviewers on a report — what each can see, what each must sign off, tracked per fund" },
-    { src: `${SHOT_BASE}/dashboards.jpg`, video: `${SHOT_BASE}/dashboards.mov`, label: "compliance.datox.ai/dashboards", alt: "Building a dashboard from the widget library, with the widget's data and design panel open" },
+    { src: `${SHOT_BASE}/approval.jpg`, video: `${SHOT_BASE}/approval.mp4`, label: "compliance.datox.ai/approval", alt: "Setting reviewers on a report — what each can see, what each must sign off, tracked per fund" },
+    { src: `${SHOT_BASE}/dashboards.jpg`, video: `${SHOT_BASE}/dashboards.mp4`, label: "compliance.datox.ai/dashboards", alt: "Building a dashboard from the widget library, with the widget's data and design panel open" },
 ];
 
 /* Browser chrome around a screenshot. Dense UI is unreadable at this size,
@@ -388,7 +388,7 @@ const CaseDatox = () => {
 
                     <div>
                         <p className="text-base font-light text-gray-600 leading-relaxed mb-12 max-w-xl">
-                            Compliance reporting is not a domain you can design from the outside. The loop below ran continuously for six months, and every stage of it had someone in the room who does this work for a living.
+                            Compliance reporting is not a domain you can design from the outside. The loop below ran continuously for six months, and every decision in it was made with someone in the room who does this work for a living.
                         </p>
 
                         <div className="space-y-0">
@@ -643,7 +643,7 @@ const CaseDatox = () => {
                                 The Pages I Rebuilt
                             </h2>
                             <p className="text-lg text-gray-700 leading-relaxed">
-                                The product is seven pages, and that number is misleading — each one is a stage of the reporting workflow, not a screen. Together they carry all eleven steps that turn a pile of inconsistent source files into a filing sent to the regulator, moving datasets of tens of thousands of rows between them. The seventh sits alongside the pipeline rather than inside it: a dashboard builder over the data the pipeline produces.
+                                The product is seven pages, and that number is misleading — each one is a phase of the reporting workflow, not a screen. Together they carry all eleven steps that turn a pile of inconsistent source files into a filing sent to the regulator, moving datasets of tens of thousands of rows between them. The seventh sits alongside the pipeline rather than inside it: a dashboard builder over the data the pipeline produces.
                             </p>
                         </div>
                     </motion.div>
@@ -725,7 +725,7 @@ const CaseDatox = () => {
                     </motion.div>
                 </div>
 
-                {/* Pillar 1: Investment Marketplace */}
+                {/* 01 — Intake */}
                 <div className="px-8 lg:px-16 py-20 border-t border-[#C5C0B8]">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                         <motion.div
@@ -768,7 +768,7 @@ const CaseDatox = () => {
                     </div>
                 </div>
 
-                {/* Pillar 2: AI Concierge */}
+                {/* 02 — Mapping */}
                 <div className="px-8 lg:px-16 py-20 border-t border-[#C5C0B8]">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                         <motion.div
@@ -811,7 +811,7 @@ const CaseDatox = () => {
                     </div>
                 </div>
 
-                {/* Pillar 3: Owner Dashboard */}
+                {/* 03 — Extraction */}
                 <div className="px-8 lg:px-16 py-20 border-t border-[#C5C0B8]">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                         <motion.div
@@ -1348,7 +1348,7 @@ const CaseDatox = () => {
                             <p className="text-5xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-left lg:text-right">7</p>
                             <div>
                                 <p className="text-sm font-semibold text-[#141414] mb-2">Pages — the entire product</p>
-                                <p className="text-sm text-gray-500 leading-relaxed">Not seven pages out of forty — seven is the whole surface. Each is a workflow stage handling tens of thousands of rows, and several had never been designed at all before this. Six months, full time.</p>
+                                <p className="text-sm text-gray-500 leading-relaxed">Not seven pages out of forty — seven is the whole surface. Each carries one or more workflow stages, handling tens of thousands of rows, and several had never been designed at all before this. Six months, full time.</p>
                             </div>
                         </motion.div>
 

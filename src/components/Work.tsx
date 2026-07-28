@@ -1,6 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 /* three.js is ~58% of the bundle and this is its only consumer, rendered on
    desktop only. Splitting it out keeps it off every other route. */
@@ -57,14 +57,7 @@ const caseStudies = [
 ];
 
 const Work = () => {
-  const navigate = useNavigate();
   const isMobile = useIsMobile();
-
-  const handleCaseClick = (study: typeof caseStudies[0]) => {
-    if (study.link) {
-      navigate(study.link);
-    }
-  };
 
   return (
     <section id="work" className="relative z-10 bg-background px-4 lg:px-6 pt-4 pb-16">
@@ -77,9 +70,9 @@ const Work = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className={`group ${study.link ? 'cursor-pointer' : ''} mb-4`}
-            onClick={() => handleCaseClick(study)}
+            className="group mb-4"
           >
+            <Link to={study.link} className="block" aria-label={`${study.title} — ${study.description}`}>
             {/* Full-width Image with overlay text */}
             <div className="relative w-full aspect-[4/5] lg:aspect-[16/9] bg-[#C8C4BC] overflow-hidden rounded-xl lg:rounded-none">
               {/* Conditional: shader on desktop, plain img on mobile */}
@@ -137,14 +130,15 @@ const Work = () => {
 
                   {/* Right: CTA Button */}
                   {study.link && (
-                    <button className="pointer-events-auto self-start lg:self-auto inline-flex items-center gap-2 px-4 lg:px-5 py-2 lg:py-2.5 border border-white/50 rounded-full text-xs lg:text-sm font-medium text-white hover:bg-white hover:text-[#141414] transition-colors">
+                    <span className="self-start lg:self-auto inline-flex items-center gap-2 px-4 lg:px-5 py-2 lg:py-2.5 border border-white/50 rounded-full text-xs lg:text-sm font-medium text-white hover:bg-white hover:text-[#141414] transition-colors">
                       View Case Study
                       <ArrowRight className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
-                    </button>
+                    </span>
                   )}
                 </div>
               </div>
             </div>
+            </Link>
           </motion.div>
         ))}
       </div>

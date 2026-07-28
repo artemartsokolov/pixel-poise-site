@@ -14,7 +14,7 @@ export const useHeroScrollEffect = () => {
             // Calculate opacity based on scroll (0 to 0.7 max)
             const opacity = Math.min((scrollY / windowHeight) * 0.7, 0.7);
 
-            // Use transform instead of opacity for better performance
+            // Opacity on a promoted layer: cheap enough here, and the overlay has no transform to share
             heroOverlay.style.setProperty('opacity', opacity.toString());
         };
 

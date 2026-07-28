@@ -35,7 +35,6 @@ so client-side routing survives a page refresh.
 ```
 src/pages/         one component per route, case studies included
 src/components/    sections of the home page, plus the shared Lightbox
-src/components/ui  shadcn primitives
 public/            CV in HTML and PDF, favicons, logos
 ```
 
