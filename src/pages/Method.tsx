@@ -90,6 +90,7 @@ const Method = () => {
                 >
                     <Link
                         to="/"
+                        data-return
                         className="flex items-center gap-2 text-sm font-light text-gray-600 hover:text-[#141414] transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4" />
@@ -330,6 +331,7 @@ const Method = () => {
 
                         <Link
                             to="/"
+                            data-return
                             className="inline-block bg-white text-[#141414] px-8 py-4 rounded-sm text-sm font-medium hover:bg-gray-200 transition-colors mt-16"
                         >
                             Back to all projects

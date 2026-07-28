@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, usePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { useFirstPaint } from "@/hooks/useFirstPaint";
@@ -13,17 +13,51 @@ const TRANSITION_MS = 700;
    Read at the last instant it is still knowable: a capture-phase click listener
    runs before React's own handler, so window.scrollY here is the outgoing page's
    offset with certainty. Everything later is a race that is quietly lost — by the
-   time AnimatePresence renders the copy as leaving, ScrollToTop's layout effect
-   may already have reset the scroll to zero, and the outgoing page then snaps to
-   its own top instead of staying where the reader left it. Tracking scroll events
-   instead loses the same race from the other side: they are dispatched during the
-   rendering steps, which a backgrounded tab suspends entirely. */
+   time AnimatePresence renders the copy as leaving, the scroll may already have
+   been reset to zero, and the outgoing page then snaps to its own top instead of
+   staying where the reader left it. Tracking scroll events instead loses the same
+   race from the other side: they are dispatched during the rendering steps, which
+   a backgrounded tab suspends entirely. */
 let scrollAtNavigation = 0;
+
+/* Closing a case should put the reader back in the Work list where they left it,
+   rather than at the top of a page they have already scrolled through. Opening one
+   must still start at the top: a case is a designed sequence, and dropping someone
+   into the middle of it is worse than making them scroll.
+
+   Nothing available at navigation time distinguishes those two. Both are a push to
+   a new history entry, so react-router's navigation type reads PUSH for each, and
+   the URLs are the same pair in either direction. So the links declare it:
+   [data-return] marks the ones that close a page. Browser Back counts as one too. */
+const scrollByPath = new Map<string, number>();
+let returning = false;
+
+/* Which page is being left, tracked rather than read off the URL. window.location
+   is only still the outgoing page during a click; popstate fires *after* the
+   address has changed, so reading it there filed the case's offset under the home
+   page's path and closing a case restored the wrong number. */
+let currentPath = typeof window !== "undefined" ? window.location.pathname : "/";
+
 if (typeof window !== "undefined") {
-    const capture = () => { scrollAtNavigation = window.scrollY; };
-    document.addEventListener("click", capture, true);
-    window.addEventListener("popstate", capture, true);
+    const capture = (returned: boolean) => {
+        scrollAtNavigation = window.scrollY;
+        scrollByPath.set(currentPath, window.scrollY);
+        returning = returned;
+    };
+    document.addEventListener(
+        "click",
+        (e) => capture(!!(e.target as Element | null)?.closest?.("[data-return]")),
+        true,
+    );
+    window.addEventListener("popstate", () => capture(true), true);
 }
+
+/* Deliberately a pure read — nothing is consumed here. It is called from a state
+   initialiser, which React is free to run twice, and a consume-once flag would be
+   burned by the discarded call: the real mount would then restore nothing. The map
+   needs no clearing either, since every navigation click rewrites the entry for the
+   page it leaves, and `returning` is reset by the next click. */
+const returnScrollFor = (path: string) => (returning ? scrollByPath.get(path) ?? 0 : 0);
 
 /* One route, animated against its neighbour.
 
@@ -47,7 +81,7 @@ if (typeof window !== "undefined") {
    a timer, never by an animation completing: the lightbox in this project has a
    comment about an exit tween that failed to finish and left a full-screen node
    swallowing every click. */
-const Staged = ({ children }: { children: ReactNode }) => {
+const Staged = ({ children, path }: { children: ReactNode; path: string }) => {
     const [isPresent, safeToRemove] = usePresence();
     const firstPaint = useFirstPaint();
 
@@ -58,6 +92,10 @@ const Staged = ({ children }: { children: ReactNode }) => {
 
     /* The page a session opens on has nothing to be revealed from behind. */
     const [revealing, setRevealing] = useState(() => isPresent && !firstPaint);
+
+    /* Resolved at mount, while `returning` still describes the navigation that
+       brought this copy into being. */
+    const [restoreTo] = useState(() => (isPresent ? returnScrollFor(path) : 0));
 
     /* Held in a ref so the removal timer can depend on the presence flag and
        nothing else. framer-motion returns a fresh callback each render, and with
@@ -79,43 +117,67 @@ const Staged = ({ children }: { children: ReactNode }) => {
         return () => clearTimeout(t);
     }, [isPresent, revealing]);
 
-    if (!isPresent) {
-        const scrolledTo = frozenAt.current ?? 0;
-        return (
-            <div
-                className="page-recede"
-                style={{
-                    position: "fixed",
-                    left: 0,
-                    right: 0,
-                    top: -scrolledTo,
-                    pointerEvents: "none",
-                    zIndex: 1,
-                    /* Shrink about the middle of what the reader is looking at.
-                       This copy is offset by -scrollY, so the viewport centre
-                       sits that much further down its own box. */
-                    transformOrigin: `50% ${scrolledTo + window.innerHeight / 2}px`,
-                    /* Opaque, so the black backdrop shows only where this copy
-                       has pulled away from the edges — not through any gap
-                       between the page's own sections. */
-                    background: "hsl(var(--background))",
-                }}
-            >
-                {children}
-            </div>
-        );
-    }
+    /* Where the page actually starts. This is the only place that decides it, which
+       is the point: two components both calling scrollTo on a route change is how
+       the scroll ends up somewhere neither of them intended.
 
+       It can only be a real scroll once the page is back in normal flow — while the
+       reveal runs, the page is a fixed one-viewport box and the document has no
+       height to scroll. Until then the identical offset is held by the negative
+       margin below, so the two are the same picture and the swap is invisible.
+
+       behavior: "instant" is required, not cosmetic. html carries scroll-behavior:
+       smooth so the hero's in-page anchors glide, and that makes every scrollTo
+       animate — a route change then scrolled the arriving page from the old offset
+       up to its top, taking the reader on a tour of every section on the way.
+
+       Layout effect, not effect: useEffect runs after paint, so there would be one
+       frame at the wrong offset before this landed. */
+    useLayoutEffect(() => {
+        if (!isPresent || revealing) return;
+        window.scrollTo({ top: restoreTo, left: 0, behavior: "instant" });
+    }, [isPresent, revealing, restoreTo]);
+
+    const scrolledTo = frozenAt.current ?? 0;
+
+    /* One tree for all three states rather than an early return per state. Changing
+       the shape of the tree between them would remount the page on every hand-off,
+       restarting each entrance animation — which is visible as the outgoing copy
+       replaying its titles as it recedes. */
     return (
         <div
-            className={revealing ? "page-reveal" : undefined}
+            className={!isPresent ? "page-recede" : revealing ? "page-reveal" : undefined}
             style={
-                revealing
-                    ? { position: "fixed", inset: 0, height: "100vh", zIndex: 10, overflow: "hidden" }
-                    : undefined
+                !isPresent
+                    ? {
+                          position: "fixed",
+                          left: 0,
+                          right: 0,
+                          top: -scrolledTo,
+                          pointerEvents: "none",
+                          zIndex: 1,
+                          /* Shrink about the middle of what the reader is looking
+                             at. This copy is offset by -scrollY, so the viewport
+                             centre sits that much further down its own box. */
+                          transformOrigin: `50% ${scrolledTo + window.innerHeight / 2}px`,
+                          /* Opaque, so the black backdrop shows only where this
+                             copy has pulled away from the edges — not through any
+                             gap between the page's own sections. */
+                          background: "hsl(var(--background))",
+                      }
+                    : revealing
+                      ? { position: "fixed", inset: 0, height: "100vh", zIndex: 10, overflow: "hidden" }
+                      : undefined
             }
         >
-            {children}
+            {/* The clip has to be measured against a box exactly one viewport tall,
+                so the offset cannot live on the element being clipped — it is the
+                content inside that shifts. A margin rather than a transform: a
+                transformed ancestor becomes the containing block for fixed
+                descendants, and every case page has a fixed back-link. */}
+            <div style={revealing && restoreTo ? { marginTop: -restoreTo } : undefined}>
+                {children}
+            </div>
         </div>
     );
 };
@@ -151,12 +213,23 @@ const Backdrop = () => {
 const PageTransition = ({ children }: { children: ReactNode }) => {
     const location = useLocation();
 
+    /* Runs once each navigation settles, so by the time the reader clicks or presses
+       Back this names the page they are leaving. */
+    useLayoutEffect(() => {
+        currentPath = location.pathname;
+    }, [location.pathname]);
+
     return (
         <>
             <Backdrop />
             <AnimatePresence initial={false}>
-                {/* A new key is what marks the previous subtree as leaving. */}
-                <Staged key={location.pathname}>{children}</Staged>
+                {/* A new key is what marks the previous subtree as leaving. The path
+                    is also passed as a prop, because the leaving copy needs to know
+                    which page it *is* — useLocation inside it would already be
+                    reporting the one that replaced it. */}
+                <Staged key={location.pathname} path={location.pathname}>
+                    {children}
+                </Staged>
             </AnimatePresence>
         </>
     );

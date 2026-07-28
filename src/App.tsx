@@ -6,7 +6,6 @@ import CaseStayte from "./pages/CaseStayte";
 import CaseFlowHealth from "./pages/CaseFlowHealth";
 import CaseDatox from "./pages/CaseDatox";
 import Method from "./pages/Method";
-import ScrollToTop from "./components/ScrollToTop";
 import PageTransition from "./components/PageTransition";
 
 /* Routes live in their own component so they can read the location that
@@ -31,9 +30,10 @@ const AnimatedRoutes = () => {
   );
 };
 
+/* Where a route change leaves the scroll is decided inside PageTransition, next to
+   the reveal it has to stay in step with — not by a separate component racing it. */
 const App = () => (
   <BrowserRouter>
-    <ScrollToTop />
     <AnimatedRoutes />
   </BrowserRouter>
 );

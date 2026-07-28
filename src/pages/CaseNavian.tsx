@@ -65,6 +65,7 @@ const CaseNavian = () => {
                 >
                     <Link
                         to="/"
+                        data-return
                         className="flex items-center gap-2 text-sm font-light text-gray-600 hover:text-[#141414] transition-colors"
                     >
                         <ArrowLeft className="w-4 h-4" />
@@ -987,6 +988,7 @@ const CaseNavian = () => {
                     >
                         <Link
                             to="/"
+                            data-return
                             className="inline-block bg-[#141414] text-white px-8 py-4 rounded-sm text-sm font-medium hover:bg-gray-800 transition-colors"
                         >
                             Back to all projects
