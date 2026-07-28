@@ -17,7 +17,6 @@ const navLinks = [
 ];
 
 /* ── Description lines (split for staggered reveal) ── */
-const descTitle = "Design Engineer";
 const descLines = [
   "Specializing in complex B2B SaaS and",
   "data-heavy interfaces. I design the product",
@@ -35,30 +34,24 @@ const Hero = () => {
       {/* Darkening overlay */}
       <div className="absolute inset-0 bg-black opacity-0 z-[5] pointer-events-none will-change-[opacity]" id="hero-overlay" />
 
-      {/* ═══ TOP LEFT — where I am, and the one file a recruiter opens.
+      {/* ═══ TOP LEFT — the one file a recruiter opens, and nothing else.
+           Where I am reads better next to the role than alone in a corner, so it
+           sits on the description's first line instead.
            Stays right on small screens: below lg the nav owns the left corner. ═══ */}
-      <div className="absolute top-6 right-4 lg:top-9 lg:right-auto lg:left-8 z-20 flex items-center gap-4 lg:gap-5">
-        {["Spain", "CV"].map((label, i) => (
-          <div key={label} className="overflow-hidden">
-            <motion.div
-              initial={{ y: "110%" }}
-              animate={{ y: "0%" }}
-              transition={{ delay: 0.55 + i * 0.08, duration: 0.8, ease: smooth }}
-            >
-              {label === "Spain" ? (
-                <span className="text-xs lg:text-sm font-light text-[#141414]/60">Spain</span>
-              ) : (
-                <a
-                  href="/cv-artem-sokolov.pdf"
-                  download
-                  className="text-xs lg:text-sm font-medium text-[#141414] border-b border-[#141414]/30 hover:border-[#141414] transition-colors"
-                >
-                  CV
-                </a>
-              )}
-            </motion.div>
-          </div>
-        ))}
+      <div className="absolute top-6 right-4 lg:top-9 lg:right-auto lg:left-8 z-20 overflow-hidden">
+        <motion.div
+          initial={{ y: "110%" }}
+          animate={{ y: "0%" }}
+          transition={{ delay: 0.55, duration: 0.8, ease: smooth }}
+        >
+          <a
+            href="/cv-artem-sokolov.pdf"
+            download
+            className="text-xs lg:text-sm font-medium text-[#141414] border-b border-[#141414]/30 hover:border-[#141414] transition-colors"
+          >
+            CV
+          </a>
+        </motion.div>
       </div>
 
       {/* ═══ TOP — Navigation Menu ═══ */}
@@ -148,7 +141,10 @@ const Hero = () => {
               ease: smooth,
             }}
           >
-            {descTitle}
+            Design Engineer
+            {/* Kept lighter than the role: it is context a recruiter wants early,
+                not the thing the line is about. */}
+            <span className="font-light text-white/60 lg:text-gray-500"> · Spain</span>
           </motion.p>
         </div>
 
