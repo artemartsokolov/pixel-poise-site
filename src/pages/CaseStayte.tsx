@@ -326,68 +326,92 @@ const CaseStayte = () => {
                 </div>
             </section>
 
-            <div className="px-8 lg:px-16"><div className="border-t border-gray-300" /></div>
+            {/* Horizontal Divider */}
+            <div className="w-full h-px bg-gray-300"></div>
 
             {/* ═══ The Brief ═══ */}
-            <section className="px-8 lg:px-16 py-24">
-                <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px]">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">The Brief</h2>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1, duration: 0.6 }}
-                        className="max-w-2xl space-y-5"
-                    >
-                        <p className="text-xl lg:text-2xl font-light text-[#141414] leading-relaxed">
-                            Everything an estate agency does before a deal closes is a chain of small manual acts — copy the lead out of the form, call it, remember to call again, put a list of properties together in a chat, update the CRM if there is time.
-                        </p>
-                        <p className="text-base text-gray-600 leading-relaxed">
-                            Stayte replaced the chain with a system. Not a CRM and not a lead tool: the layer that runs everything between a lead arriving and a deal moving, and keeps the CRM correct as a side effect rather than as a chore.
-                        </p>
-                        <p className="text-base text-gray-600 leading-relaxed">
-                            It began as a marketplace with a mobile app for buyers. The part that turned out to matter was underneath it — the machinery the brokerage itself runs on. This case is about that.
-                        </p>
-                    </motion.div>
-                </div>
+            <section className="py-28">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px] px-8 lg:px-16"
+                >
+                    <div>
+                        <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">
+                            The Brief
+                        </h2>
+                    </div>
+
+                    <div className="space-y-10 divide-y divide-gray-300">
+                        <div>
+                            <h3 className="text-base font-semibold text-[#141414] mb-4">The Market</h3>
+                            <p className="text-base font-light text-gray-600 leading-relaxed">
+                                Everything an estate agency does before a deal closes is a chain of small manual acts — copy the lead out of the form, call it, remember to call again, put a list of properties together in a chat, update the CRM if there is time. The chain breaks quietly, and nobody finds out until a lead has gone cold.
+                            </p>
+                        </div>
+
+                        <div className="pt-10">
+                            <h3 className="text-base font-semibold text-[#141414] mb-4">The Mission</h3>
+                            <p className="text-base font-light text-gray-600 leading-relaxed">
+                                Replace the chain with a system. Not a CRM and not a lead tool: the layer that runs everything between a lead arriving and a deal moving, and keeps the CRM correct as a side effect rather than as a chore. It began as a marketplace with a mobile app for buyers — the part that turned out to matter was the machinery underneath, the thing the brokerage itself runs on.
+                            </p>
+                        </div>
+
+                        <div className="pt-10">
+                            <h3 className="text-base font-semibold text-[#141414] mb-4">Impact</h3>
+                            <p className="text-base font-light text-gray-600 leading-relaxed">
+                                <span className="text-[#141414] font-medium">Nine stages</span> from a lead appearing to a deal advancing, none of them left to a spreadsheet or a group chat, with the qualification rules <span className="text-[#141414] font-medium">configurable by the agency</span> rather than written into the code.
+                            </p>
+                        </div>
+                    </div>
+                </motion.div>
             </section>
 
-            <div className="px-8 lg:px-16"><div className="border-t border-gray-300" /></div>
+            {/* Horizontal Divider */}
+            <div className="w-full h-px bg-gray-300"></div>
 
             {/* ═══ My Role ═══ */}
-            <section className="px-8 lg:px-16 py-24">
-                <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px]">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">My Role</h2>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1, duration: 0.6 }}
-                        className="max-w-2xl space-y-5"
-                    >
-                        <p className="text-xl lg:text-2xl font-light text-[#141414] leading-relaxed">
-                            I built the system. Everything except the mobile app, where I did the design and nothing else.
-                        </p>
-                        <p className="text-base text-gray-600 leading-relaxed">
-                            The interface, the Supabase backend and its functions, the workflow engine, and every integration underneath: the MLS connection, the WhatsApp delivery, the two-way CRM sync, the voice and messaging providers. Design and production code were the same job, done by the same person, which is why the shape of the system and the shape of the screens agree with each other.
-                        </p>
-                    </motion.div>
-                </div>
+            <section className="px-8 lg:px-16 py-28 bg-[#D4D0C8]">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px]"
+                >
+                    <div>
+                        <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">
+                            My Role
+                        </h2>
+                    </div>
+
+                    <div className="space-y-0">
+                        {[
+                            { role: "Product Design", desc: "Designed the whole operating surface — intake, the workflow rules, the selection view, the dashboard. Every stage of the run, including the ones that had only ever existed as somebody's habit." },
+                            { role: "Frontend Engineering", desc: "Implemented those designs myself. Same person on both sides of the handoff, which is why the shape of the system and the shape of the screens agree with each other." },
+                            { role: "Backend & Integrations", desc: "The Supabase backend and its functions, and every connection underneath: the client's MLS by API key, WhatsApp delivery, two-way sync with HubSpot and Pipedrive, and the voice and messaging providers." },
+                            { role: "Workflow Architecture", desc: "Designed the qualification engine as configuration rather than code — which leads a sequence claims, what it does first, how many attempts, how long between them, and what ends it. The hard part was keeping it operable by someone who is not a programmer." },
+                        ].map((item, index) => (
+                            <motion.div
+                                key={item.role}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1, duration: 0.6 }}
+                                className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 py-6 border-t border-[#141414]/20"
+                            >
+                                <p className="text-base font-semibold text-[#141414]">{item.role}</p>
+                                <p className="text-base font-light text-[#141414]/70 leading-relaxed">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
             </section>
+
+            {/* Horizontal Divider */}
+            <div className="w-full h-px bg-gray-300"></div>
 
             {/* ═══ The Run — pipeline diagram ═══ */}
             <section className="bg-[#141414] px-8 lg:px-16 py-28">
@@ -561,9 +585,9 @@ const CaseStayte = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1, duration: 0.6 }}
-                        className="max-w-2xl space-y-5"
+                        className="space-y-5"
                     >
-                        <p className="text-base text-gray-600 leading-relaxed">
+                        <p className="text-base font-light text-gray-600 leading-relaxed">
                             Agents do most of their work away from a desk, so the system needed a surface that travelled with them: their deals, their clients, and the automations they would otherwise have to be at a computer to run — build a selection, send it to a client, without opening the OS.
                         </p>
                         <p className="text-base text-gray-600 leading-relaxed">
