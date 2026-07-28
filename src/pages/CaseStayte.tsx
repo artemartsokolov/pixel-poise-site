@@ -13,13 +13,13 @@ const SHOT_BASE = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/pu
    An empty `src` renders an empty slot in the page instead of a broken image —
    those are the frames still waiting for a screenshot or a recording. */
 const shots: Shot[] = [
-    { src: `${SHOT_BASE}/leads.jpg`, label: "Leads", alt: "Lead intake — every source in one list, with the AI contact status per lead. Client names and contact details are masked." },
+    { src: `${SHOT_BASE}/intake-poster.jpg`, video: `${SHOT_BASE}/intake.mp4`, label: "Lead Sources", alt: "Where the four inputs are configured — the ad connector, inbound email parsing, the webhook for custom forms, and the source labels every lead is tagged with" },
     { src: `${SHOT_BASE}/routing-poster.jpg`, video: `${SHOT_BASE}/routing.mp4`, label: "Workflow step", alt: "A step in a sequence: immediate send, AI auto-reply, and the reply timeout that decides which path is taken next" },
     { src: `${SHOT_BASE}/qualification-poster.jpg`, video: `${SHOT_BASE}/qualification.mp4`, label: "Call configuration", alt: "Retry logic as settings — attempts, per-attempt fallback rules, one call per window, and the calling-hours grid" },
-    { src: `${SHOT_BASE}/selection-poster.jpg`, video: `${SHOT_BASE}/selection.mp4`, label: "Properties", alt: "The agency's own MLS inside the product — thirteen thousand listings, filtered down to build a selection" },
+    { src: `${SHOT_BASE}/selection-poster.jpg`, video: `${SHOT_BASE}/selection.mp4`, label: "Selection", alt: "A selection already sent to this lead, three properties from the agency's MLS, with the option to continue from it or start a new one" },
     { src: "", label: "WhatsApp", alt: "The selection delivered into the client's WhatsApp thread" },
     { src: `${SHOT_BASE}/ai-assistent.png`, label: "Assistant", alt: "Preferences gathered back from likes and dislikes" },
-    { src: `${SHOT_BASE}/enrichment-poster.jpg`, video: `${SHOT_BASE}/enrichment.mp4`, label: "Lead record", alt: "The profile built from the calls beside it — every attempt and its outcome, written back onto the record" },
+    { src: `${SHOT_BASE}/enrichment-poster.jpg`, video: `${SHOT_BASE}/enrichment.mp4`, label: "Lead record", alt: "The profile on the left, the calls that built it on the right — every attempt, its outcome, and the fields it filled in" },
     { src: `${SHOT_BASE}/crm-sync-poster.jpg`, video: `${SHOT_BASE}/crm-sync.mp4`, label: "Data Sync", alt: "The CRM connector: two-way sync of contacts and deals, with the last sync timestamped" },
     { src: `${SHOT_BASE}/dashboard-poster.jpg`, video: `${SHOT_BASE}/dashboard.mp4`, label: "Dashboard", alt: "Conversion by source, leads over time, and what the automation is currently carrying" },
 ];
