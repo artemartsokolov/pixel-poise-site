@@ -690,37 +690,6 @@ const CaseStayte = () => {
                 })}
             </section>
 
-            {/* ═══ The mobile app — designed, not built by me ═══ */}
-            <section className="px-8 lg:px-16 py-28">
-                <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px]">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">The App for Agents</h2>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1, duration: 0.6 }}
-                        className="space-y-6"
-                    >
-                        <p className="text-base font-light text-gray-600 leading-relaxed">
-                            Agents do most of their work away from a desk, so the system needed a surface that travelled with them: their deals, their clients, and the automations they would otherwise have to be at a computer to run — build a selection, send it to a client, without opening the OS.
-                        </p>
-                        <p className="text-base font-light text-gray-600 leading-relaxed">
-                            The part I cared most about was the notes. An agent finishes a viewing and speaks into their phone; the note is transcribed and lands in the CRM as a proper record. It is the same principle as stage six — what gets learned out in the world should not stay there.
-                        </p>
-                        <p className="text-sm text-gray-500 leading-relaxed pt-6 border-t border-gray-300">
-                            I designed this. I did not build it — the app was the one part of the system that was not mine to write.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
             {/* ═══ Hardest problem ═══ */}
             <section className="px-8 lg:px-16 py-28">
                 <motion.div
