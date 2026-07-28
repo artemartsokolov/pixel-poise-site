@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Maximize2 } from "lucide-react";
+import { ArrowLeft, Maximize2, Play } from "lucide-react";
 import Lightbox, { type Shot } from "@/components/Lightbox";
 
 /* ── Premium easing curve (matches Hero.tsx) ── */
@@ -13,7 +13,7 @@ const SHOT_BASE = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/pu
    An empty `src` renders an empty slot in the page instead of a broken image —
    those are the frames still waiting for a screenshot or a recording. */
 const shots: Shot[] = [
-    { src: "", label: "os.stayte/leads", alt: "Lead intake — the four sources arriving in one inbox" },
+    { src: `${SHOT_BASE}/leads.jpg`, label: "Leads", alt: "Lead intake — every source in one list, with the AI contact status per lead. Client names and contact details are blurred." },
     { src: "", label: "os.stayte/workflows", alt: "Workflow rules: which leads a sequence claims, and what it does first" },
     { src: "", label: "os.stayte/workflows/editor", alt: "The workflow editor — attempts, intervals and exit conditions as settings" },
     { src: `${SHOT_BASE}/ai-selection.png`, label: "os.stayte/selection", alt: "A generated property selection as the client receives it" },
@@ -109,6 +109,51 @@ const ShotFrame = ({ shot, onOpen }: { shot: Shot; onOpen: () => void }) => {
                     Expand
                 </span>
             </div>
+        </div>
+    );
+};
+
+/* The long walkthrough. Held behind a poster on purpose: it is 45 seconds and
+   3 MB, and nothing is fetched until someone asks for it. */
+const Walkthrough = () => {
+    const [playing, setPlaying] = useState(false);
+
+    return (
+        <div className="rounded-sm overflow-hidden border border-[#C5C0B8] bg-white shadow-lg">
+            {playing ? (
+                <video
+                    src={`${SHOT_BASE}/workflows-editor.mp4`}
+                    poster={`${SHOT_BASE}/workflows-poster.jpg`}
+                    autoPlay
+                    controls
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-auto block"
+                />
+            ) : (
+                <button
+                    type="button"
+                    onClick={() => setPlaying(true)}
+                    aria-label="Play the workflow editor walkthrough, 45 seconds, no sound"
+                    className="group relative block w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#141414] focus-visible:ring-inset"
+                >
+                    <img
+                        src={`${SHOT_BASE}/workflows-poster.jpg`}
+                        alt="The workflow list: each source has its own sequence, with steps, runs and success counts"
+                        className="w-full h-auto block"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    <span className="absolute inset-0 bg-[#141414]/0 transition-colors duration-300 group-hover:bg-[#141414]/10" />
+                    <span className="absolute inset-0 flex items-center justify-center">
+                        <span className="flex items-center gap-3 rounded-full bg-[#141414]/85 px-6 py-3.5 text-sm font-medium text-white backdrop-blur-sm transition-transform duration-300 group-hover:scale-[1.04]">
+                            <Play className="h-4 w-4 fill-current" />
+                            Play walkthrough · 45s
+                        </span>
+                    </span>
+                </button>
+            )}
         </div>
     );
 };
@@ -506,6 +551,38 @@ const CaseStayte = () => {
                         <text x="305" y="245" textAnchor="middle" fill="#A09A92" fontSize="11">09 · Dashboard</text>
                         <line x1="305" y1="228" x2="290" y2="134" stroke="#3A3A3A" strokeWidth="1" strokeDasharray="2 3" />
                     </svg>
+                </motion.div>
+            </section>
+
+            {/* ═══ Walkthrough — the editor, full width ═══ */}
+            <section className="px-8 lg:px-16 py-28">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-24 lg:gap-[450px] mb-14"
+                >
+                    <div>
+                        <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">
+                            The Editor
+                        </h2>
+                    </div>
+
+                    <div>
+                        <p className="text-base font-light text-gray-600 leading-relaxed max-w-xl">
+                            Stages two and three are one screen in practice, and it is the screen the whole system turns on. Each source gets its own sequence — the list shows one per source, including a separate one for Idealista — and each sequence is a graph of steps rather than a setting buried in a form. Inside a step: which channel, how long to wait, whether the AI agent answers replies itself, and which path is taken when nobody answers.
+                        </p>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <Walkthrough />
                 </motion.div>
             </section>
 
