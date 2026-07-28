@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import BackLink from "@/components/BackLink";
 import { useFirstPaint } from "@/hooks/useFirstPaint";
 
 /* ── Premium easing curve (matches Hero.tsx) ── */
@@ -67,24 +67,7 @@ const CaseFlowHealth = () => {
 
     return (
         <div className="bg-[#F5F3EE] text-foreground min-h-screen">
-            {/* Back Navigation — Masked slide-in */}
-            <div className="fixed top-8 left-8 z-50 overflow-hidden">
-                <motion.div
-                    initial={{ x: "-110%" }}
-                    animate={{ x: "0%" }}
-                    transition={{ delay: 0.3, duration: 0.7, ease: smooth }}
-                >
-                    <Link
-                        to="/"
-                        data-return
-                        className="flex items-center gap-2 text-sm font-light text-gray-600 hover:text-[#141414] transition-colors"
-                    >
-                        <ArrowLeft className="w-4 h-4" />
-                        All Work
-                    </Link>
-                </motion.div>
-            </div>
-
+            <BackLink darkCoverVh={50} />
             {/* Hero Section */}
             <section>
                 {/* Hero Image — Curtain wipe + Ken Burns zoom */}

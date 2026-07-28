@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import BackLink from "@/components/BackLink";
 
 /* ── Premium easing curve (matches Hero.tsx) ── */
 const smooth = [0.22, 1, 0.36, 1] as const;
@@ -81,24 +82,7 @@ const limits = [
 const Method = () => {
     return (
         <div className="bg-[#F5F3EE] text-foreground min-h-screen">
-            {/* Back Navigation — Masked slide-in */}
-            <div className="fixed top-8 left-8 z-50 overflow-hidden">
-                <motion.div
-                    initial={{ x: "-110%" }}
-                    animate={{ x: "0%" }}
-                    transition={{ delay: 0.3, duration: 0.7, ease: smooth }}
-                >
-                    <Link
-                        to="/"
-                        data-return
-                        className="flex items-center gap-2 text-sm font-light text-gray-600 hover:text-[#141414] transition-colors"
-                    >
-                        <ArrowLeft className="w-4 h-4" />
-                        All Work
-                    </Link>
-                </motion.div>
-            </div>
-
+            <BackLink />
             {/* ═══ Hero — typographic, no image ═══ */}
             <section className="px-8 lg:px-16 pt-32 lg:pt-44 pb-20">
                 <div className="max-w-[1200px]">
