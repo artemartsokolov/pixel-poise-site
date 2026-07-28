@@ -13,15 +13,15 @@ const SHOT_BASE = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/pu
    An empty `src` renders an empty slot in the page instead of a broken image —
    those are the frames still waiting for a screenshot or a recording. */
 const shots: Shot[] = [
-    { src: `${SHOT_BASE}/leads.jpg`, label: "Leads", alt: "Lead intake — every source in one list, with the AI contact status per lead. Client names and contact details are blurred." },
-    { src: "", label: "os.stayte/workflows", alt: "Workflow rules: which leads a sequence claims, and what it does first" },
-    { src: "", label: "os.stayte/workflows/editor", alt: "The workflow editor — attempts, intervals and exit conditions as settings" },
-    { src: `${SHOT_BASE}/ai-selection.png`, label: "os.stayte/selection", alt: "A generated property selection as the client receives it" },
+    { src: `${SHOT_BASE}/leads.jpg`, label: "Leads", alt: "Lead intake — every source in one list, with the AI contact status per lead. Client names and contact details are masked." },
+    { src: `${SHOT_BASE}/routing-poster.jpg`, video: `${SHOT_BASE}/routing.mp4`, label: "Workflow step", alt: "A step in a sequence: immediate send, AI auto-reply, and the reply timeout that decides which path is taken next" },
+    { src: `${SHOT_BASE}/qualification-poster.jpg`, video: `${SHOT_BASE}/qualification.mp4`, label: "Call configuration", alt: "Retry logic as settings — attempts, per-attempt fallback rules, one call per window, and the calling-hours grid" },
+    { src: `${SHOT_BASE}/selection-poster.jpg`, video: `${SHOT_BASE}/selection.mp4`, label: "Properties", alt: "The agency's own MLS inside the product — thirteen thousand listings, filtered down to build a selection" },
     { src: "", label: "WhatsApp", alt: "The selection delivered into the client's WhatsApp thread" },
-    { src: `${SHOT_BASE}/ai-assistent.png`, label: "os.stayte/assistant", alt: "Preferences gathered back from likes and dislikes" },
-    { src: "", label: "os.stayte/records", alt: "Call outcomes and agent notes folded back into the record" },
-    { src: "", label: "os.stayte/integrations", alt: "Two-way sync with HubSpot and Pipedrive" },
-    { src: `${SHOT_BASE}/dashboard.png`, label: "os.stayte/dashboard", alt: "The activity dashboard across agents and scheduled work" },
+    { src: `${SHOT_BASE}/ai-assistent.png`, label: "Assistant", alt: "Preferences gathered back from likes and dislikes" },
+    { src: `${SHOT_BASE}/enrichment-poster.jpg`, video: `${SHOT_BASE}/enrichment.mp4`, label: "Lead record", alt: "The profile built from the calls beside it — every attempt and its outcome, written back onto the record" },
+    { src: `${SHOT_BASE}/crm-sync-poster.jpg`, video: `${SHOT_BASE}/crm-sync.mp4`, label: "Data Sync", alt: "The CRM connector: two-way sync of contacts and deals, with the last sync timestamped" },
+    { src: `${SHOT_BASE}/dashboard-poster.jpg`, video: `${SHOT_BASE}/dashboard.mp4`, label: "Dashboard", alt: "Conversion by source, leads over time, and what the automation is currently carrying" },
 ];
 
 /* Browser chrome around a screenshot. Dense UI is unreadable at this size,
@@ -233,7 +233,7 @@ const stages = [
         n: "08 / CRM Sync",
         title: "Two-Way, with HubSpot and Pipedrive",
         meta: "Bidirectional · Automatic Stage Progression",
-        body: "Everything a run produces updates the agency's CRM automatically, and changes made in the CRM come back the other way.",
+        body: "Everything a run produces updates the agency's CRM automatically, and changes made in the CRM come back the other way. Pipedrive is the one live in this deployment; the same connector covers HubSpot.",
         bullets: [
             ["Deals move themselves:", "When a lead meets the criteria for the next stage, the deal advances rather than waiting for someone to remember."],
             ["The CRM stays correct as a side effect:", "Nobody is asked to maintain it, which is the only way it stays maintained."],
