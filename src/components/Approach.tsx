@@ -4,22 +4,29 @@ const competencies = [
     {
         category: "STRATEGY",
         skills: [
-            ["Product Discovery", "Data-Driven UX"],
-            ["User Research", "System Architecture"],
+            ["Product Discovery", "System Architecture"],
+            ["Data-Driven UX", "User Research"],
         ],
     },
     {
-        category: "EXECUTION",
+        category: "DESIGN",
         skills: [
-            ["UI/Visual Design", "Rapid Prototyping"],
-            ["Design Systems", "Interaction Design"],
+            ["UI/Visual Design", "Design Systems"],
+            ["Interaction Design", "Prototyping"],
         ],
     },
     {
-        category: "TECH & TOOLS",
+        category: "ENGINEERING",
         skills: [
-            ["Figma (Advanced)", "Frontend Literacy (React/Tailwind)"],
-            ["Storybook", "AI-Assisted Prototyping"],
+            ["React + TypeScript", "Backend Functions (Supabase)"],
+            ["API Integrations & Connectors", "Canvas Rendering & Virtualisation"],
+        ],
+    },
+    {
+        category: "TOOLS",
+        skills: [
+            ["Figma", "Claude Code"],
+            ["Cursor", "Claude Design"],
         ],
     },
 ];
@@ -48,7 +55,7 @@ const Approach = () => {
                         {/* Philosophy Block - Large text, no breaks */}
                         <div>
                             <p className="text-2xl lg:text-3xl font-light text-white leading-[1.4]">
-                                I don't just hand off Figma files — <strong className="font-semibold">I build systems.</strong> With <strong className="font-semibold">10+ years</strong> in the industry, I've moved past "pixel pushing." My focus is strictly on <strong className="font-semibold">Complex B2B & Enterprise</strong>. I bridge the gap between heavy <strong className="font-semibold">Backend logic</strong> and <strong className="font-semibold">User Interface</strong>, building products that are predictable, scalable, and profitable.
+                                <strong className="font-semibold">10+ years</strong> in <strong className="font-semibold">Complex B2B & Enterprise</strong>. I design the product and write the code that ships it — frontend, backend functions, and the connectors between systems that were never built to talk to each other. The value isn't doing two jobs; it's that the loop between a decision and its consequence collapses to <strong className="font-semibold">an afternoon</strong>.
                             </p>
                         </div>
 

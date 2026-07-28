@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useHeroScrollEffect } from "@/hooks/useHeroScrollEffect";
 
-const profilePhoto = "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/me_final.jpg";
+const profilePhoto = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/me-final.jpg";
 
 /* ── Premium easing curves ── */
 const smooth = [0.22, 1, 0.36, 1] as const;        // smooth decel
@@ -11,17 +11,17 @@ const elastic = [0.175, 0.885, 0.32, 1.275] as const; // bounce overshoot
 const navLinks = [
   { label: "Home", href: "#hero" },
   { label: "About", href: "#about-me" },
-  { label: "Work", href: "#work", badge: "(3)" },
+  { label: "Work", href: "#work", badge: "(4)" },
   { label: "Contact", href: "#contact" },
 ];
 
 /* ── Description lines (split for staggered reveal) ── */
-const descTitle = "Lead Product Designer";
+const descTitle = "Design Engineer";
 const descLines = [
-  "Specializing in complex B2B SaaS",
-  "and Data-Driven Interfaces. I transform",
-  "heavy logic into intuitive ecosystems",
-  "for Fintech, PropTech, and Enterprise clients.",
+  "Specializing in complex B2B SaaS and",
+  "data-heavy interfaces. I design the product",
+  "and ship the production code myself —",
+  "Fintech, PropTech, RegTech, and Enterprise.",
 ];
 
 const Hero = () => {

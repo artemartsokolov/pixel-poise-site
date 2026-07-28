@@ -12,7 +12,7 @@ const AboutMe = () => {
                 >
                     {/* Main Statement */}
                     <h2 className="text-3xl lg:text-4xl font-light leading-[1.3] tracking-tight text-[#141414] mb-16 max-w-4xl font-heading">
-                        I transform complex business logic into intuitive, scalable digital ecosystems. I don't just design screens—I engineer solutions that reduce operational costs and drive user retention.
+                        I design complex B2B products and then build them. Not prototypes — the production frontend, the backend functions, the connectors underneath. One person on both sides of the handoff, because there isn't one.
                     </h2>
 
                     {/* Service description blocks */}
@@ -24,9 +24,9 @@ const AboutMe = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                            <h3 className="text-base font-semibold text-[#141414] mb-3">System Thinking</h3>
+                            <h3 className="text-base font-semibold text-[#141414] mb-3">No Handoff</h3>
                             <p className="text-sm font-light text-gray-500 leading-relaxed">
-                                I treat design as architecture, not decoration. Whether it's taming a 50-sheet financial model or building a Design System from scratch, I create structures that are easy to maintain and scale.
+                                The design and the code are the same job. A decision gets tested against real data in a browser the same afternoon it's made, instead of surviving intact through a spec, a ticket, and someone else's reading of both.
                             </p>
                         </motion.div>
 
@@ -37,9 +37,9 @@ const AboutMe = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.3 }}
                         >
-                            <h3 className="text-base font-semibold text-[#141414] mb-3">Business-First</h3>
+                            <h3 className="text-base font-semibold text-[#141414] mb-3">Systems, Not Screens</h3>
                             <p className="text-sm font-light text-gray-500 leading-relaxed">
-                                My decisions are based on metrics, not just intuition. I bridge the gap between Stakeholder goals and User needs, ensuring every feature directly impacts the bottom line (ROI).
+                                When the interface needs something that doesn't exist yet, I build it: a canvas-based data grid with its contract under test, a node editor that lets a non-programmer program AI agents, connectors between five services that disagree about what a lead is.
                             </p>
                         </motion.div>
                     </div>

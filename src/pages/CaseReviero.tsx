@@ -9,35 +9,14 @@ const CaseReviero = () => {
     const challenges = [
         {
             letter: "A",
-            title: "The Trust Paradox",
-            subtitle: "Business Strategy",
-            problem: "Stakeholders demanded aggressive \"Lead Capture\" (forcing phone numbers early) to maximize volume. But in the HNW (High Net Worth) market, demanding data too early destroys trust. We were filling the CRM with low-intent \"noise,\" inflating CAC (Customer Acquisition Cost).",
-            solution: "I inverted the funnel to a \"Value-First\" model. I architected the flow where the AI acts as a \"Proof of Competence,\" giving away proprietary financial data (Yield, ROI) upfront.",
-            result: "Shifted the metric from \"Lead Volume\" to \"Lead Liquidity\". Users who registered were already educated and 3x more likely to transact."
-        },
-        {
-            letter: "B",
-            title: "Closing the \"Data Black Hole\"",
-            subtitle: "Ecosystem Integrity",
-            problem: "Real estate deals inevitably go offline (viewings, negotiations). Historically, this is where the digital product dies, data vanishes into WhatsApp, and the AI models stop learning. The business was flying blind at the most critical stage.",
-            solution: "I engineered a \"Digital Twin\" ecosystem. By mirroring offline events (Contracts, Viewings) back into the App via the Agency OS, I ensured that every physical interaction was captured digitally.",
-            result: "Created a Single Source of Truth. The system creates a continuous loop where offline feedback instantly retrains the online recommendation algorithm."
-        },
-        {
-            letter: "C",
-            title: "Navigating Ambiguity (0 → 1)",
-            subtitle: "Product Strategy",
-            problem: "We were inventing a new category (\"Pocket Family Office\") with no playbook. There were no clear requirements—only abstract business goals and conflicting visions from stakeholders. The challenge was to design a complex ecosystem from a blank sheet.",
-            solution: "I stepped up as a Product Architect, moving beyond UI to design the core Business Logic first. Through \"War Room\" workshops, I reverse-engineered the chaotic vision into structured user flows, defining exactly how the App, CRM, and AI would talk to each other.",
-            result: "Turned abstract startup chaos into a concrete, scalable Operating System that processed 1,000+ SQLs."
+            title: "One Lead, Six Systems",
+            subtitle: "System Design",
+            problem: "Nothing agreed on what a lead was. The app had a browsing session, HubSpot had a contact, Pipedrive had a deal, the voice agent had a call outcome, and a broker had a viewing that happened in a car park with no product involved at all. There was no spec — only a business goal and several surfaces that each assumed a different shape.",
+            solution: "I designed the model before the screens: what counts as a lead, when it becomes one, which system owns it at each stage, and what happens to it while it is offline. The offline gap got explicit treatment rather than being ignored — viewings and signed contracts are mirrored back through the admin system, so the part of the process that happens in person still lands in the record the recommendations learn from.",
+            result: "One definition carried across the app, two CRMs, the voice agent and the brokerage tooling. Where those systems disagreed, the connectors did the translating instead of the people using them."
         },
     ];
 
-    const results = [
-        { emoji: "🚀", title: "7,000+ Users", desc: "Acquired a high-ticket audience of European business owners and investors." },
-        { emoji: "💎", title: "~200 Deals Closed", desc: "Facilitated approximately 200 property transactions through the platform." },
-        { emoji: "🔥", title: "1,000+ SQLs", desc: "Generated over 1,000 Sales Qualified Leads with dramatically improved quality." },
-    ];
 
     return (
         <div className="bg-[#F5F3EE] text-foreground min-h-screen">
@@ -63,7 +42,7 @@ const CaseReviero = () => {
                 {/* Hero Image — Curtain wipe + Ken Burns zoom */}
                 <div className="w-full h-[50vh] bg-[#1A1A2E] overflow-hidden relative">
                     <motion.img
-                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/revierohero6%20(1).png"
+                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero/revierohero6-1.png"
                         alt="Reviero Hero"
                         className="w-full h-full object-cover"
                         initial={{ scale: 1.15 }}
@@ -124,9 +103,9 @@ const CaseReviero = () => {
                                 {/* Column 1 */}
                                 <div className="space-y-6">
                                     {[
-                                        { label: "Date", value: "2024 – 2025" },
+                                        { label: "Date", value: "2024 – Feb 2026" },
                                         { label: "Location", value: "Spain" },
-                                        { label: "Services", value: "Product Design\nUX Strategy\nService Design" },
+                                        { label: "Services", value: "Product Design\nFrontend Engineering\nBackend & Integrations" },
                                     ].map((item, i) => (
                                         <div key={item.label} className="overflow-hidden">
                                             <motion.div
@@ -144,9 +123,9 @@ const CaseReviero = () => {
                                 {/* Column 2 */}
                                 <div className="space-y-6">
                                     {[
-                                        { label: "Role", value: "Lead Product Designer (End-to-End Ecosystem)" },
+                                        { label: "Role", value: "Design Engineer\n(everything but the mobile app)" },
                                         { label: "Target", value: "Primary: HNW Investors (B2C)\nInternal: Brokerage Team (B2B)" },
-                                        { label: "Platform", value: "iOS / Android (React Native)\n+ Web Admin" },
+                                        { label: "Platform", value: "iOS / Android (React Native)\n+ Web Admin · Supabase\nHubSpot · Pipedrive · Twilio · Vapi" },
                                     ].map((item, i) => (
                                         <div key={item.label} className="overflow-hidden">
                                             <motion.div
@@ -206,21 +185,21 @@ const CaseReviero = () => {
                         <div>
                             <h3 className="text-base font-semibold text-[#141414] mb-4">The Market</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                Buying investment property in Spain is historically opaque. Amateur investors — European CEOs — relied on intuition, manual Airbnb analysis, and messy Excel sheets to guess ROI.
+                                Buying investment property in Spain is opaque by default. The buyers were executives with money and no time, estimating returns from intuition, hand-checked Airbnb listings and spreadsheets that went stale the week they were built.
                             </p>
                         </div>
 
                         <div className="pt-10">
                             <h3 className="text-base font-semibold text-[#141414] mb-4">The Mission</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                To build a "Pocket Family Office" — an ecosystem where an investor can Find high-yield assets, Analyze them with AI, and Manage post-purchase income in one flow. Beyond the buyer-facing app, I also designed an AI-powered Operational System for the sales team — architecting UX for both sides of the marketplace.
+                                One place to find a property worth buying, judge it on numbers rather than photographs, and manage what it earns afterwards. And because a marketplace has two sides, the same job on the inside: the system the brokerage itself runs on.
                             </p>
                         </div>
 
                         <div className="pt-10">
                             <h3 className="text-base font-semibold text-[#141414] mb-4">Impact</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                Generated <span className="text-[#141414] font-medium">1,000+ SQLs</span> and <span className="text-[#141414] font-medium">~200 closed deals</span>, acquiring 7,000+ users across a high-ticket European audience.
+                                <span className="text-[#141414] font-medium">7,000+ users</span>, <span className="text-[#141414] font-medium">1,000+ qualified leads</span> and around <span className="text-[#141414] font-medium">200 closed transactions</span>, on an ecosystem whose interface, backend and every connector between them I designed and wrote.
                             </p>
                         </div>
                     </div>
@@ -247,10 +226,10 @@ const CaseReviero = () => {
 
                     <div className="space-y-0">
                         {[
-                            { role: "Product Design (0→1)", desc: "Founding designer responsible for the entire user experience — from discovery through launch and growth. Designed for a demanding audience of 45+ European executives." },
-                            { role: "UX Strategy", desc: "Led the \"Ungating\" experiment that doubled session time. Designed the conversion funnel that moved registration behind the value moment." },
-                            { role: "Service Design", desc: "Mapped the complete buyer journey including the critical offline gap (viewings, notary). Created the \"Phygital Loop\" that keeps users in the app ecosystem." },
-                            { role: "Stakeholder Bridge", desc: "Navigated conflicts between Marketing (brand focus), Sales (lead focus), and Engineering. Used A/B test data to justify design decisions." },
+                            { role: "Product Design (0→1)", desc: "Owned the whole experience from a blank sheet through launch and growth, for buyers in their forties and fifties who judge a product in about a minute." },
+                                                        { role: "Frontend & Backend", desc: "The web frontend, and the backend functions and data model on Supabase that the whole ecosystem reads from." },
+                            { role: "Integrations", desc: "Wrote the API connectors the business ran on: HubSpot and Pipedrive for CRM, the Facebook Lead Ads API to pull new leads straight into the system, and Twilio with Vapi to stand up the voice assistant." },
+                            { role: "UX Strategy", desc: "Ran the experiment that removed the sign-up wall, and designed the funnel that moved registration to the point where the buyer had already been given something worth having." },
                         ].map((item, index) => (
                             <motion.div
                                 key={item.role}
@@ -280,11 +259,11 @@ const CaseReviero = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <p className="text-xs text-[#8A8680] tracking-widest uppercase mb-4">01 / UX Architecture</p>
-                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">Architecting the Investor's Journey</h2>
+                    <p className="text-xs text-[#8A8680] tracking-widest uppercase mb-4">The Funnel</p>
+                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">Giving the Data Away First</h2>
                     <div className="max-w-2xl">
                         <p className="text-base text-[#A09A92] leading-relaxed">
-                            Instead of a standard e-commerce flow, I designed a "Trust Funnel". The goal was to convert casual browsers into educated investors by using proprietary AI data as the primary hook, deferring the sign-up friction until high intent was proven.
+                            A standard marketplace asks who you are before it shows you anything. To someone weighing a half-million-euro decision that reads as a toll, not a service. So the order is inverted: the financial analysis comes first and free, and the product asks for a phone number only once the buyer has shown they want something.
                         </p>
                     </div>
                 </motion.div>
@@ -298,10 +277,10 @@ const CaseReviero = () => {
                         className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
                     >
                         <p className="text-xs text-[#8A8680] tracking-wide mb-6">01</p>
-                        <h3 className="text-lg font-normal text-white mb-1">The "Insight Hook"</h3>
-                        <p className="text-sm text-[#A09A92] mb-3">Value-First Strategy</p>
+                        <h3 className="text-lg font-normal text-white mb-1">No login wall</h3>
+                        <p className="text-sm text-[#A09A92] mb-3">Yield and ROI on the first visit</p>
                         <p className="text-sm text-[#8A8680] leading-relaxed">
-                            We removed the traditional "Login Wall". Users get full access to AI Financial Reports (Yield, ROI) upfront. This "Glass Box" transparency builds authority and trust before we ever ask for a phone number.
+                            Projected yield, occupancy and cash flow are visible without an account. It is the most valuable thing the product holds, and giving it away is what makes everything after it credible.
                         </p>
                     </motion.div>
                     <motion.div
@@ -312,10 +291,10 @@ const CaseReviero = () => {
                         className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
                     >
                         <p className="text-xs text-[#8A8680] tracking-wide mb-6">02</p>
-                        <h3 className="text-lg font-normal text-white mb-1">Silent Qualification</h3>
-                        <p className="text-sm text-[#A09A92] mb-3">Behavioral Scoring</p>
+                        <h3 className="text-lg font-normal text-white mb-1">Scoring without a form</h3>
+                        <p className="text-sm text-[#A09A92] mb-3">What people open, not what they type</p>
                         <p className="text-sm text-[#8A8680] leading-relaxed">
-                            The interface acts as a passive filter. While users explore charts, the system tracks dwell time and asset preferences. We use this data to build a "Shadow Profile" and score leads without forcing them to fill out tedious forms.
+                            Time spent on a listing and the kind of asset opened say more about intent than a questionnaire, and cost the buyer nothing to give. The sales side gets a ranked list built from behaviour instead of from answers.
                         </p>
                     </motion.div>
                     <motion.div
@@ -326,10 +305,10 @@ const CaseReviero = () => {
                         className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
                     >
                         <p className="text-xs text-[#8A8680] tracking-wide mb-6">03</p>
-                        <h3 className="text-lg font-normal text-white mb-1">Contextual Activation</h3>
-                        <p className="text-sm text-[#A09A92] mb-3">High-Intent Trigger</p>
+                        <h3 className="text-lg font-normal text-white mb-1">Asking at the right moment</h3>
+                        <p className="text-sm text-[#A09A92] mb-3">Registration as an exchange</p>
                         <p className="text-sm text-[#8A8680] leading-relaxed">
-                            Registration isn't a barrier; it's an exchange. We ask for contact details only when High Intent is detected (e.g., saving a property). This ensures the Sales Team only receives warm, educated leads.
+                            The prompt appears when someone saves a property — the point where an account is the thing they want rather than the thing in their way. What reaches the brokers is a shorter list of people who already know what they are looking at.
                         </p>
                     </motion.div>
                 </div>
@@ -552,10 +531,10 @@ const CaseReviero = () => {
                         </div>
                         <div className="max-w-xl">
                             <h2 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-4">
-                                Four Pillars of the Ecosystem
+                                Four Products, One System
                             </h2>
                             <p className="text-lg text-gray-700 leading-relaxed">
-                                I designed the platform as four interconnected products — a <span className="text-[#141414] font-medium">Marketplace</span> for discovery, an <span className="text-[#141414] font-medium">AI Concierge</span> for guidance, an <span className="text-[#141414] font-medium">Owner Dashboard</span> for post-purchase management, and <span className="text-[#141414] font-medium">Reviero OS</span> — the AI-powered business copilot.
+                                Four products that had to behave as one: a marketplace to find assets, an assistant to explain them, a dashboard for what happens after the purchase, and <span className="text-[#141414] font-medium">Reviero OS</span> — the system the brokerage itself runs on.
                             </p>
                         </div>
                     </motion.div>
@@ -572,19 +551,19 @@ const CaseReviero = () => {
                             className="max-w-md"
                         >
                             <p className="text-xs text-gray-500 tracking-wide mb-6">01 / Discovery</p>
-                            <h3 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-4">The Investment Marketplace</h3>
-                            <p className="text-sm text-gray-500 mb-6">Financial Assets, Not Listings</p>
+                            <h3 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-4">The Marketplace</h3>
+                            <p className="text-sm text-gray-500 mb-6">Priced as an asset, not photographed as a home</p>
                             <p className="text-base text-gray-600 leading-relaxed mb-8">
-                                Unlike standard portals (Idealista), I treated homes as <span className="text-[#141414]">financial assets</span>. Every property card shows AI-calculated metrics.
+                                Portals like Idealista sell a photograph and a floor plan. Here every card leads with the numbers the buyer is actually deciding on, computed from historical rental data rather than asserted by whoever is selling.
                             </p>
                             <ul className="space-y-4 text-sm text-gray-600">
                                 <li className="flex gap-3">
                                     <span className="text-[#141414]">•</span>
-                                    <span><span className="text-[#141414]">Predictive Analytics:</span> AI calculates Projected Yield, Occupancy Rate, and Cash Flow from historical Big Data.</span>
+                                    <span><span className="text-[#141414]">Numbers, computed:</span> Projected yield, occupancy and cash flow, derived from historical rental data for that area rather than quoted by the seller.</span>
                                 </li>
                                 <li className="flex gap-3">
                                     <span className="text-[#141414]">•</span>
-                                    <span><span className="text-[#141414]">Visual Trust:</span> Complex data visualized into simple charts for non-pro investors to make instant decisions.</span>
+                                    <span><span className="text-[#141414]">Read in a glance:</span> These buyers are executives, not analysts — the maths is shown as something you take in quickly, not something you study.</span>
                                 </li>
                             </ul>
                         </motion.div>
@@ -600,7 +579,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-[#E8E4DC] rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Catalog.png" alt="Marketplace Catalog" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                                            <img src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero/catalog.png" alt="Marketplace Catalog" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -608,7 +587,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-[#E8E4DC] rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Booking%20old%20aprt.png" alt="Property Detail" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                                            <img src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero/booking-old-aprt.png" alt="Property Detail" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -632,7 +611,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-white rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/ai%20assistent.png" alt="AI Assistant" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                                            <img src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero/ai-assistent.png" alt="AI Assistant" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -640,7 +619,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-white rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/ai%20selection.png" alt="AI Selection" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                                            <img src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero/ai-selection.png" alt="AI Selection" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -654,19 +633,19 @@ const CaseReviero = () => {
                             className="order-1 lg:order-2 max-w-md"
                         >
                             <p className="text-xs text-gray-500 tracking-wide mb-6">02 / Guidance</p>
-                            <h3 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-4">The AI Concierge</h3>
-                            <p className="text-sm text-gray-500 mb-6">Lowering the Barrier for Older Users</p>
+                            <h3 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-4">The Assistant</h3>
+                            <p className="text-sm text-gray-500 mb-6">One thread, whether software answers or a person does</p>
                             <p className="text-base text-gray-600 leading-relaxed mb-8">
-                                A hybrid chat interface where users ask natural questions (<span className="text-[#141414]">"Find me a villa with &gt;7% yield"</span>) or interact with their human broker.
+                                Buyers ask in words — <span className="text-[#141414]">a villa above seven percent yield</span> — instead of learning a filter panel. When the question stops being one software can answer, the same thread carries on with a broker.
                             </p>
                             <ul className="space-y-4 text-sm text-gray-600">
                                 <li className="flex gap-3">
                                     <span className="text-[#141414]">•</span>
-                                    <span><span className="text-[#141414]">Natural Language:</span> Users ask questions in plain language instead of navigating complex filters.</span>
+                                    <span><span className="text-[#141414]">Plain questions:</span> Search expressed as a sentence rather than assembled out of filters.</span>
                                 </li>
                                 <li className="flex gap-3">
                                     <span className="text-[#141414]">•</span>
-                                    <span><span className="text-[#141414]">Hybrid Mode:</span> Seamless transition between AI responses and human broker conversations.</span>
+                                    <span><span className="text-[#141414]">One thread:</span> The handover from assistant to broker happens inside the same conversation, without the buyer having to start again.</span>
                                 </li>
                             </ul>
                         </motion.div>
@@ -685,18 +664,18 @@ const CaseReviero = () => {
                         >
                             <p className="text-xs text-gray-500 tracking-wide mb-6">03 / Post-Purchase</p>
                             <h3 className="text-2xl lg:text-3xl font-normal font-heading text-[#141414] mb-4">The Owner Dashboard</h3>
-                            <p className="text-sm text-gray-500 mb-6">The Relationship Doesn't End at the Sale</p>
+                            <p className="text-sm text-gray-500 mb-6">The part that keeps the app open after the sale</p>
                             <p className="text-base text-gray-600 leading-relaxed mb-8">
-                                I turned a transactional app into a <span className="text-[#141414]">daily utility for investors</span> with live revenue tracking and vacation management.
+                                A purchase is one day; owning is years. The dashboard shows what the property earned this month and lets the owner block dates for their own stay.
                             </p>
                             <ul className="space-y-4 text-sm text-gray-600">
                                 <li className="flex gap-3">
                                     <span className="text-[#141414]">•</span>
-                                    <span><span className="text-[#141414]">Live Revenue:</span> Real-time stats on the property's earnings from rentals.</span>
+                                    <span><span className="text-[#141414]">Live earnings:</span> What the property made, updated as bookings settle.</span>
                                 </li>
                                 <li className="flex gap-3">
                                     <span className="text-[#141414]">•</span>
-                                    <span><span className="text-[#141414]">Owner Stays:</span> Block dates for personal vacations, automatically removing listings from Airbnb/Booking.</span>
+                                    <span><span className="text-[#141414]">Owner stays:</span> Blocking dates for personal use pulls the listing from Airbnb and Booking automatically.</span>
                                 </li>
                             </ul>
                         </motion.div>
@@ -712,7 +691,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-[#E8E4DC] rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Dashboard.png" alt="Owner Dashboard" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                                            <img src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero/dashboard.png" alt="Owner Dashboard" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -720,7 +699,7 @@ const CaseReviero = () => {
                                     <div className="rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
                                         <div className="aspect-[9/19] bg-[#E8E4DC] rounded-[28px] overflow-hidden">
-                                            <img src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Reviero/Detailed%20Calculations%20Page.png" alt="Detailed Calculations" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                                            <img src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero/detailed-calculations-page.png" alt="Detailed Calculations" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                         </div>
                                     </div>
                                 </div>
@@ -742,14 +721,14 @@ const CaseReviero = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-20"
                 >
-                    <p className="text-xs text-[#8A8680] tracking-widest uppercase mb-4">04 / The Backoffice</p>
-                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">Reviero OS: The Agency Operating System</h2>
+                    <p className="text-xs text-[#8A8680] tracking-widest uppercase mb-4">The Backoffice</p>
+                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">Reviero OS</h2>
                     <div className="max-w-2xl">
                         <p className="text-base text-[#A09A92] leading-relaxed mb-4">
-                            A B2C app is only as fast as the operations team behind it. To process 7,000+ users with a lean team, I architected a bespoke Internal Operating System.
+                            A consumer app moves at the speed of the people behind it. Seven thousand users and a small sales team meant the internal tooling was the constraint — and it was spread across HubSpot, Zapier and spreadsheets.
                         </p>
                         <p className="text-base text-[#A09A92] leading-relaxed">
-                            It replaces scattered tools (HubSpot, Zapier, Excel) with a unified <span className="text-white">Command Center</span> that allows the Head of Sales to orchestrate a "Hybrid Workforce" of AI Agents and Human Brokers.
+                            So the brokerage got its own system: <span className="text-white">one place where the sales lead directs both the AI agents and the human ones</span>, instead of three tools that each knew part of the story.
                         </p>
                     </div>
                 </motion.div>
@@ -764,13 +743,13 @@ const CaseReviero = () => {
                         className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
                     >
                         <p className="text-xs text-[#8A8680] tracking-wide mb-6">01</p>
-                        <h3 className="text-lg font-normal text-white mb-3">Visual Automation Engine</h3>
+                        <h3 className="text-lg font-normal text-white mb-3">The automation editor</h3>
                         <p className="text-sm text-[#8A8680] leading-relaxed mb-4">
-                            A Node-Based Visual Editor (React Flow) that empowers the Head of Sales to program AI behavior without developers.
+                            A visual editor where the sales lead changes what the AI agents do, without going through a developer. Covered in depth below.
                         </p>
                         <ul className="space-y-2 text-xs text-[#8A8680]">
-                            <li><span className="text-[#A09A92]">Drag & Drop Logic:</span> Build scenarios like "If Budget {'>'} €1M → Route to Senior Agent".</li>
-                            <li><span className="text-[#A09A92]">Fine-Tuning:</span> Retry logic, time-delays, and fallback rules for AI Voice Agents.</li>
+                            <li><span className="text-[#A09A92]">Rules assembled, not written:</span> a budget threshold routing a lead to a senior broker.</li>
+                            <li><span className="text-[#A09A92]">Failure handled explicitly:</span> retries, delays between attempts, and a fallback to a person.</li>
                         </ul>
                     </motion.div>
                     <motion.div
@@ -781,13 +760,13 @@ const CaseReviero = () => {
                         className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
                     >
                         <p className="text-xs text-[#8A8680] tracking-wide mb-6">02</p>
-                        <h3 className="text-lg font-normal text-white mb-3">AI-Enhanced CRM</h3>
+                        <h3 className="text-lg font-normal text-white mb-3">The shared record</h3>
                         <p className="text-sm text-[#8A8680] leading-relaxed mb-4">
-                            When a human broker takes over, they don't start from zero. The Unified Profile aggregates the entire digital footprint.
+                            When a broker picks up a lead the AI has been working, they start from everything that already happened rather than from a summary.
                         </p>
                         <ul className="space-y-2 text-xs text-[#8A8680]">
-                            <li><span className="text-[#A09A92]">Seamless Handoff:</span> AI call transcripts and chat logs alongside human notes.</li>
-                            <li><span className="text-[#A09A92]">Smart Queues:</span> Auto-prioritizes "Hot" leads based on in-app behavior.</li>
+                            <li><span className="text-[#A09A92]">Nothing restarts:</span> call transcripts and chat history sit next to the brokers' own notes.</li>
+                            <li><span className="text-[#A09A92]">Ordered by behaviour:</span> the queue is ranked by what the lead actually did in the app.</li>
                         </ul>
                     </motion.div>
                     <motion.div
@@ -798,13 +777,13 @@ const CaseReviero = () => {
                         className="bg-[#1F1F1F] px-10 py-12 rounded-sm"
                     >
                         <p className="text-xs text-[#8A8680] tracking-wide mb-6">03</p>
-                        <h3 className="text-lg font-normal text-white mb-3">Data-Driven Command Center</h3>
+                        <h3 className="text-lg font-normal text-white mb-3">The working surface</h3>
                         <p className="text-sm text-[#8A8680] leading-relaxed mb-4">
-                            A high-density workspace designed for power users — real-time funnel analytics from "AI Lead" to "Closed Deal".
+                            A dense screen for people who sit in it all day — the funnel from first contact to closed deal, and the controls to act on it without leaving.
                         </p>
                         <ul className="space-y-2 text-xs text-[#8A8680]">
-                            <li><span className="text-[#A09A92]">Smart Lists:</span> Filter thousands of leads with keyboard shortcuts and query builders.</li>
-                            <li><span className="text-[#A09A92]">Agent Dashboard:</span> Performance tracking, task assignment, and team comms.</li>
+                            <li><span className="text-[#A09A92]">Built for volume:</span> filtering thousands of leads with keyboard shortcuts and saved queries.</li>
+                            <li><span className="text-[#A09A92]">Team view:</span> who is carrying what, and how it is going.</li>
                         </ul>
                     </motion.div>
                 </div>
@@ -931,13 +910,13 @@ const CaseReviero = () => {
                             <motion.text variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} x="10" y="355" fill="#34d399" fontSize="9" fontWeight="600" fontFamily="Inter,system-ui,sans-serif" letterSpacing="0.1em">PHASE 4 — EXECUTION & CONTROL</motion.text>
                             <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}><rect x="10" y="364" width="105" height="36" rx="4" fill="#0D2818" stroke="#34d399" strokeWidth="0.7" /><text x="62" y="386" fill="#E8E4DC" fontSize="8.5" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">Live Feed</text></motion.g>
                             <motion.line variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} x1="115" y1="382" x2="133" y2="382" stroke="#444" strokeWidth="0.7" markerEnd="url(#arrW)" />
-                            <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}><rect x="136" y="364" width="135" height="36" rx="4" fill="#0D2818" stroke="#34d399" strokeWidth="0.7" /><text x="203" y="379" fill="#6EE7B7" fontSize="7" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">NEW LEAD</text><text x="203" y="391" fill="#E8E4DC" fontSize="8.5" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">Joana Garcia</text></motion.g>
+                            <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}><rect x="136" y="364" width="135" height="36" rx="4" fill="#0D2818" stroke="#34d399" strokeWidth="0.7" /><text x="203" y="379" fill="#6EE7B7" fontSize="7" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">NEW LEAD</text><text x="203" y="391" fill="#E8E4DC" fontSize="8.5" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">New enquiry</text></motion.g>
                             <motion.line variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} x1="271" y1="382" x2="289" y2="382" stroke="#444" strokeWidth="0.7" markerEnd="url(#arrW)" />
                             <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}><rect x="292" y="364" width="130" height="36" rx="4" fill="#0D2818" stroke="#34d399" strokeWidth="0.7" /><text x="357" y="386" fill="#E8E4DC" fontSize="8.5" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">AI Contacting...</text></motion.g>
                             <motion.line variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} x1="422" y1="382" x2="440" y2="382" stroke="#444" strokeWidth="0.7" markerEnd="url(#arrW)" />
                             <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}><rect x="443" y="364" width="125" height="36" rx="4" fill="#0D2818" stroke="#34d399" strokeWidth="0.7" /><text x="505" y="379" fill="#6EE7B7" fontSize="7" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">SUCCESS</text><text x="505" y="391" fill="#E8E4DC" fontSize="8.5" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">Qualifying</text></motion.g>
                             <motion.line variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} x1="568" y1="382" x2="586" y2="382" stroke="#444" strokeWidth="0.7" markerEnd="url(#arrW)" />
-                            <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}><rect x="589" y="364" width="148" height="36" rx="4" fill="#0D2818" stroke="#34d399" strokeWidth="0.7" /><text x="663" y="386" fill="#E8E4DC" fontSize="8.5" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">Handoff → Alexei</text></motion.g>
+                            <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}><rect x="589" y="364" width="148" height="36" rx="4" fill="#0D2818" stroke="#34d399" strokeWidth="0.7" /><text x="663" y="386" fill="#E8E4DC" fontSize="8.5" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">Handoff → broker</text></motion.g>
                             <motion.line variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} x1="737" y1="382" x2="755" y2="382" stroke="#444" strokeWidth="0.7" markerEnd="url(#arrW)" />
                             <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}><rect x="758" y="364" width="155" height="36" rx="4" fill="#0D2818" stroke="#34d399" strokeWidth="0.7" /><text x="835" y="386" fill="#E8E4DC" fontSize="8" textAnchor="middle" fontFamily="Inter,system-ui,sans-serif">Note: "Offer project X"</text></motion.g>
                             <motion.line variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }} x1="913" y1="382" x2="931" y2="382" stroke="#444" strokeWidth="0.7" markerEnd="url(#arrW)" />
@@ -977,7 +956,7 @@ const CaseReviero = () => {
                         </div>
                         <div className="bg-[#1A1A1A]">
                             <video
-                                src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/stayteai.mov"
+                                src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/stayteai.mov"
                                 autoPlay
                                 muted
                                 loop
@@ -997,6 +976,230 @@ const CaseReviero = () => {
                     className="mt-16 pt-8 border-t border-[#2A2A2A]"
                 >
                     <p className="text-[10px] text-[#555] tracking-widest uppercase">Tech Stack: React Flow · Vapi Integration · Supabase Realtime</p>
+                    <p className="text-[10px] text-[#555] tracking-widest uppercase mt-2">Integrations: HubSpot · Pipedrive · Facebook Lead Ads · Twilio · Vapi</p>
+                </motion.div>
+            </section>
+
+            {/* The Editor — visual programming for a non-programmer */}
+            <section className="px-8 lg:px-16 py-28 bg-[#141414]">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-16"
+                >
+                    <p className="text-xs text-[#8A8680] tracking-widest uppercase mb-4">The Editor</p>
+                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">
+                        Programming, for Someone Who Doesn't Program
+                    </h2>
+                    <div className="max-w-2xl space-y-4">
+                        <p className="text-base text-[#A09A92] leading-relaxed">
+                            The Head of Sales needed to change how the AI agents behaved — daily, in response to what was going wrong on calls that week. Routing that through an engineer meant a ticket, a sprint, and a rule that was already stale by the time it shipped.
+                        </p>
+                        <p className="text-base text-[#A09A92] leading-relaxed">
+                            The alternative to a settings form was to give him <span className="text-white">a programming environment he could actually use</span> — a node canvas built on React Flow, where a scenario is something you assemble and can see, rather than a set of switches whose interactions you have to hold in your head.
+                        </p>
+                    </div>
+                </motion.div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-10">
+                    {[
+                        {
+                            n: "01",
+                            title: "A canvas, not a settings page",
+                            body: "Automation rules are branching logic, and branching logic laid out as a form becomes unreadable at about the third condition. On a canvas the shape of the scenario is the explanation of it — you see the branch, the wait, the fallback, and where a lead can fall out.",
+                        },
+                        {
+                            n: "02",
+                            title: "A vocabulary, not a scripting language",
+                            body: "The node set is deliberately small and domain-shaped: conditions on budget or location, delays, AI call steps, branches on outcome, handoff to a human. \"If budget over €1M, route to a senior agent\" is assembled, not written. Nothing in the editor requires knowing what a variable is.",
+                        },
+                        {
+                            n: "03",
+                            title: "The hard parts are the boring parts",
+                            body: "Real automation is mostly failure handling, and that had to be expressible: retry counts and intervals, time delays between attempts, and a fallback path when the AI cannot close — three attempts over two hours, then hand it to a junior agent. Those live as first-class controls rather than as buried settings.",
+                        },
+                        {
+                            n: "04",
+                            title: "Simulate before you publish",
+                            body: "The consequence of a bad rule is real calls to real prospects, so the editor separates editing from deploying. A scenario can be run through and inspected first, and publishing produces a version — v2.4, not \"saved\". Changing how the business talks to its leads should feel like shipping, because it is.",
+                        },
+                    ].map((item, i) => (
+                        <motion.div
+                            key={item.n}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.08, duration: 0.6 }}
+                            className="border-t border-white/15 pt-6"
+                        >
+                            <p className="text-xs text-[#8A8680] mb-3">{item.n}</p>
+                            <h3 className="text-lg font-normal text-white mb-2">{item.title}</h3>
+                            <p className="text-sm text-[#8A8680] leading-relaxed">{item.body}</p>
+                        </motion.div>
+                    ))}
+                </div>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    className="mt-14 max-w-2xl"
+                >
+                    <p className="text-base text-[#A09A92] leading-relaxed">
+                        This is the piece of the project I would point at first. It is not a screen — it is a small language, an editor for it, and a runtime behind it, aimed at one non-technical person who had to be able to change the business's behaviour on a Tuesday afternoon.
+                    </p>
+                </motion.div>
+            </section>
+
+            {/* The Wiring — integrations and backend */}
+            <section className="px-8 lg:px-16 py-28 bg-[#D4D0C8]">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-16"
+                >
+                    <p className="text-xs text-gray-500 tracking-widest uppercase mb-4">The Wiring</p>
+                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414] mb-6">
+                        The Seams Between the Systems
+                    </h2>
+                    <div className="max-w-2xl space-y-4">
+                        <p className="text-base text-gray-700 leading-relaxed">
+                            An ecosystem this shape is mostly seams. A lead arrives from an ad, has to reach a CRM, trigger a call, come back as a qualified record, and show up in the app — and none of those systems were built to talk to each other. Those seams were mine to write rather than to specify: the web frontend, backend functions on Supabase, and every connector between the platform and the services it depended on.
+                        </p>
+                        <p className="text-base text-gray-700 leading-relaxed">
+                            <span className="text-[#141414]">The only thing I did not build was the mobile app itself.</span>
+                        </p>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="mb-16 rounded-sm bg-[#C5C0B8]/40 overflow-x-auto"
+                >
+                    <svg viewBox="0 0 1000 420" className="w-full h-auto min-w-[840px]" fill="none" style={{ padding: '28px 24px 20px' }}>
+                        <defs>
+                            <marker id="archArr" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5" orient="auto">
+                                <path d="M1 1L9 4L1 7" stroke="#8A8680" strokeWidth="1.2" fill="none" />
+                            </marker>
+                        </defs>
+
+                        {/* ── clients ── */}
+                        <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { delay: 0.1, duration: 0.5 } } }}>
+                            <text x="30" y="24" fill="#6A665F" fontSize="9" letterSpacing="2" fontFamily="Inter,system-ui,sans-serif">CLIENT SURFACES</text>
+
+                            <rect x="30" y="38" width="365" height="66" rx="4" fill="none" stroke="#8A8680" strokeWidth="1" strokeDasharray="4 3" />
+                            <text x="48" y="64" fill="#6A665F" fontSize="12" fontFamily="Inter,system-ui,sans-serif">Mobile app — iOS / Android</text>
+                            <text x="48" y="82" fill="#8A8680" fontSize="10" fontFamily="Inter,system-ui,sans-serif">React Native. Designed by me,</text>
+                            <text x="48" y="95" fill="#8A8680" fontSize="10" fontFamily="Inter,system-ui,sans-serif">built by someone else.</text>
+
+                            <rect x="415" y="38" width="379" height="66" rx="4" fill="#141414" />
+                            <text x="433" y="64" fill="#F5F3EE" fontSize="12" fontFamily="Inter,system-ui,sans-serif">Web admin — Reviero OS</text>
+                            <text x="433" y="82" fill="#A09A92" fontSize="10" fontFamily="Inter,system-ui,sans-serif">Node editor, CRM, command</text>
+                            <text x="433" y="95" fill="#A09A92" fontSize="10" fontFamily="Inter,system-ui,sans-serif">centre. Designed and built.</text>
+                        </motion.g>
+
+                        <motion.g variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 0.35, duration: 0.4 } } }}>
+                            <line x1="212" y1="104" x2="212" y2="160" stroke="#8A8680" strokeWidth="1" markerEnd="url(#archArr)" strokeDasharray="4 3" />
+                            <line x1="604" y1="104" x2="604" y2="160" stroke="#8A8680" strokeWidth="1" markerEnd="url(#archArr)" />
+                        </motion.g>
+
+                        {/* ── platform ── */}
+                        <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { delay: 0.45, duration: 0.5 } } }}>
+                            <text x="30" y="152" fill="#6A665F" fontSize="9" letterSpacing="2" fontFamily="Inter,system-ui,sans-serif">PLATFORM</text>
+                            <rect x="30" y="166" width="764" height="76" rx="4" fill="#141414" />
+                            <text x="48" y="192" fill="#F5F3EE" fontSize="12" fontFamily="Inter,system-ui,sans-serif">Supabase</text>
+                            <text x="48" y="212" fill="#A09A92" fontSize="10" fontFamily="Inter,system-ui,sans-serif">Edge functions · data model · realtime layer</text>
+                            <text x="48" y="228" fill="#A09A92" fontSize="10" fontFamily="Inter,system-ui,sans-serif">Written, not specified.</text>
+                        </motion.g>
+
+                        <motion.g variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 0.6, duration: 0.4 } } }}>
+                            <line x1="412" y1="242" x2="412" y2="292" stroke="#8A8680" strokeWidth="1" markerEnd="url(#archArr)" />
+                            <text x="425" y="272" fill="#6A665F" fontSize="9.5" fontFamily="Inter,system-ui,sans-serif">connectors I wrote</text>
+                        </motion.g>
+
+                        {/* ── third parties ── */}
+                        <motion.g variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { delay: 0.7, duration: 0.5 } } }}>
+                            <text x="30" y="284" fill="#6A665F" fontSize="9" letterSpacing="2" fontFamily="Inter,system-ui,sans-serif">THIRD-PARTY SERVICES</text>
+                            {[
+                                { x: 30, top: "HubSpot", sub: "CRM" },
+                                { x: 186, top: "Pipedrive", sub: "CRM" },
+                                { x: 342, top: "Facebook", sub: "Lead Ads API" },
+                                { x: 498, top: "Twilio", sub: "telephony" },
+                                { x: 654, top: "Vapi", sub: "voice agent" },
+                            ].map((svc) => (
+                                <g key={svc.top}>
+                                    <rect x={svc.x} y="298" width="140" height="54" rx="4" fill="none" stroke="#8A8680" strokeWidth="1" strokeDasharray="4 3" />
+                                    <text x={svc.x + 16} y="322" fill="#6A665F" fontSize="11.5" fontFamily="Inter,system-ui,sans-serif">{svc.top}</text>
+                                    <text x={svc.x + 16} y="338" fill="#8A8680" fontSize="9.5" fontFamily="Inter,system-ui,sans-serif">{svc.sub}</text>
+                                </g>
+                            ))}
+                        </motion.g>
+
+                        {/* ── legend ── */}
+                        <motion.g variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 0.95, duration: 0.5 } } }}>
+                            <rect x="30" y="382" width="18" height="8" rx="1.5" fill="#141414" />
+                            <text x="56" y="390" fill="#6A665F" fontSize="9.5" fontFamily="Inter,system-ui,sans-serif">Designed and built by me</text>
+                            <rect x="260" y="382" width="18" height="8" rx="1.5" fill="none" stroke="#8A8680" strokeWidth="1" strokeDasharray="4 3" />
+                            <text x="286" y="390" fill="#8A8680" fontSize="9.5" fontFamily="Inter,system-ui,sans-serif">Someone else's code — my design, or a vendor</text>
+                        </motion.g>
+                    </svg>
+                </motion.div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-10">
+                    {[
+                        {
+                            n: "01",
+                            title: "CRM connectors",
+                            body: "API connectors for HubSpot and Pipedrive, so a lead captured in the product landed in whichever CRM the sales side actually worked in — and came back enriched rather than dead-ending in a form submission.",
+                        },
+                        {
+                            n: "02",
+                            title: "Lead capture at the source",
+                            body: "The Facebook Lead Ads API wired straight into the system, so paid acquisition fed the same pipeline as organic signups instead of arriving as a spreadsheet somebody imported on Monday.",
+                        },
+                        {
+                            n: "03",
+                            title: "The voice assistant's plumbing",
+                            body: "Twilio for telephony and Vapi for the conversational layer, wired to the CRM so an inbound lead could be called, qualified and written back without a human in the loop.",
+                        },
+                        {
+                            n: "04",
+                            title: "Backend on Supabase",
+                            body: "Functions, data model and the realtime layer the admin OS reads from — written rather than handed to someone with a spec.",
+                        },
+                    ].map((item, i) => (
+                        <motion.div
+                            key={item.n}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.08, duration: 0.6 }}
+                            className="border-t border-[#141414]/20 pt-6"
+                        >
+                            <p className="text-xs text-gray-500 mb-3">{item.n}</p>
+                            <h3 className="text-lg font-normal text-[#141414] mb-2">{item.title}</h3>
+                            <p className="text-sm text-gray-600 leading-relaxed">{item.body}</p>
+                        </motion.div>
+                    ))}
+                </div>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    className="mt-14 max-w-2xl"
+                >
+                    <p className="text-base text-gray-700 leading-relaxed">
+                        Integrating five third-party APIs back to back teaches you something no amount of reading does: which ones are a pleasure and which ones fight you, and why. Sparse errors, undocumented required fields, auth flows that assume a shape your product does not have. That is the same judgement, pointed the other way, that goes into designing an API somebody else has to live with.
+                    </p>
                 </motion.div>
             </section>
 
@@ -1009,10 +1212,10 @@ const CaseReviero = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">Key Challenges</h2>
+                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">The Hardest Problem</h2>
                 </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="max-w-3xl">
                     {challenges.map((challenge, index) => (
                         <motion.div
                             key={challenge.letter}
@@ -1074,7 +1277,7 @@ const CaseReviero = () => {
                             <p className="text-5xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-left lg:text-right">7,000+</p>
                             <div>
                                 <p className="text-sm font-semibold text-[#141414] mb-2">Users acquired</p>
-                                <p className="text-sm text-gray-500 leading-relaxed">Built a high-ticket audience of European business owners and investors through a value-first product strategy.</p>
+                                <p className="text-sm text-gray-500 leading-relaxed">European buyers, mostly executives in their forties and fifties, reached without putting a sign-up wall in front of the numbers they came for.</p>
                             </div>
                         </motion.div>
 
@@ -1089,7 +1292,7 @@ const CaseReviero = () => {
                             <p className="text-5xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-left lg:text-right">~200</p>
                             <div>
                                 <p className="text-sm font-semibold text-[#141414] mb-2">Deals closed</p>
-                                <p className="text-sm text-gray-500 leading-relaxed">Facilitated approximately 200 property transactions through the platform, proving the end-to-end digital pipeline.</p>
+                                <p className="text-sm text-gray-500 leading-relaxed">Property transactions carried the whole way through the platform — including the viewings and signings that happen away from a screen.</p>
                             </div>
                         </motion.div>
 
@@ -1101,10 +1304,10 @@ const CaseReviero = () => {
                             transition={{ delay: 0.2, duration: 0.6 }}
                             className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-[56px] items-center py-12 border-t border-gray-200"
                         >
-                            <p className="text-5xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-left lg:text-right">1,000+</p>
+                            <p className="text-5xl lg:text-8xl font-heading font-extralight text-[#141414] tracking-[-0.03em] text-left lg:text-right">5</p>
                             <div>
-                                <p className="text-sm font-semibold text-[#141414] mb-2">Sales Qualified Leads</p>
-                                <p className="text-sm text-gray-500 leading-relaxed">Generated over 1,000 SQLs with dramatically improved quality by shifting from lead volume to lead liquidity.</p>
+                                <p className="text-sm font-semibold text-[#141414] mb-2">Third-party systems wired in</p>
+                                <p className="text-sm text-gray-500 leading-relaxed">HubSpot and Pipedrive for CRM, the Facebook Lead Ads API for paid acquisition, Twilio for telephony and Vapi for the voice agent — connectors I wrote, not integrations I specified.</p>
                             </div>
                         </motion.div>
                     </div>
@@ -1125,7 +1328,7 @@ const CaseReviero = () => {
                     </div>
                     <div>
                         <p className="text-xl lg:text-2xl font-light text-[#A09A92] leading-relaxed">
-                            I single-handedly designed the full product architecture and translated chaotic business processes into clear, scalable interfaces — from a <span className="text-white">buyer-facing Investment Marketplace</span> to an <span className="text-white">AI-powered Agency Operating System</span> for the sales team. This end-to-end approach allowed the business to scale operations, close deals faster, and ultimately start generating revenue.
+                            Designing the CRM handoff is one thing; <span className="text-white">writing the connector that carries it</span> is where you find out whether the model you invented survives contact with two CRMs that disagree about what a lead is. That is the argument for doing both: the distance between a decision and its consequence collapses to <span className="text-white">the same afternoon</span>, and a model that does not work gets found out while it is still cheap to change. Over two years that compounded into an ecosystem where the business logic, the interface and the wiring were never three different people's understanding of the same thing.
                         </p>
                     </div>
                 </motion.div>

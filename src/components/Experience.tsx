@@ -3,23 +3,47 @@ import { motion } from "framer-motion";
 // Hardcoded experience data with rich formatting
 const experiences = [
   {
-    id: "navian-group",
-    company: "Navian Group",
-    location: "EU",
-    years: "2023 — Present",
-    position: "Lead Product Designer",
-    positionNote: "Ecosystem Architect",
+    id: "datox",
+    company: "Datox Compliance",
+    location: "UK",
+    years: "Feb — Jul 2026",
+    position: "Design Engineer",
+    positionNote: "Temporary contract",
     description: (
       <>
-        <span className="block mb-1">Orchestrating product architecture across the group's two core verticals:</span>
-
-        <span className="block mb-3">
-          • <strong className="text-white">Reviero</strong> (B2B2C): Designed the business infrastructure end-to-end. Built the Consumer Marketplace and the internal <strong className="text-white">AI-Powered Agency OS</strong>. Engineered a <strong className="text-white">Node-Based Logic Editor</strong> that automates sales workflows with AI agents.
-        </span>
-
-        <span className="block">
-          • <strong className="text-white">Navian</strong> (Enterprise SaaS): Engineered a comprehensive Capital Lifecycle OS. Mapped a complex <strong className="text-white">9-role permission matrix</strong> (RBAC) to digitize the workflow for Developers, Banks, and Investors.
-        </span>
+        <strong className="text-white">Design and frontend</strong> for a full rebuild of a live regulatory reporting
+        product — the whole workflow, from raw source files to a filed report, replaced in place behind an opt-in
+        toggle while clients kept filing to the regulator. Nothing rolled back.
+      </>
+    ),
+  },
+  {
+    id: "reviero",
+    company: "Reviero",
+    location: "EU",
+    years: "2024 — Feb 2026",
+    position: "Design Engineer",
+    positionNote: "Navian Group",
+    description: (
+      <>
+        <strong className="text-white">Design and build</strong> across the whole ecosystem bar the mobile app: web
+        frontend, Supabase backend, and the connectors to HubSpot, Pipedrive, Facebook, Twilio and Vapi. Plus a
+        <strong className="text-white"> node-based editor</strong> that let the Head of Sales program the AI agents
+        without a developer.
+      </>
+    ),
+  },
+  {
+    id: "navian",
+    company: "Navian",
+    location: "EU",
+    years: "2023 — 2024",
+    position: "Lead Product Designer",
+    positionNote: "Navian Group",
+    description: (
+      <>
+        Enterprise SaaS. Engineered a comprehensive <strong className="text-white">Capital Lifecycle OS</strong>, mapping a complex
+        {" "}<strong className="text-white">9-role permission matrix</strong> (RBAC) to digitize the workflow for Developers, Banks, and Investors.
       </>
     ),
   },
@@ -28,12 +52,13 @@ const experiences = [
     company: "Flow Health",
     location: "USA",
     years: "2021 — 2023",
-    position: "Lead Product Designer",
+    position: "Senior Product Designer",
     positionNote: "Solo, End-to-End",
     description: (
       <>
-        Designed a mission-critical <strong className="text-white">Enterprise Biosecurity OS</strong> deployed at <strong className="text-white">Disney</strong>, <strong className="text-white">Netflix</strong>, and <strong className="text-white">JPMorgan</strong>.
-        {" "}Transformed raw medical data into a "Traffic Light" Command Center for managing safety risks. The premium UX became the key sales asset, enabling clients to manage <strong className="text-white">50k+ employees</strong> without production shutdowns.
+        Designed an enterprise biosecurity platform used by <strong className="text-white">Disney, Netflix and
+        JPMorgan</strong> — raw medical data turned into a traffic-light command centre for managing 50k+ staff on set
+        without shutting production down.
       </>
     ),
   },

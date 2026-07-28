@@ -19,11 +19,19 @@ const useIsMobile = () => {
 // Hardcoded case studies with business-focused copy
 const caseStudies = [
   {
+    id: "datox",
+    title: "Datox Compliance",
+    description: "Redesigned and rebuilt the reporting pipeline of a live regulatory SaaS — without a cutover.",
+    year: "2026",
+    image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/datox/extraction.png",
+    link: "/case/datox",
+  },
+  {
     id: "reviero",
     title: "Reviero Invest",
     description: "Scaled a PropTech startup from MVP to a full-cycle product with AI search.",
-    year: "2025",
-    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/revierohero2.png",
+    year: "2026",
+    image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/revierohero2.png",
     link: "/case/reviero",
   },
   {
@@ -31,7 +39,7 @@ const caseStudies = [
     title: "Navian OS",
     description: "Replaced fragmented Excel workflows with a unified B2B SaaS pipeline.",
     year: "2023",
-    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/navianos_1.jpg",
+    image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/navianos-1.jpg",
     link: "/case/navian",
   },
   {
@@ -39,7 +47,7 @@ const caseStudies = [
     title: "Flow Workforce",
     description: "A safety management platform used by Disney and JPMorgan Chase.",
     year: "2023",
-    image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/2.png",
+    image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/2.png",
     link: "/case/flowhealth",
   },
 ];

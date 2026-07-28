@@ -83,10 +83,7 @@ const Contact = () => {
           <p className="text-sm font-light text-[#141414]/50">
             © 2025 Artem Sokolov. Built with precision.
           </p>
-          <div className="flex gap-6">
-            <span className="text-sm font-light text-[#141414]/50 hover:text-[#141414] cursor-pointer transition-colors">Privacy</span>
-            <span className="text-sm font-light text-[#141414]/50 hover:text-[#141414] cursor-pointer transition-colors">Terms</span>
-          </div>
+
         </div>
       </div>
     </section>

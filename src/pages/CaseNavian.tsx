@@ -58,12 +58,12 @@ const CaseNavian = () => {
     const [activeRole, setActiveRole] = useState(0);
 
     const roleViews = [
-        { name: "Financier", label: "Financier", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/financier2.jpg" },
-        { name: "Project Manager", label: "PM", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/pm.png" },
-        { name: "Analyst", label: "Analyst", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/Analyst2.png" },
-        { name: "Contractor", label: "Contractor", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/tendering%20manager2.png" },
-        { name: "Equity Manager", label: "Equity", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/equity%20manager2.png" },
-        { name: "Investor", label: "Investor", image: "https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/maps/equity%20partner%20admin2.png" },
+        { name: "Financier", label: "Financier", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/financier2.jpg" },
+        { name: "Project Manager", label: "PM", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/pm.png" },
+        { name: "Analyst", label: "Analyst", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/analyst2.png" },
+        { name: "Contractor", label: "Contractor", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/tendering-manager2.png" },
+        { name: "Equity Manager", label: "Equity", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/equity-manager2.png" },
+        { name: "Investor", label: "Investor", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/equity-partner-admin2.png" },
     ];
 
     const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
@@ -102,7 +102,7 @@ const CaseNavian = () => {
                 {/* Hero Image — Curtain wipe + Ken Burns zoom */}
                 <div className="w-full h-[50vh] bg-[#C8C4BC] overflow-hidden relative">
                     <motion.img
-                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/navian_top.png"
+                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/navian-top.png"
                         alt="Navian Dashboard Preview"
                         className="w-full h-full object-cover"
                         initial={{ scale: 1.15 }}
@@ -602,7 +602,7 @@ const CaseNavian = () => {
                     className="rounded-sm overflow-hidden"
                 >
                     <img
-                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/subscripotion.png"
+                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/subscripotion.png"
                         alt="Subscription & RBAC Architecture"
                         className="w-full h-auto object-contain"
                     />
@@ -681,7 +681,7 @@ const CaseNavian = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC]">
                                     <video
-                                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/pm.mp4"
+                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/pm.mp4"
                                         autoPlay
                                         loop
                                         muted
@@ -713,7 +713,7 @@ const CaseNavian = () => {
                                 </div>
                                 <div className="aspect-video bg-white">
                                     <video
-                                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Unit%20Structure%202-1.mov"
+                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/unit-structure-2-1.mov"
                                         autoPlay
                                         loop
                                         muted
@@ -801,7 +801,7 @@ const CaseNavian = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC]">
                                     <video
-                                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Financier.mp4"
+                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/financier.mp4"
                                         autoPlay
                                         loop
                                         muted
@@ -833,7 +833,7 @@ const CaseNavian = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC]">
                                     <video
-                                        src="https://bahhqjufjcryyaiptmrr.supabase.co/storage/v1/object/public/test/Partners%20Demo.mov"
+                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/partners-demo.mov"
                                         autoPlay
                                         loop
                                         muted
