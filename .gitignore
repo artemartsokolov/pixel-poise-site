@@ -36,3 +36,6 @@ src/pages/CaseReviero.tsx
 
 # Generator scaffolding, nothing in src/ uses it
 supabase/
+
+# Incremental build state, rewritten by every `tsc --build`
+*.tsbuildinfo
