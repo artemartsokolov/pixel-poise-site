@@ -284,40 +284,47 @@ const CaseStayte = () => {
                             </h1>
                         </div>
 
-                        <div>
-                            <div className="grid grid-cols-2 gap-12">
-                                <div className="space-y-8">
+                        {/* Right: Metadata */}
+                        <div className="flex flex-col lg:flex-row lg:justify-between items-start gap-8 lg:gap-0">
+                            <div className="grid grid-cols-2 gap-x-8 gap-y-6 lg:contents">
+                                {/* Column 1 */}
+                                <div className="space-y-6">
                                     {[
                                         { label: "Date", value: "2024 – Feb 2026" },
                                         { label: "Location", value: "Spain" },
                                         { label: "Services", value: "Product Design\nFrontend Engineering\nBackend & Integrations" },
+                                        { label: "Team", value: "Head of Sales\nAgents · me" },
                                     ].map((item, i) => (
-                                        <motion.div
-                                            key={item.label}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: 0.9 + i * 0.1, duration: 0.6 }}
-                                        >
-                                            <p className="text-xs text-gray-400 mb-2">{item.label}</p>
-                                            <p className="text-sm text-[#141414] whitespace-pre-line leading-relaxed">{item.value}</p>
-                                        </motion.div>
+                                        <div key={item.label} className="overflow-hidden">
+                                            <motion.div
+                                                initial={{ y: "110%" }}
+                                                animate={{ y: "0%" }}
+                                                transition={{ delay: 0.9 + i * 0.08, duration: 0.7, ease: smooth }}
+                                            >
+                                                <p className="text-sm font-semibold text-[#141414] mb-0.5">{item.label}</p>
+                                                <p className="text-sm font-light text-gray-500" style={{ whiteSpace: 'pre-line' }}>{item.value}</p>
+                                            </motion.div>
+                                        </div>
                                     ))}
                                 </div>
-                                <div className="space-y-8">
+
+                                {/* Column 2 */}
+                                <div className="space-y-6">
                                     {[
-                                        { label: "Role", value: "Design Engineer\n(everything but the mobile app)" },
+                                        { label: "Role", value: "Design Engineer\n(everything but\nthe mobile app)" },
                                         { label: "Target", value: "Brokerage teams (B2B)\nBuyers and investors (B2C)" },
                                         { label: "Platform", value: "Web OS · Supabase\nMLS API · WhatsApp\nHubSpot · Pipedrive\nTwilio · Vapi" },
                                     ].map((item, i) => (
-                                        <motion.div
-                                            key={item.label}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: 1.0 + i * 0.1, duration: 0.6 }}
-                                        >
-                                            <p className="text-xs text-gray-400 mb-2">{item.label}</p>
-                                            <p className="text-sm text-[#141414] whitespace-pre-line leading-relaxed">{item.value}</p>
-                                        </motion.div>
+                                        <div key={item.label} className="overflow-hidden">
+                                            <motion.div
+                                                initial={{ y: "110%" }}
+                                                animate={{ y: "0%" }}
+                                                transition={{ delay: 1.0 + i * 0.08, duration: 0.7, ease: smooth }}
+                                            >
+                                                <p className="text-sm font-semibold text-[#141414] mb-0.5">{item.label}</p>
+                                                <p className="text-sm font-light text-gray-500" style={{ whiteSpace: 'pre-line' }}>{item.value}</p>
+                                            </motion.div>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -422,9 +429,9 @@ const CaseStayte = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <p className="text-xs text-gray-500 tracking-wide mb-6">00 / The Run</p>
+                    <p className="text-xs text-[#8A8680] tracking-wide mb-6">00 / The Run</p>
                     <h2 className="text-3xl lg:text-4xl font-light font-heading text-white mb-6">One Lead, End to End</h2>
-                    <p className="text-base font-light text-[#A09A92] leading-relaxed max-w-2xl">
+                    <p className="text-base text-[#A09A92] leading-relaxed">
                         Nine stages between a lead appearing and a deal moving. Stage six loops back into stage four — that loop is what separates this from a scheduler.
                     </p>
                 </motion.div>
@@ -434,9 +441,9 @@ const CaseStayte = () => {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="w-full overflow-x-auto"
+                    className="bg-[#1A1A1A] rounded-sm overflow-x-auto"
                 >
-                    <svg viewBox="0 0 1300 300" className="w-full min-w-[900px]" role="img" aria-label="Nine-stage pipeline from intake to dashboard, with a feedback loop from learning back to selection">
+                    <svg viewBox="0 0 1300 300" className="w-full h-auto min-w-[1060px]" fill="none" style={{ padding: '28px 20px 16px' }} role="img" aria-label="Nine-stage pipeline from intake to dashboard, with a feedback loop from learning back to selection">
                         <defs>
                             <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
                                 <path d="M0,0 L6,3 L0,6" fill="none" stroke="#3A3A3A" strokeWidth="1" />
@@ -585,15 +592,15 @@ const CaseStayte = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1, duration: 0.6 }}
-                        className="space-y-5"
+                        className="space-y-6"
                     >
                         <p className="text-base font-light text-gray-600 leading-relaxed">
                             Agents do most of their work away from a desk, so the system needed a surface that travelled with them: their deals, their clients, and the automations they would otherwise have to be at a computer to run — build a selection, send it to a client, without opening the OS.
                         </p>
-                        <p className="text-base text-gray-600 leading-relaxed">
+                        <p className="text-base font-light text-gray-600 leading-relaxed">
                             The part I cared most about was the notes. An agent finishes a viewing and speaks into their phone; the note is transcribed and lands in the CRM as a proper record. It is the same principle as stage seven — what gets learned out in the world should not stay there.
                         </p>
-                        <p className="text-sm text-gray-500 leading-relaxed pt-4 border-t border-gray-300">
+                        <p className="text-sm text-gray-500 leading-relaxed pt-6 border-t border-gray-300">
                             I designed this. I did not build it — the app was the one part of the system that was not mine to write.
                         </p>
                     </motion.div>
@@ -618,7 +625,7 @@ const CaseStayte = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="bg-[#FAFAF8] px-8 lg:px-14 py-12 lg:py-16 rounded-sm"
+                        className="bg-[#FAFAF8] px-14 py-16 rounded-sm"
                     >
                         <h3 className="text-2xl font-normal text-[#141414] mb-2">Every Agency Chases Differently</h3>
                         <p className="text-sm text-gray-400 mb-10">Workflow design</p>
