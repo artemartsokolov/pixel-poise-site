@@ -6,6 +6,18 @@ import { useLocation } from "react-router-dom";
    or not anything animated. Slightly longer than the CSS fade so the two overlap. */
 const EXIT_MS = 420;
 
+/* Where the reader actually was, tracked outside React.
+
+   The first version read window.scrollY during render, which is wrong in a way
+   that only shows up once you are scrolled: scrolling does not re-render, so the
+   value was whatever it had been at the last render — nearly always 0 — and the
+   outgoing page snapped to its own top instead of staying put. */
+let lastScrollY = 0;
+if (typeof window !== "undefined") {
+    lastScrollY = window.scrollY;
+    window.addEventListener("scroll", () => { lastScrollY = window.scrollY; }, { passive: true });
+}
+
 /* One route, mounted alongside its neighbour so the two genuinely cross-fade.
 
    Both fades are CSS, not JS tweens, and that is the whole point rather than a
@@ -27,10 +39,12 @@ const EXIT_MS = 420;
    even in the worst case it is inert. */
 const Fading = ({ children }: { children: ReactNode }) => {
     const [isPresent, safeToRemove] = usePresence();
-    /* Read on the last render before this copy becomes the outgoing one, while the
-       window is still scrolled where the reader left it. */
-    const frozenAt = useRef(0);
-    if (isPresent) frozenAt.current = window.scrollY;
+    /* Latched on the first render where this copy is the outgoing one, and never
+       recomputed. ScrollToTop's window.scrollTo fires a scroll event, which resets
+       the tracker to 0 — so any later re-render of this same node would otherwise
+       re-pin it to the top mid-fade. */
+    const frozenAt = useRef<number | null>(null);
+    if (!isPresent && frozenAt.current === null) frozenAt.current = lastScrollY;
 
     useEffect(() => {
         if (isPresent) return;
@@ -48,7 +62,7 @@ const Fading = ({ children }: { children: ReactNode }) => {
                           position: "fixed",
                           left: 0,
                           right: 0,
-                          top: -frozenAt.current,
+                          top: -(frozenAt.current ?? 0),
                           pointerEvents: "none",
                           zIndex: 40,
                       }
