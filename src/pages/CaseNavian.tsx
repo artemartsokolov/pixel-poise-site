@@ -1,11 +1,23 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 
 /* ── Premium easing curve (matches Hero.tsx) ── */
 const smooth = [0.22, 1, 0.36, 1] as const;
 
 const CaseNavian = () => {
+    const [activeRole, setActiveRole] = useState(0);
+
+    const roleViews = [
+        { name: "Financier", label: "Financier", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/financier2.jpg" },
+        { name: "Project Manager", label: "PM", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/pm.png" },
+        { name: "Analyst", label: "Analyst", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/analyst2.png" },
+        { name: "Contractor", label: "Contractor", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/tendering-manager2.png" },
+        { name: "Equity Manager", label: "Equity", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/equity-manager2.png" },
+        { name: "Investor", label: "Investor", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/equity-partner-admin2.png" },
+    ];
+
     const challenges = [
         {
             letter: "A",
