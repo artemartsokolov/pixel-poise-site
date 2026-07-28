@@ -32,6 +32,31 @@ const Hero = () => {
       {/* Darkening overlay */}
       <div className="absolute inset-0 bg-black opacity-0 z-[5] pointer-events-none will-change-[opacity]" id="hero-overlay" />
 
+      {/* ═══ TOP RIGHT — where I am, and the one file a recruiter opens ═══ */}
+      <div className="absolute top-6 right-4 lg:top-9 lg:right-8 z-20 flex items-center gap-4 lg:gap-5">
+        {["Spain", "CV"].map((label, i) => (
+          <div key={label} className="overflow-hidden">
+            <motion.div
+              initial={{ y: "110%" }}
+              animate={{ y: "0%" }}
+              transition={{ delay: 0.55 + i * 0.08, duration: 0.8, ease: smooth }}
+            >
+              {label === "Spain" ? (
+                <span className="text-xs lg:text-sm font-light text-[#141414]/60">Spain</span>
+              ) : (
+                <a
+                  href="/cv-artem-sokolov.pdf"
+                  download
+                  className="text-xs lg:text-sm font-medium text-[#141414] border-b border-[#141414]/30 hover:border-[#141414] transition-colors"
+                >
+                  CV
+                </a>
+              )}
+            </motion.div>
+          </div>
+        ))}
+      </div>
+
       {/* ═══ TOP — Navigation Menu ═══ */}
       <nav className="absolute top-6 left-4 lg:top-8 lg:left-[55%] lg:transform lg:-translate-x-1/2 z-10">
         <div className="flex flex-col items-start gap-0 lg:ml-8">

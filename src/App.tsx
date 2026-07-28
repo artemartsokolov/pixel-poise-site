@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CaseNavian from "./pages/CaseNavian";
@@ -7,11 +7,18 @@ import CaseFlowHealth from "./pages/CaseFlowHealth";
 import CaseDatox from "./pages/CaseDatox";
 import Method from "./pages/Method";
 import ScrollToTop from "./components/ScrollToTop";
+import PageTransition from "./components/PageTransition";
 
-const App = () => (
-  <BrowserRouter>
-    <ScrollToTop />
-    <Routes>
+/* Routes live in their own component so they can read the location that
+   AnimatePresence keys on. `location` is passed to Routes explicitly: without it
+   the outgoing copy would re-resolve against the new URL and render the incoming
+   page twice instead of cross-fading. */
+const AnimatedRoutes = () => {
+  const location = useLocation();
+
+  return (
+    <PageTransition>
+      <Routes location={location}>
       <Route path="/" element={<Index />} />
       <Route path="/case/navian" element={<CaseNavian />} />
       <Route path="/case/stayte" element={<CaseStayte />} />
@@ -19,7 +26,15 @@ const App = () => (
       <Route path="/case/datox" element={<CaseDatox />} />
       <Route path="/method" element={<Method />} />
       <Route path="*" element={<NotFound />} />
-    </Routes>
+      </Routes>
+    </PageTransition>
+  );
+};
+
+const App = () => (
+  <BrowserRouter>
+    <ScrollToTop />
+    <AnimatedRoutes />
   </BrowserRouter>
 );
 
