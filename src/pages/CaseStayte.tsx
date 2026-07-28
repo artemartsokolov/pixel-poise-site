@@ -17,7 +17,7 @@ const shots: Shot[] = [
     { src: `${SHOT_BASE}/routing-poster.jpg`, video: `${SHOT_BASE}/routing.mp4`, label: "Workflow step", alt: "A step in a sequence: immediate send, AI auto-reply, and the reply timeout that decides which path is taken next" },
     { src: `${SHOT_BASE}/qualification-poster.jpg`, video: `${SHOT_BASE}/qualification.mp4`, label: "Call configuration", alt: "Retry logic as settings — attempts, per-attempt fallback rules, one call per window, and the calling-hours grid" },
     { src: `${SHOT_BASE}/selection-poster.jpg`, video: `${SHOT_BASE}/selection.mp4`, label: "Selection", alt: "A selection already sent to this lead, three properties from the agency's MLS, with the option to continue from it or start a new one" },
-    { src: `${SHOT_BASE}/delivery-poster.jpg`, video: `${SHOT_BASE}/delivery.mp4`, label: "WhatsApp", alt: "The selection as it arrives — a swipeable carousel in the thread the client already uses, each card carrying the Like that the next selection is built from" },
+    { src: `${SHOT_BASE}/delivery-phone-poster.jpg`, video: `${SHOT_BASE}/delivery-phone.mp4`, phone: true, label: "WhatsApp", alt: "The selection as it arrives — a swipeable carousel in the thread the client already uses, each card carrying the Like that the next selection is built from" },
     { src: `${SHOT_BASE}/enrichment-poster.jpg`, video: `${SHOT_BASE}/enrichment.mp4`, label: "Lead record", alt: "The profile on the left, the calls that built it on the right — every attempt, its outcome, and the fields it filled in" },
     { src: `${SHOT_BASE}/crm-sync-poster.jpg`, video: `${SHOT_BASE}/crm-sync.mp4`, label: "Data Sync", alt: "The CRM connector: two-way sync of contacts and deals, with the last sync timestamped" },
     { src: `${SHOT_BASE}/dashboard-poster.jpg`, video: `${SHOT_BASE}/dashboard.mp4`, label: "Dashboard", alt: "Conversion by source, leads over time, and what the automation is currently carrying" },
@@ -37,6 +37,52 @@ const ShotFrame = ({ shot, onOpen }: { shot: Shot; onOpen: () => void }) => {
         v.pause();
         v.currentTime = 0;
     };
+
+    /* A handset capture gets a device frame instead of browser chrome —
+       the same one the Reviero case uses for its app screens. */
+    if (shot.phone) {
+        return (
+            <div className="flex justify-center">
+                <div
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Open full size: ${shot.alt}`}
+                    onClick={onOpen}
+                    onMouseEnter={play}
+                    onMouseLeave={stop}
+                    onFocus={play}
+                    onBlur={stop}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            onOpen();
+                        }
+                    }}
+                    className="group relative w-[280px] cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-[#141414] focus-visible:ring-offset-4"
+                >
+                    <div className="relative rounded-[36px] overflow-hidden border-[8px] border-[#1a1a1a] shadow-2xl bg-[#1a1a1a]">
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90px] h-[20px] bg-[#1a1a1a] rounded-b-xl z-10" />
+                        <div className="aspect-[6/13] bg-[#0B141A] rounded-[28px] overflow-hidden">
+                            <video
+                                ref={video}
+                                src={shot.video}
+                                poster={shot.src}
+                                muted
+                                loop
+                                playsInline
+                                preload="none"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    </div>
+                    <span className="pointer-events-none absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 rounded-full bg-[#141414]/75 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-sm transition-colors duration-300 group-hover:bg-[#141414]/90">
+                        <Maximize2 className="h-2.5 w-2.5" />
+                        Expand
+                    </span>
+                </div>
+            </div>
+        );
+    }
 
     /* Waiting for its asset: the frame still holds the layout so the rhythm of
        the page does not change when the image lands. */

@@ -13,6 +13,9 @@ export type Shot = {
         Deliberately not loaded until the lightbox opens — the stills carry
         the page, the video is the reward for clicking. */
     video?: string;
+    /** portrait capture from a handset — the case lays it out in a device
+        frame rather than the browser chrome the desktop shots get. */
+    phone?: boolean;
 };
 
 interface LightboxProps {
