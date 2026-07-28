@@ -312,10 +312,10 @@ const CaseStayte = () => {
 
             {/* ═══ Hero ═══ */}
             <section>
-                <div className="w-full h-[50vh] bg-[#2A2A2A] overflow-hidden relative">
+                <div className="w-full h-[50vh] bg-[#F5F3EE] overflow-hidden relative">
                     <motion.img
-                        src={`${SHOT_BASE}/revierohero6-1.png`}
-                        alt="Stayte — the system the brokerage runs on"
+                        src={`${SHOT_BASE}/stayte-cover.jpg`}
+                        alt="A workflow in the editor: a WhatsApp step and a call branching into grading groups, agent assignment and a nurture sequence"
                         className="w-full h-full object-cover object-center"
                         initial={{ scale: 1.15 }}
                         animate={{ scale: 1 }}
