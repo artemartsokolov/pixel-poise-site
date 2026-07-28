@@ -31,7 +31,7 @@ const caseStudies = [
     title: "Stayte",
     description: "Built the operating system a real-estate agency runs on — intake to closed deal, design and code both.",
     year: "2026",
-    image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/revierohero2.png",
+    image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero/stayte-cover.jpg",
     link: "/case/stayte",
   },
   {
