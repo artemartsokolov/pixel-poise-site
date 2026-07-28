@@ -7,6 +7,7 @@ import CaseFlowHealth from "./pages/CaseFlowHealth";
 import CaseDatox from "./pages/CaseDatox";
 import Method from "./pages/Method";
 import PageTransition from "./components/PageTransition";
+import EntryGate from "./components/EntryGate";
 
 /* Routes live in their own component so they can read the location that
    AnimatePresence keys on. `location` is passed to Routes explicitly: without it
@@ -31,10 +32,15 @@ const AnimatedRoutes = () => {
 };
 
 /* Where a route change leaves the scroll is decided inside PageTransition, next to
-   the reveal it has to stay in step with — not by a separate component racing it. */
+   the reveal it has to stay in step with — not by a separate component racing it.
+
+   The gate is outside the router, so it covers a deep link to a case as well as the
+   home page, and inside BrowserRouter is unnecessary — it needs no location. */
 const App = () => (
   <BrowserRouter>
-    <AnimatedRoutes />
+    <EntryGate>
+      <AnimatedRoutes />
+    </EntryGate>
   </BrowserRouter>
 );
 

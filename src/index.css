@@ -143,6 +143,36 @@ html {
   pointer-events: none;
 }
 
+/* ── Entry gate ── */
+
+/* A wrong code, answered the way a person shakes their head. Small on purpose: the
+   message below the cells is what carries the meaning, this only draws the eye to
+   it. Re-triggered by the class going off and on again, which is what clearing the
+   error on the next keystroke already does. */
+@keyframes gate-wrong {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(5px); }
+  60%      { transform: translateX(-3px); }
+  80%      { transform: translateX(2px); }
+}
+
+.gate-wrong {
+  animation: gate-wrong 320ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Drawn rather than native: the input is transparent and stretched over all the
+   cells, so its own caret would sit at the far left of the row instead of in the
+   cell being filled. */
+@keyframes gate-caret {
+  0%, 45%   { opacity: 1; }
+  55%, 100% { opacity: 0; }
+}
+
+.gate-caret {
+  animation: gate-caret 1.1s steps(1, end) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .page-recede,
   .page-reveal {
