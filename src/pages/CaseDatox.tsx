@@ -145,7 +145,7 @@ const CaseDatox = () => {
             {/* Back Navigation — Masked slide-in */}
             <div className="fixed top-8 left-8 z-50 overflow-hidden">
                 <motion.div
-                    initial={firstPaint ? { x: "-110%" } : false}
+                    initial={{ x: "-110%" }}
                     animate={{ x: "0%" }}
                     transition={{ delay: 0.3, duration: 0.7, ease: smooth }}
                 >
@@ -167,7 +167,7 @@ const CaseDatox = () => {
                         src={`${SHOT_BASE}/cover.jpg`}
                         alt="Datox — the extraction screen over the City of London"
                         className="w-full h-full object-cover object-[center_30%]"
-                        initial={firstPaint ? { scale: 1.15 } : false}
+                        initial={{ scale: 1.15 }}
                         animate={{ scale: 1 }}
                         transition={{
                             duration: 1.8,
@@ -194,7 +194,7 @@ const CaseDatox = () => {
                                 <div className="overflow-hidden">
                                     <motion.span
                                         className="block"
-                                        initial={firstPaint ? { y: "110%" } : false}
+                                        initial={{ y: "110%" }}
                                         animate={{ y: "0%" }}
                                         transition={{ delay: 0.6, duration: 0.8, ease: smooth }}
                                     >
@@ -207,7 +207,7 @@ const CaseDatox = () => {
                                         <div key={line} className="overflow-hidden">
                                             <motion.span
                                                 className="block"
-                                                initial={firstPaint ? { y: "110%" } : false}
+                                                initial={{ y: "110%" }}
                                                 animate={{ y: "0%" }}
                                                 transition={{ delay: 0.75 + i * 0.1, duration: 0.8, ease: smooth }}
                                             >
@@ -232,7 +232,7 @@ const CaseDatox = () => {
                                     ].map((item, i) => (
                                         <div key={item.label} className="overflow-hidden">
                                             <motion.div
-                                                initial={firstPaint ? { y: "110%" } : false}
+                                                initial={{ y: "110%" }}
                                                 animate={{ y: "0%" }}
                                                 transition={{ delay: 0.9 + i * 0.08, duration: 0.7, ease: smooth }}
                                             >
@@ -252,7 +252,7 @@ const CaseDatox = () => {
                                     ].map((item, i) => (
                                         <div key={item.label} className="overflow-hidden">
                                             <motion.div
-                                                initial={firstPaint ? { y: "110%" } : false}
+                                                initial={{ y: "110%" }}
                                                 animate={{ y: "0%" }}
                                                 transition={{ delay: 1.0 + i * 0.08, duration: 0.7, ease: smooth }}
                                             >
@@ -267,7 +267,7 @@ const CaseDatox = () => {
                             {/* Visit Website Button */}
                             {/* CTA — Late entrance with scale */}
                             <motion.div
-                                initial={firstPaint ? { opacity: 0, scale: 0.95 } : false}
+                                initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 1.3, duration: 0.6, ease: smooth }}
                             >

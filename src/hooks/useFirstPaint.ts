@@ -2,12 +2,17 @@ import { useLocation } from "react-router-dom";
 
 /* True while the session is still on the page it was opened on.
 
-   The hero curtains and the title reveals were written for a hard page load,
-   where the browser has shown nothing until React mounts and the wipe is the
-   first thing you see. Once routes cross-fade into each other, replaying all of
-   that on arrival puts three things on the same 400ms: the scroll reset, the
-   curtain, and the fade. The page should arrive already composed and let the
-   cross-fade be the only thing moving.
+   Only the hero curtains read this now, and only they should. A curtain is a
+   full-bleed panel that wipes off the image, written for a hard page load where
+   the browser has shown nothing until React mounts. Replay it on arrival from
+   another route and it covers the very reveal that just uncovered the page —
+   which is exactly how this transition came to look like nothing at all.
+
+   The masked text entrances are deliberately *not* gated: the reference starts
+   its own title and paragraph reveals 0.32s into a 0.7s clip, so the arriving
+   page is still composing itself as it lands. A page that arrives finished and
+   frozen is the difference between the effect and a mechanically identical
+   animation that reads as flat.
 
    Keyed on the URL rather than a consume-once flag. A flag is fragile in a way
    that is invisible until it isn't: anything that mounts a component twice —

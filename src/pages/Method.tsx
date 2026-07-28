@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useFirstPaint } from "@/hooks/useFirstPaint";
 
 /* ── Premium easing curve (matches Hero.tsx) ── */
 const smooth = [0.22, 1, 0.36, 1] as const;
@@ -80,13 +79,12 @@ const limits = [
 ];
 
 const Method = () => {
-    const firstPaint = useFirstPaint();
     return (
         <div className="bg-[#F5F3EE] text-foreground min-h-screen">
             {/* Back Navigation — Masked slide-in */}
             <div className="fixed top-8 left-8 z-50 overflow-hidden">
                 <motion.div
-                    initial={firstPaint ? { x: "-110%" } : false}
+                    initial={{ x: "-110%" }}
                     animate={{ x: "0%" }}
                     transition={{ delay: 0.3, duration: 0.7, ease: smooth }}
                 >
@@ -106,7 +104,7 @@ const Method = () => {
                     <div className="overflow-hidden">
                         <motion.p
                             className="text-xs text-gray-500 tracking-widest uppercase mb-8"
-                            initial={firstPaint ? { y: "110%" } : false}
+                            initial={{ y: "110%" }}
                             animate={{ y: "0%" }}
                             transition={{ delay: 0.3, duration: 0.8, ease: smooth }}
                         >
@@ -119,7 +117,7 @@ const Method = () => {
                             <div key={line} className="overflow-hidden">
                                 <motion.span
                                     className="block"
-                                    initial={firstPaint ? { y: "110%" } : false}
+                                    initial={{ y: "110%" }}
                                     animate={{ y: "0%" }}
                                     transition={{ delay: 0.45 + i * 0.09, duration: 0.9, ease: smooth }}
                                 >
@@ -130,7 +128,7 @@ const Method = () => {
                     </h1>
 
                     <motion.div
-                        initial={firstPaint ? { opacity: 0, y: 20 } : false}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.9, duration: 0.8 }}
                         className="max-w-2xl mt-12 space-y-5"
@@ -144,7 +142,7 @@ const Method = () => {
                     </motion.div>
 
                     <motion.p
-                        initial={firstPaint ? { opacity: 0 } : false}
+                        initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.2, duration: 0.8 }}
                         className="text-sm text-gray-500 mt-12 pt-8 border-t border-gray-300 max-w-2xl"

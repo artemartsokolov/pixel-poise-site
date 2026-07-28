@@ -41,7 +41,7 @@ const Hero = () => {
         {["Spain", "CV"].map((label, i) => (
           <div key={label} className="overflow-hidden">
             <motion.div
-              initial={firstPaint ? { y: "110%" } : false}
+              initial={{ y: "110%" }}
               animate={{ y: "0%" }}
               transition={{ delay: 0.55 + i * 0.08, duration: 0.8, ease: smooth }}
             >
@@ -69,7 +69,7 @@ const Hero = () => {
               <motion.a
                 href={link.href}
                 className="text-2xl lg:text-3xl font-normal tracking-tight font-heading leading-tight hover:opacity-60 transition-opacity cursor-pointer block relative"
-                initial={firstPaint ? { y: "110%" } : false}
+                initial={{ y: "110%" }}
                 animate={{ y: "0%" }}
                 transition={{
                   delay: 0.3 + i * 0.08,
@@ -140,7 +140,7 @@ const Hero = () => {
         <div className="overflow-hidden">
           <motion.p
             className="text-xs lg:text-sm font-semibold mb-2 text-white lg:text-[#141414]"
-            initial={firstPaint ? { y: "110%" } : false}
+            initial={{ y: "110%" }}
             animate={{ y: "0%" }}
             transition={{
               delay: 1.0,
@@ -158,7 +158,7 @@ const Hero = () => {
             <div key={i} className="overflow-hidden">
               <motion.p
                 className="text-xs lg:text-sm font-light text-white/70 lg:text-gray-500 leading-relaxed"
-                initial={firstPaint ? { y: "110%" } : false}
+                initial={{ y: "110%" }}
                 animate={{ y: "0%" }}
                 transition={{
                   delay: 1.15 + i * 0.07,
@@ -183,7 +183,7 @@ const Hero = () => {
           {"ARTEM SOKOLOV".split("").map((char, i) => (
             <motion.span
               key={i}
-              initial={firstPaint ? { opacity: 0, rotateX: -90, y: 40 } : false}
+              initial={{ opacity: 0, rotateX: -90, y: 40 }}
               animate={{ opacity: 1, rotateX: 0, y: 0 }}
               transition={{
                 delay: 0.6 + i * 0.06,

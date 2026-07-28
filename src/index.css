@@ -111,12 +111,39 @@ html {
   will-change: transform, opacity, clip-path;
 }
 
-.page-recede { animation-name: page-recede; transform-origin: 50% 0%; }
+/* transform-origin is set inline, not here: the reference's pages are one
+   viewport tall, so GSAP's default 50% 50% origin is the middle of the screen.
+   These pages are thousands of pixels tall, and the same 50% would shrink them
+   about a point far below the fold — or, with 0%, about a point far above it.
+   Only the reader's current viewport centre behaves like the reference, and
+   that depends on the scroll offset. */
+.page-recede { animation-name: page-recede; }
 .page-reveal { animation-name: page-reveal; }
+
+/* What the receding page recedes *into*. The reference paints its body black and
+   only the page itself white, which is the whole reason its transition reads as
+   depth: the old page dims towards black as it pulls back, and black gutters
+   open up either side of it once it is down to 0.8 scale. Fade a white page out
+   over a white background instead and 0.4 opacity just looks like a wash-out —
+   the same animation, none of the effect. */
+.page-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #000;
+  pointer-events: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .page-recede,
   .page-reveal {
     animation-duration: 1ms;
+  }
+
+  /* The backdrop is not animated, so shortening durations does not shorten it:
+     it would sit there for the full 700ms as a black flash between two light
+     pages — the one thing this setting exists to prevent. */
+  .page-backdrop {
+    display: none;
   }
 }

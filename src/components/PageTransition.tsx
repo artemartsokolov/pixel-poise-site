@@ -8,16 +8,21 @@ import { useFirstPaint } from "@/hooks/useFirstPaint";
    normal flow on it too. */
 const TRANSITION_MS = 700;
 
-/* Where the reader actually was, tracked outside React.
+/* Where the reader was when they navigated, captured outside React.
 
-   Reading window.scrollY during render is wrong in a way that only shows up once
-   you are scrolled: scrolling does not re-render, so the value is whatever it was
-   at the last one — nearly always 0 — and the outgoing page snaps to its own top
-   instead of staying put. */
-let lastScrollY = 0;
+   Read at the last instant it is still knowable: a capture-phase click listener
+   runs before React's own handler, so window.scrollY here is the outgoing page's
+   offset with certainty. Everything later is a race that is quietly lost — by the
+   time AnimatePresence renders the copy as leaving, ScrollToTop's layout effect
+   may already have reset the scroll to zero, and the outgoing page then snaps to
+   its own top instead of staying where the reader left it. Tracking scroll events
+   instead loses the same race from the other side: they are dispatched during the
+   rendering steps, which a backgrounded tab suspends entirely. */
+let scrollAtNavigation = 0;
 if (typeof window !== "undefined") {
-    lastScrollY = window.scrollY;
-    window.addEventListener("scroll", () => { lastScrollY = window.scrollY; }, { passive: true });
+    const capture = () => { scrollAtNavigation = window.scrollY; };
+    document.addEventListener("click", capture, true);
+    window.addEventListener("popstate", capture, true);
 }
 
 /* One route, animated against its neighbour.
@@ -46,10 +51,10 @@ const Staged = ({ children }: { children: ReactNode }) => {
     const [isPresent, safeToRemove] = usePresence();
     const firstPaint = useFirstPaint();
 
-    /* Latched once: window.scrollTo fires a scroll event that resets the tracker,
-       so recomputing on a later re-render would re-pin this copy to the top. */
+    /* Latched once, so a re-render part-way through the animation cannot re-pin
+       this copy against a newer navigation's offset. */
     const frozenAt = useRef<number | null>(null);
-    if (!isPresent && frozenAt.current === null) frozenAt.current = lastScrollY;
+    if (!isPresent && frozenAt.current === null) frozenAt.current = scrollAtNavigation;
 
     /* The page a session opens on has nothing to be revealed from behind. */
     const [revealing, setRevealing] = useState(() => isPresent && !firstPaint);
@@ -65,6 +70,7 @@ const Staged = ({ children }: { children: ReactNode }) => {
     }, [isPresent, revealing, safeToRemove]);
 
     if (!isPresent) {
+        const scrolledTo = frozenAt.current ?? 0;
         return (
             <div
                 className="page-recede"
@@ -72,9 +78,17 @@ const Staged = ({ children }: { children: ReactNode }) => {
                     position: "fixed",
                     left: 0,
                     right: 0,
-                    top: -(frozenAt.current ?? 0),
+                    top: -scrolledTo,
                     pointerEvents: "none",
                     zIndex: 1,
+                    /* Shrink about the middle of what the reader is looking at.
+                       This copy is offset by -scrollY, so the viewport centre
+                       sits that much further down its own box. */
+                    transformOrigin: `50% ${scrolledTo + window.innerHeight / 2}px`,
+                    /* Opaque, so the black backdrop shows only where this copy
+                       has pulled away from the edges — not through any gap
+                       between the page's own sections. */
+                    background: "hsl(var(--background))",
                 }}
             >
                 {children}
@@ -99,11 +113,32 @@ const Staged = ({ children }: { children: ReactNode }) => {
 const PageTransition = ({ children }: { children: ReactNode }) => {
     const location = useLocation();
 
+    /* The black layer both copies sit over, present only while a transition is
+       running — the site's own background is light, and leaving black underneath
+       it permanently would show on every rubber-band overscroll. Driven off the
+       pathname rather than off AnimatePresence's child count, which is not
+       something a parent can read. */
+    const [dimmed, setDimmed] = useState(false);
+    const mounted = useRef(false);
+
+    useEffect(() => {
+        if (!mounted.current) {
+            mounted.current = true;
+            return;
+        }
+        setDimmed(true);
+        const t = setTimeout(() => setDimmed(false), TRANSITION_MS);
+        return () => clearTimeout(t);
+    }, [location.pathname]);
+
     return (
-        <AnimatePresence initial={false}>
-            {/* A new key is what marks the previous subtree as leaving. */}
-            <Staged key={location.pathname}>{children}</Staged>
-        </AnimatePresence>
+        <>
+            {dimmed && <div className="page-backdrop" aria-hidden />}
+            <AnimatePresence initial={false}>
+                {/* A new key is what marks the previous subtree as leaving. */}
+                <Staged key={location.pathname}>{children}</Staged>
+            </AnimatePresence>
+        </>
     );
 };
 

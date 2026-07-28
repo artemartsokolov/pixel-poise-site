@@ -59,7 +59,7 @@ const CaseNavian = () => {
             {/* Back Navigation — Masked slide-in */}
             <div className="fixed top-8 left-8 z-50 overflow-hidden">
                 <motion.div
-                    initial={firstPaint ? { x: "-110%" } : false}
+                    initial={{ x: "-110%" }}
                     animate={{ x: "0%" }}
                     transition={{ delay: 0.3, duration: 0.7, ease: smooth }}
                 >
@@ -81,7 +81,7 @@ const CaseNavian = () => {
                         src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/navian-top.png"
                         alt="Navian Dashboard Preview"
                         className="w-full h-full object-cover"
-                        initial={firstPaint ? { scale: 1.15 } : false}
+                        initial={{ scale: 1.15 }}
                         animate={{ scale: 1 }}
                         transition={{
                             duration: 1.8,
@@ -108,7 +108,7 @@ const CaseNavian = () => {
                                 <div className="overflow-hidden">
                                     <motion.span
                                         className="block"
-                                        initial={firstPaint ? { y: "110%" } : false}
+                                        initial={{ y: "110%" }}
                                         animate={{ y: "0%" }}
                                         transition={{ delay: 0.6, duration: 0.8, ease: smooth }}
                                     >
@@ -121,7 +121,7 @@ const CaseNavian = () => {
                                         <div key={line} className="overflow-hidden">
                                             <motion.span
                                                 className="block"
-                                                initial={firstPaint ? { y: "110%" } : false}
+                                                initial={{ y: "110%" }}
                                                 animate={{ y: "0%" }}
                                                 transition={{ delay: 0.75 + i * 0.1, duration: 0.8, ease: smooth }}
                                             >
@@ -145,7 +145,7 @@ const CaseNavian = () => {
                                     ].map((item, i) => (
                                         <div key={item.label} className="overflow-hidden">
                                             <motion.div
-                                                initial={firstPaint ? { y: "110%" } : false}
+                                                initial={{ y: "110%" }}
                                                 animate={{ y: "0%" }}
                                                 transition={{ delay: 0.9 + i * 0.08, duration: 0.7, ease: smooth }}
                                             >
@@ -165,7 +165,7 @@ const CaseNavian = () => {
                                     ].map((item, i) => (
                                         <div key={item.label} className="overflow-hidden">
                                             <motion.div
-                                                initial={firstPaint ? { y: "110%" } : false}
+                                                initial={{ y: "110%" }}
                                                 animate={{ y: "0%" }}
                                                 transition={{ delay: 1.0 + i * 0.08, duration: 0.7, ease: smooth }}
                                             >
@@ -179,7 +179,7 @@ const CaseNavian = () => {
 
                             {/* CTA — Late entrance with scale */}
                             <motion.div
-                                initial={firstPaint ? { opacity: 0, scale: 0.95 } : false}
+                                initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 1.3, duration: 0.6, ease: smooth }}
                             >
@@ -472,7 +472,7 @@ const CaseNavian = () => {
                     {/* Full-width Image Placeholder */}
                     <motion.div
                         key={activeRole}
-                        initial={firstPaint ? { opacity: 0 } : false}
+                        initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
                         className="aspect-[21/9] rounded-sm overflow-hidden flex items-center justify-center relative"
