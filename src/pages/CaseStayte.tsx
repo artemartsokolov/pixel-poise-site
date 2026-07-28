@@ -254,6 +254,7 @@ const stages = [
             ["Zero adoption cost:", "The surface with the highest open rate is the one the client did not have to be persuaded to use — and making it the reply channel too means there is nowhere else to go and not bother."],
             ["The loop is the product:", "Those taps are not a rating for its own sake. They feed straight back into the selection stage, so the fourth shortlist is meaningfully better than the first. Without the loop this is a scheduler with extra steps."],
             ["Preference beats a brief:", "What someone taps is more honest than what they said they wanted on a form."],
+            ["Nurturing is a cadence, not a campaign:", "A lead who is not ready yet stays in a sequence that sends a fresh selection every few days, on an interval the agency sets, until they engage or the sequence ends."],
         ],
     },
     {
@@ -440,7 +441,7 @@ const CaseStayte = () => {
                         <div className="pt-10">
                             <h3 className="text-base font-semibold text-[#141414] mb-4">The Mission</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                Replace the chain with a system. Not a CRM and not a lead tool: the layer that runs everything between a lead arriving and a deal moving, and keeps the CRM correct as a side effect rather than as a chore. It began as a marketplace with a mobile app for buyers — the part that turned out to matter was the machinery underneath, the thing the brokerage itself runs on.
+                                Replace the chain with a system. Not a CRM and not a lead source — the agency already has both. This is the layer in between: qualification and nurturing, everything that happens from a lead arriving to a deal moving, with the CRM kept correct as a side effect rather than as a chore. It began as a marketplace with a mobile app for buyers — the part that turned out to matter was the machinery underneath, the thing the brokerage itself runs on.
                             </p>
                         </div>
 
@@ -751,7 +752,7 @@ const CaseStayte = () => {
                             {
                                 stat: "7,000+",
                                 label: "Leads processed",
-                                body: "Taken in from every source the system accepts and carried through routing and qualification, without anyone copying a row by hand.",
+                                body: "Taken in from every source the system accepts and carried through routing, qualification and nurturing, without anyone copying a row by hand.",
                             },
                             {
                                 stat: "~200",
