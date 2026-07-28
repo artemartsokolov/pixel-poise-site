@@ -20,14 +20,14 @@ const experiences = [
   {
     id: "stayte",
     company: "Stayte",
-    location: "EU",
+    location: "ex-Reviero · EU",
     years: "2024 — Feb 2026",
     position: "Design Engineer",
     positionNote: "Navian Group",
     description: (
       <>
-        <strong className="text-white">Design and build</strong> across the whole ecosystem bar the mobile app: web
-        frontend, Supabase backend, and the connectors to HubSpot, Pipedrive, Facebook, Twilio and Vapi. Plus a
+        <strong className="text-white">Designed and built</strong> the web product: frontend, Supabase
+        backend, and the connectors to HubSpot, Pipedrive, Facebook, Twilio and Vapi. Plus a
         <strong className="text-white"> node-based editor</strong> that let the Head of Sales program the AI agents
         without a developer.
       </>

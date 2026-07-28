@@ -390,7 +390,7 @@ const CaseStayte = () => {
                                 {/* Column 2 */}
                                 <div className="space-y-6">
                                     {[
-                                        { label: "Role", value: "Design Engineer\n(everything but\nthe mobile app)" },
+                                        { label: "Role", value: "Design Engineer\n(web product,\ndesign and build)" },
                                         { label: "Target", value: "Brokerage teams (B2B)\nBuyers and investors (B2C)" },
                                         { label: "Platform", value: "Web OS · Supabase\nMLS API · WhatsApp\nHubSpot · Pipedrive\nTwilio · Vapi" },
                                     ].map((item, i) => (
@@ -441,7 +441,7 @@ const CaseStayte = () => {
                         <div className="pt-10">
                             <h3 className="text-base font-semibold text-[#141414] mb-4">The Mission</h3>
                             <p className="text-base font-light text-gray-600 leading-relaxed">
-                                Replace the chain with a system. Not a CRM and not a lead source — the agency already has both. This is the layer in between: qualification and nurturing, everything that happens from a lead arriving to a deal moving, with the CRM kept correct as a side effect rather than as a chore. It began as a marketplace with a mobile app for buyers — the part that turned out to matter was the machinery underneath, the thing the brokerage itself runs on.
+                                Replace the chain with a system. Not a CRM and not a lead source — the agency already has both. This is the layer in between: qualification and nurturing, everything that happens from a lead arriving to a deal moving, with the CRM kept correct as a side effect rather than as a chore. It began as a marketplace for buyers — the part that turned out to matter was the machinery underneath, the thing the brokerage itself runs on.
                             </p>
                         </div>
 
