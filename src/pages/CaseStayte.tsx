@@ -9,9 +9,7 @@ const smooth = [0.22, 1, 0.36, 1] as const;
 
 const SHOT_BASE = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero";
 
-/* Order here is the order the lightbox steps through.
-   An empty `src` renders an empty slot in the page instead of a broken image —
-   those are the frames still waiting for a screenshot or a recording. */
+/* Order here is the order the lightbox steps through, one per stage. */
 const shots: Shot[] = [
     { src: `${SHOT_BASE}/intake-poster.jpg`, video: `${SHOT_BASE}/intake.mp4`, label: "Lead Sources", alt: "Where the four inputs are configured — the ad connector, inbound email parsing, the webhook for custom forms, and the source labels every lead is tagged with" },
     { src: `${SHOT_BASE}/routing-poster.jpg`, video: `${SHOT_BASE}/routing.mp4`, label: "Workflow step", alt: "A step in a sequence: immediate send, AI auto-reply, and the reply timeout that decides which path is taken next" },
@@ -210,10 +208,10 @@ const stages = [
         n: "01 / Intake",
         title: "Four Ways In, None of Them Tidy",
         meta: "Manual · CRM · Facebook Ads · Aggregators",
-        body: "A lead arrives by hand, by sync from the agency's CRM, from a Facebook lead ad, or from a form on an aggregator like Idealista. Each source carries different fields, different completeness and a different level of intent.",
+        body: "A lead arrives by hand, by sync from the agency's CRM, from a Facebook lead ad, or from a form on an aggregator like Idealista. Each source carries different fields, different completeness and a different level of intent — and each arrives by a different mechanism: an ad connector, a parsed inbound email, a webhook for anything with a form.",
         bullets: [
             ["One inbox, four shapes:", "Every source lands in the same place in the same form, so nobody reformats a spreadsheet before the work can start."],
-            ["Intent travels with the lead:", "Where a lead came from is not metadata — it is the thing that decides what happens next, so it is carried rather than logged."],
+            ["Intent travels with the lead:", "Where a lead came from is not metadata — it is the thing that decides what happens next, so it is carried as a source label rather than logged and forgotten."],
         ],
     },
     {
@@ -244,6 +242,7 @@ const stages = [
         bullets: [
             ["The client owns the inventory:", "No catalogue to maintain in a second place, and no sync to go stale — the MLS stays the single source."],
             ["Assembled, not filtered:", "The shortlist is built for the person, using everything the system has learned about them so far."],
+            ["Every selection is kept:", "What went out last time stays on the record, so the next one can continue from it instead of starting the thinking again."],
         ],
     },
     {
@@ -264,11 +263,12 @@ const stages = [
         body: "Call outcomes, and what the agent actually heard while speaking to the person, get aggregated, sorted into the right tables and written back.",
         bullets: [
             ["The knowledge that normally evaporates:", "Everything useful in a phone call usually ends up in someone's memory. Here it ends up somewhere the rest of the system can read it."],
+            ["The profile is a running summary:", "Requirements, budget, timeline and the state of the relationship are rewritten as the history grows, alongside the next action the system has already scheduled."],
         ],
     },
     {
         n: "07 / CRM Sync",
-        title: "Two-Way, with HubSpot and Pipedrive",
+        title: "Changes Travel in Both Directions",
         meta: "Bidirectional · Automatic Stage Progression",
         body: "Everything a run produces updates the agency's CRM automatically, and changes made in the CRM come back the other way. Pipedrive is the one live in this deployment; the same connector covers HubSpot.",
         bullets: [
@@ -283,17 +283,13 @@ const stages = [
         body: "One surface for the whole operation: what is planned, what has run, and what each agent is carrying.",
         bullets: [
             ["Managing stops being asking:", "Running a brokerage no longer depends on going round the room to find out how it is going."],
+            ["Conversion by source, not just volume:", "Each input is shown with what it actually produced, which is the number that decides where the next advertising pound goes."],
         ],
     },
 ];
 
 const CaseStayte = () => {
     const [lightbox, setLightbox] = useState<number | null>(null);
-
-    /* The lightbox only ever steps through frames that have an asset — otherwise
-       its arrows walk into the slots still waiting for one. */
-    const realShots = shots.filter((s) => s.src || s.video);
-    const lightboxIndexOf = (i: number) => realShots.indexOf(shots[i]);
 
     return (
         <div className="bg-[#F5F3EE] text-foreground min-h-screen">
@@ -538,7 +534,7 @@ const CaseStayte = () => {
                         {/* sources */}
                         {[
                             { y: 30, t: "Manual entry" },
-                            { y: 66, t: "CRM sync" },
+                            { y: 66, t: "Existing CRM" },
                             { y: 102, t: "Facebook ads" },
                             { y: 138, t: "Idealista & aggregators" },
                         ].map((s) => (
@@ -608,7 +604,7 @@ const CaseStayte = () => {
 
                     <div>
                         <p className="text-base font-light text-gray-600 leading-relaxed max-w-xl">
-                            Stages two and three are one screen in practice, and it is the screen the whole system turns on. Each source gets its own sequence — the list shows one per source, including a separate one for Idealista — and each sequence is a graph of steps rather than a setting buried in a form. Inside a step: which channel, how long to wait, whether the AI agent answers replies itself, and which path is taken when nobody answers.
+                            Stage two is this screen, and it is the one the whole system turns on. Each source gets its own sequence — the list shows one per source, including a separate one for Idealista — and each sequence is a graph of steps rather than a setting buried in a form. Inside a step: which channel, how long to wait, whether the AI agent answers replies itself, and which path is taken when nobody answers. How hard to chase, the next stage, is configured elsewhere.
                         </p>
                     </div>
                 </motion.div>
@@ -682,7 +678,7 @@ const CaseStayte = () => {
                                     transition={{ duration: 0.8, delay: shotFirst ? 0 : 0.2 }}
                                     className={shotFirst ? "order-2 lg:order-1 lg:-ml-8" : "lg:col-span-1 lg:-mr-8"}
                                 >
-                                    <ShotFrame shot={shots[i]} onOpen={() => setLightbox(lightboxIndexOf(i))} />
+                                    <ShotFrame shot={shots[i]} onOpen={() => setLightbox(i)} />
                                 </motion.div>
                             </div>
                         </div>
@@ -754,8 +750,8 @@ const CaseStayte = () => {
                         {[
                             {
                                 stat: "7,000+",
-                                label: "Users acquired",
-                                body: "Through the intake and qualification path described above, across every source the system accepts.",
+                                label: "Leads processed",
+                                body: "Taken in from every source the system accepts and carried through routing and qualification, without anyone copying a row by hand.",
                             },
                             {
                                 stat: "~200",
@@ -836,7 +832,7 @@ const CaseStayte = () => {
                 </div>
             </section>
 
-            <Lightbox shots={realShots} index={lightbox} onClose={() => setLightbox(null)} onIndex={setLightbox} />
+            <Lightbox shots={shots} index={lightbox} onClose={() => setLightbox(null)} onIndex={setLightbox} />
         </div>
     );
 };
