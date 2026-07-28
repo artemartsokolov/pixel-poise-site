@@ -59,15 +59,25 @@ const Staged = ({ children }: { children: ReactNode }) => {
     /* The page a session opens on has nothing to be revealed from behind. */
     const [revealing, setRevealing] = useState(() => isPresent && !firstPaint);
 
+    /* Held in a ref so the removal timer can depend on the presence flag and
+       nothing else. framer-motion returns a fresh callback each render, and with
+       it in the dependency array every re-render of this subtree cleared the
+       pending timer and started a fresh 700ms — which is how a translucent copy
+       of the page just left ended up lying on top of the one that arrived. */
+    const remove = useRef(safeToRemove);
+    useEffect(() => { remove.current = safeToRemove; }, [safeToRemove]);
+
     useEffect(() => {
-        if (!isPresent) {
-            const t = setTimeout(() => safeToRemove?.(), TRANSITION_MS);
-            return () => clearTimeout(t);
-        }
-        if (!revealing) return;
+        if (isPresent) return;
+        const t = setTimeout(() => remove.current?.(), TRANSITION_MS);
+        return () => clearTimeout(t);
+    }, [isPresent]);
+
+    useEffect(() => {
+        if (!isPresent || !revealing) return;
         const t = setTimeout(() => setRevealing(false), TRANSITION_MS);
         return () => clearTimeout(t);
-    }, [isPresent, revealing, safeToRemove]);
+    }, [isPresent, revealing]);
 
     if (!isPresent) {
         const scrolledTo = frozenAt.current ?? 0;
@@ -110,15 +120,19 @@ const Staged = ({ children }: { children: ReactNode }) => {
     );
 };
 
-const PageTransition = ({ children }: { children: ReactNode }) => {
-    const location = useLocation();
+/* The black layer both copies sit over, present only while a transition is
+   running — the site's own background is light, and leaving black underneath it
+   permanently would show on every rubber-band overscroll. Driven off the pathname
+   rather than off AnimatePresence's child count, which is not something a parent
+   can read.
 
-    /* The black layer both copies sit over, present only while a transition is
-       running — the site's own background is light, and leaving black underneath
-       it permanently would show on every rubber-band overscroll. Driven off the
-       pathname rather than off AnimatePresence's child count, which is not
-       something a parent can read. */
-    const [dimmed, setDimmed] = useState(false);
+   Its own component with its own state, deliberately. Holding this in
+   PageTransition meant each flip re-rendered AnimatePresence and both copies of
+   the page mid-transition — cheap in itself, but enough to disturb anything
+   downstream that keys off a render. */
+const Backdrop = () => {
+    const { pathname } = useLocation();
+    const [visible, setVisible] = useState(false);
     const mounted = useRef(false);
 
     useEffect(() => {
@@ -126,14 +140,20 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
             mounted.current = true;
             return;
         }
-        setDimmed(true);
-        const t = setTimeout(() => setDimmed(false), TRANSITION_MS);
+        setVisible(true);
+        const t = setTimeout(() => setVisible(false), TRANSITION_MS);
         return () => clearTimeout(t);
-    }, [location.pathname]);
+    }, [pathname]);
+
+    return visible ? <div className="page-backdrop" aria-hidden /> : null;
+};
+
+const PageTransition = ({ children }: { children: ReactNode }) => {
+    const location = useLocation();
 
     return (
         <>
-            {dimmed && <div className="page-backdrop" aria-hidden />}
+            <Backdrop />
             <AnimatePresence initial={false}>
                 {/* A new key is what marks the previous subtree as leaving. */}
                 <Staged key={location.pathname}>{children}</Staged>

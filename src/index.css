@@ -88,9 +88,18 @@ html {
    The easing is the reference's GSAP CustomEase
    "M0,0 C0.38,0.05 0.48,0.58 0.65,0.82 0.82,1 1,1 1,1" — two cubic segments,
    which no single cubic-bezier() can express, sampled into linear() stops. */
+/* visibility is here on purpose, and it is the thing that makes a late removal
+   harmless. The reference deletes its outgoing container the instant its timeline
+   resolves; ours is removed by a timer, and any slippage in that timer used to
+   show as a translucent copy of the page just left lying on top of the one that
+   arrived — once the incoming copy drops back into normal flow, this one wins on
+   z-index. visibility interpolates by a special rule: while either endpoint is
+   visible, every progress between 0 and 1 is visible, so it flips exactly at the
+   end and fill-mode forwards keeps it there. The animation now cleans up after
+   itself instead of trusting React to be on time. */
 @keyframes page-recede {
-  from { transform: translateY(0) scale(1);          opacity: 1; }
-  to   { transform: translateY(-30vh) scale(0.8);    opacity: 0.4; }
+  from { transform: translateY(0) scale(1);          opacity: 1;    visibility: visible; }
+  to   { transform: translateY(-30vh) scale(0.8);    opacity: 0.4;  visibility: hidden; }
 }
 
 @keyframes page-reveal {
