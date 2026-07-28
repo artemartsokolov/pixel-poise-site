@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Calculator, Swords, Moon, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { ArrowLeft } from "lucide-react";
-import { useState } from "react";
 
 /* ── Premium easing curve (matches Hero.tsx) ── */
 const smooth = [0.22, 1, 0.36, 1] as const;
@@ -10,7 +8,6 @@ const smooth = [0.22, 1, 0.36, 1] as const;
 const CaseNavian = () => {
     const challenges = [
         {
-            icon: Calculator,
             letter: "A",
             title: "Taming the Logic",
             subtitle: "The Deal Calculator",
@@ -19,7 +16,6 @@ const CaseNavian = () => {
             result: "A tool that feels as powerful as Excel but is impossible to \"break.\""
         },
         {
-            icon: Swords,
             letter: "B",
             title: "Speed vs. Vanity",
             subtitle: "Leadership Moment",
@@ -28,7 +24,6 @@ const CaseNavian = () => {
             result: "Saved ~40% of frontend resources, launching MVP months earlier."
         },
         {
-            icon: Moon,
             letter: "C",
             title: "The Dual UI",
             subtitle: "Personality Split",
@@ -43,40 +38,6 @@ const CaseNavian = () => {
         { emoji: "⏱", title: "Efficiency", desc: "Reduced report generation from days to minutes." },
         { emoji: "📉", title: "Smart Resources", desc: "MUI decision saved huge amounts of budget and time." },
     ];
-
-    const galleryImages = [
-        { src: "/placeholder-gallery-1.jpg", alt: "Dashboard Overview", caption: "Main Dashboard — Project Pipeline View" },
-        { src: "/placeholder-gallery-2.jpg", alt: "Deal Calculator", caption: "Deal Calculator — Financial Modeling Interface" },
-        { src: "/placeholder-gallery-3.jpg", alt: "Kanban Board", caption: "Kanban Board — Task Management" },
-        { src: "/placeholder-gallery-4.jpg", alt: "Investor Portal", caption: "Investor Portal — Portfolio Tracking" },
-        { src: "/placeholder-gallery-5.jpg", alt: "Bank Tender", caption: "Bank Tender — Comparison View" },
-    ];
-
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [lightboxOpen, setLightboxOpen] = useState(false);
-    const [lightboxIndex, setLightboxIndex] = useState(0);
-    const [activeRole, setActiveRole] = useState(0);
-
-    const roleViews = [
-        { name: "Financier", label: "Financier", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/financier2.jpg" },
-        { name: "Project Manager", label: "PM", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/pm.png" },
-        { name: "Analyst", label: "Analyst", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/analyst2.png" },
-        { name: "Contractor", label: "Contractor", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/tendering-manager2.png" },
-        { name: "Equity Manager", label: "Equity", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/equity-manager2.png" },
-        { name: "Investor", label: "Investor", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/equity-partner-admin2.png" },
-    ];
-
-    const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-    const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
-
-    const openLightbox = (index: number) => {
-        setLightboxIndex(index);
-        setLightboxOpen(true);
-    };
-
-    const closeLightbox = () => setLightboxOpen(false);
-    const nextLightbox = () => setLightboxIndex((prev) => (prev + 1) % galleryImages.length);
-    const prevLightbox = () => setLightboxIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
 
     return (
         <div className="bg-[#F5F3EE] text-foreground min-h-screen">
@@ -207,13 +168,6 @@ const CaseNavian = () => {
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 1.3, duration: 0.6, ease: smooth }}
                             >
-                                <a
-                                    href="#"
-                                    className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#141414] rounded-full text-sm font-medium text-[#141414] hover:bg-[#141414] hover:text-white transition-colors"
-                                >
-                                    Visit Website
-                                    <span className="text-xs">•</span>
-                                </a>
                             </motion.div>
                         </div>
                     </div>

@@ -55,7 +55,7 @@ const Approach = () => {
                         {/* Philosophy Block - Large text, no breaks */}
                         <div>
                             <p className="text-2xl lg:text-3xl font-light text-white leading-[1.4]">
-                                <strong className="font-semibold">10+ years</strong> in <strong className="font-semibold">Complex B2B & Enterprise</strong>. I design the product and write the code that ships it — frontend, backend functions, and the connectors between systems that were never built to talk to each other. The value isn't doing two jobs; it's that the loop between a decision and its consequence collapses to <strong className="font-semibold">an afternoon</strong>.
+                                <strong className="font-semibold">Nine years</strong> in <strong className="font-semibold">Complex B2B & Enterprise</strong>. I design the product and write the code that ships it — frontend, backend functions, and the connectors between systems that were never built to talk to each other. The value isn't doing two jobs; it's that the loop between a decision and its consequence collapses to <strong className="font-semibold">an afternoon</strong>.
                             </p>
                         </div>
 

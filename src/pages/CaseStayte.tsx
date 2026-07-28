@@ -251,7 +251,7 @@ const stages = [
         meta: "WhatsApp API · Preference Signal · Feeds Stage 04",
         body: "The selection goes out over WhatsApp — no app to install, no portal to log into, no email that sits unread. The answer comes back through the same surface: every property in the carousel carries a Like, so the client replies by tapping rather than by writing.",
         bullets: [
-            ["Zero adoption cost:", "The surface with the highest open rate is the one the client did not have to be persuaded to use — and making it the reply channel too means there is nowhere else to go and not bother."],
+            ["Zero adoption cost:", "The surface with the highest open rate is the one the client did not have to be persuaded to use — and making it the reply channel too removes the second surface where a reply goes to die."],
             ["The loop is the product:", "Those taps are not a rating for its own sake. They feed straight back into the selection stage, so the fourth shortlist is meaningfully better than the first. Without the loop this is a scheduler with extra steps."],
             ["Preference beats a brief:", "What someone taps is more honest than what they said they wanted on a form."],
             ["Nurturing is a cadence, not a campaign:", "A lead who is not ready yet stays in a sequence that sends a fresh selection every few days, on an interval the agency sets, until they engage or the sequence ends."],
@@ -284,7 +284,7 @@ const stages = [
         body: "One surface for the whole operation: what is planned, what has run, and what each agent is carrying.",
         bullets: [
             ["Managing stops being asking:", "Running a brokerage no longer depends on going round the room to find out how it is going."],
-            ["Conversion by source, not just volume:", "Each input is shown with what it actually produced, which is the number that decides where the next advertising pound goes."],
+            ["Conversion by source, not just volume:", "Each input is shown with what it actually produced, which is the number that decides where the next advertising euro goes."],
         ],
     },
 ];
@@ -392,7 +392,7 @@ const CaseStayte = () => {
                                     {[
                                         { label: "Role", value: "Design Engineer\n(web product,\ndesign and build)" },
                                         { label: "Target", value: "Brokerage teams (B2B)\nBuyers and investors (B2C)" },
-                                        { label: "Platform", value: "Web OS · Supabase\nMLS API · WhatsApp\nHubSpot · Pipedrive\nTwilio · Vapi" },
+                                        { label: "Platform", value: "Web OS · Supabase\nMLS API · WhatsApp\nFacebook Ads · Pipedrive\nHubSpot · Twilio · Vapi" },
                                     ].map((item, i) => (
                                         <div key={item.label} className="overflow-hidden">
                                             <motion.div
@@ -477,7 +477,7 @@ const CaseStayte = () => {
                         {[
                             { role: "Product Design", desc: "Designed the whole operating surface — intake, the workflow rules, the selection view, the dashboard. Every stage of the run, including the ones that had only ever existed as somebody's habit." },
                             { role: "Frontend Engineering", desc: "Implemented those designs myself. Same person on both sides of the handoff, which is why the shape of the system and the shape of the screens agree with each other." },
-                            { role: "Backend & Integrations", desc: "The Supabase backend and its functions, and every connection underneath: the client's MLS by API key, WhatsApp delivery, two-way sync with HubSpot and Pipedrive, and the voice and messaging providers." },
+                            { role: "Backend & Integrations", desc: "The Supabase backend and its functions, and every connection underneath: the client's MLS by API key, WhatsApp delivery, two-way sync with Pipedrive, on a connector that also covers HubSpot, and the voice and messaging providers." },
                             { role: "Workflow Architecture", desc: "Designed the qualification engine as configuration rather than code — which leads a sequence claims, what it does first, how many attempts, how long between them, and what ends it. The hard part was keeping it operable by someone who is not a programmer." },
                         ].map((item, index) => (
                             <motion.div
@@ -565,7 +565,7 @@ const CaseStayte = () => {
                             </g>
                         ))}
 
-                        {/* feedback loop: Learning (06) back into Selection (04) */}
+                        {/* feedback loop: Delivery & Learning (05) back into Selection (04) */}
                         <path d="M 902 130 L 902 178 L 747 178 L 747 132" fill="none" stroke="#8A8078" strokeWidth="1" strokeDasharray="3 3" markerEnd="url(#arL)" />
                         <text x="825" y="196" textAnchor="middle" fill="#8A8078" fontSize="10">each Like refines the next selection</text>
 

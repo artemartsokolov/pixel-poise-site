@@ -67,7 +67,7 @@ const Hero = () => {
         <div className="w-full lg:w-1/2 relative overflow-hidden flex-1">
           <motion.img
             src={profilePhoto}
-            alt="Product Designer Portrait"
+            alt="Artem Sokolov, Design Engineer"
             className="w-full h-full object-cover object-center"
             initial={{
               scale: 1.3,

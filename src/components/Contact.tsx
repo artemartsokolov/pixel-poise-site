@@ -81,7 +81,7 @@ const Contact = () => {
         {/* Footer */}
         <div className="mt-24 pt-8 border-t border-[#141414]/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm font-light text-[#141414]/50">
-            © 2025 Artem Sokolov. Built with precision.
+            © 2026 Artem Sokolov.
           </p>
 
         </div>

@@ -30,3 +30,9 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Superseded by the Stayte case — kept locally, out of the repo
+src/pages/CaseReviero.tsx
+
+# Generator scaffolding, nothing in src/ uses it
+supabase/

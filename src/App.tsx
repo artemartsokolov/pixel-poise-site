@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CaseNavian from "./pages/CaseNavian";
-import CaseReviero from "./pages/CaseReviero";
 import CaseStayte from "./pages/CaseStayte";
 import CaseFlowHealth from "./pages/CaseFlowHealth";
 import CaseDatox from "./pages/CaseDatox";
@@ -16,9 +15,6 @@ const App = () => (
       <Route path="/" element={<Index />} />
       <Route path="/case/navian" element={<CaseNavian />} />
       <Route path="/case/stayte" element={<CaseStayte />} />
-      {/* Kept reachable by direct link, but no longer listed in Work — Stayte
-          is the same system under its current name. */}
-      <Route path="/case/reviero" element={<CaseReviero />} />
       <Route path="/case/flowhealth" element={<CaseFlowHealth />} />
       <Route path="/case/datox" element={<CaseDatox />} />
       <Route path="/method" element={<Method />} />

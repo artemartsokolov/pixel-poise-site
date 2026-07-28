@@ -1,12 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { RevealWaveImage } from "./RevealWaveImage";
+/* three.js is ~58% of the bundle and this is its only consumer, rendered on
+   desktop only. Splitting it out keeps it off every other route. */
+const RevealWaveImage = lazy(() =>
+  import("./RevealWaveImage").then((m) => ({ default: m.RevealWaveImage })),
+);
 
 /* ── Detect mobile (no hover = no shader benefit) ── */
 const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 1024);
     check();
@@ -16,7 +20,7 @@ const useIsMobile = () => {
   return isMobile;
 };
 
-// Hardcoded case studies with business-focused copy
+
 const caseStudies = [
   {
     id: "datox",
@@ -36,7 +40,7 @@ const caseStudies = [
   },
   {
     id: "navian",
-    title: "Navian OS",
+    title: "Navian",
     description: "Replaced fragmented Excel workflows with a unified B2B SaaS pipeline.",
     year: "2023",
     image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/navianos-1.jpg",
@@ -44,8 +48,8 @@ const caseStudies = [
   },
   {
     id: "flowhealth",
-    title: "Flow Workforce",
-    description: "A safety management platform used by Disney and JPMorgan Chase.",
+    title: "Flow Health",
+    description: "A safety management platform used by Disney and JPMorgan.",
     year: "2023",
     image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/2.png",
     link: "/case/flowhealth",
@@ -66,7 +70,7 @@ const Work = () => {
     <section id="work" className="relative z-10 bg-background px-4 lg:px-6 pt-4 pb-16">
       {/* Case Studies List */}
       <div className="w-full">
-        {caseStudies.map((study, index) => (
+        {caseStudies.map((study) => (
           <motion.div
             key={study.id}
             initial={{ opacity: 0, y: 50 }}
@@ -88,15 +92,27 @@ const Work = () => {
                   className="w-full h-full object-cover object-left lg:object-center"
                 />
               ) : (
-                <RevealWaveImage
-                  src={study.image}
-                  className="w-full h-full"
-                  pixelSize={2}
-                  revealRadius={0.3}
-                  waveSpeed={0.15}
-                  waveAmplitude={0.02}
-                  mouseRadius={1}
-                />
+                <Suspense
+                  fallback={
+                    <img
+                      src={study.image}
+                      alt={study.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                  }
+                >
+                  <RevealWaveImage
+                    src={study.image}
+                    className="w-full h-full"
+                    pixelSize={2}
+                    revealRadius={0.3}
+                    waveSpeed={0.15}
+                    waveAmplitude={0.02}
+                    mouseRadius={1}
+                  />
+                </Suspense>
               )}
 
               {/* Dark gradient overlay at bottom */}

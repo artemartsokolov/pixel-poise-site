@@ -350,7 +350,7 @@ const CaseDatox = () => {
                             { role: "Product Design", desc: "Designed the product surface from scratch — every stage of the reporting workflow, including flows the legacy interface had never covered at all, like manual sheet mapping and cross-period file matching. Each one through stakeholder review before build." },
                             { role: "Frontend Engineering", desc: "Implemented every one of those designs myself. Same person on both sides of the handoff, so design decisions were tested against real data in the browser rather than argued about in a spec." },
                             { role: "Delivery Architecture", desc: "Chose the opt-in model that let a live regulatory product be rebuilt in place. New pages in separate files, legacy untouched and still the default, an in-app toggle between them, and a per-page ErrorBoundary as the blast radius." },
-                            { role: "Interface Infrastructure", desc: "Built CanvasGrid, a canvas-based virtualised data grid, to lift the row ceiling that had forced datasets to be truncated. Designed its contract as deliberately as its behaviour — state through props, no hidden coupling to the page around it, and rendering, theming, schema and formatting split into separately testable modules." },
+                            { role: "Interface Infrastructure", desc: "Built CanvasGrid, a canvas-rendered virtualised grid over the canvas-datagrid library, to lift the row ceiling that had forced datasets to be truncated. Designed its contract as deliberately as its behaviour — state through props, no hidden coupling to the page around it, and rendering, theming, schema and formatting split into separately testable modules." },
                         ].map((item, index) => (
                             <motion.div
                                 key={item.role}
@@ -1002,7 +1002,7 @@ const CaseDatox = () => {
                             <ul className="space-y-4 text-sm text-gray-600">
                                 <li className="flex gap-3">
                                     <span className="text-[#141414]">•</span>
-                                    <span><span className="text-[#141414]">Widget library:</span> Sixteen types — KPI cards, free-style tables, bar, line, scatter, pie, heatmap, treemap and funnel charts, plus headers, text and filters.</span>
+                                    <span><span className="text-[#141414]">Widget library:</span> Sixteen types, among them KPI cards, free-style tables, bar, line, scatter, pie, heatmap, treemap and funnel charts, plus headers, text and filters.</span>
                                 </li>
                                 <li className="flex gap-3">
                                     <span className="text-[#141414]">•</span>

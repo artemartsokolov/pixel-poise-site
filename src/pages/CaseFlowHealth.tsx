@@ -42,7 +42,7 @@ const CaseFlowHealth = () => {
             subtitle: "Cognitive Ergonomics",
             conflict: "Health Executives aren't doctors — they are stressed managers making multi-million dollar decisions under pressure. Showing them raw medical metadata (PCR cycles, viral loads) created \"Analysis Paralysis\" and increased the risk of costly mistakes.",
             solution: "I designed based on \"Cognitive Triage.\" I hid 90% of the medical data, enforcing a strict Binary Signal System (Traffic Light). The UI doesn't just display data; it interprets it, forcing an instant \"Go/No-Go\" decision.",
-            result: "Reduced decision time from minutes to milliseconds, preventing production delays on sets like Stranger Things."
+            result: "Cut the go/no-go decision from minutes of reading lab data to a single glance."
         },
         {
             letter: "B",
@@ -143,7 +143,7 @@ const CaseFlowHealth = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 1.1, duration: 0.7, ease: smooth }}
                             >
-                                <p className="text-sm font-light text-gray-500 mb-3">Trusted by</p>
+                                <p className="text-sm font-light text-gray-500 mb-3">Flow Health's clients</p>
                                 <div className="flex items-center gap-8">
                                     <img src="/logos/netflix.svg" alt="Netflix" className="h-6 w-auto opacity-40" style={{ filter: 'brightness(0)' }} />
                                     <img src="/logos/disney.svg" alt="Disney" className="h-9 w-auto opacity-40" style={{ filter: 'brightness(0)' }} />
@@ -178,7 +178,7 @@ const CaseFlowHealth = () => {
                                 {/* Column 2 */}
                                 <div className="space-y-6">
                                     {[
-                                        { label: "Role", value: "Lead Product Designer (Solo, End-to-End)" },
+                                        { label: "Role", value: "Senior Product Designer (Solo, End-to-End)" },
                                         { label: "End Users", value: "H&S Executives at\nDisney, Netflix, JP Morgan" },
                                         { label: "Platform", value: "Web App (HIPAA-Compliant)\n+ Internal Tools" },
                                     ].map((item, i) => (

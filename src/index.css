@@ -53,3 +53,26 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Salvaged from the unused Vite starter sheet: the in-page nav in Hero.tsx is
+   four anchors, and without this they hard-jump. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* The site's whole argument is motion, which is exactly why it has to be
+   possible to switch off. Framer Motion is handled separately via MotionConfig
+   in App.tsx; this covers CSS transitions, keyframes and the smooth scroll. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

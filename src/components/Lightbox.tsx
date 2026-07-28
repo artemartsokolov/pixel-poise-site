@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -30,6 +30,10 @@ interface LightboxProps {
    the case study lays them out, so the real resolution lives one click away. */
 const Lightbox = ({ shots, index, onClose, onIndex }: LightboxProps) => {
     const isOpen = index !== null;
+    const dialog = useRef<HTMLDivElement>(null);
+    /* Whatever had focus when the overlay opened — the frame that was clicked,
+       usually — so it can be handed back on close instead of dropped on body. */
+    const opener = useRef<HTMLElement | null>(null);
 
     const step = useCallback(
         (delta: number) => {
@@ -42,10 +46,46 @@ const Lightbox = ({ shots, index, onClose, onIndex }: LightboxProps) => {
     useEffect(() => {
         if (!isOpen) return;
 
+        opener.current = document.activeElement as HTMLElement | null;
+        /* Moving focus in is what makes aria-modal true rather than decorative,
+           and it is also what fires onBlur on the frame behind, which is how its
+           hover video stops instead of decoding under an opaque overlay. */
+        dialog.current?.focus();
+
         const onKey = (e: KeyboardEvent) => {
-            if (e.key === "Escape") onClose();
-            if (e.key === "ArrowRight") step(1);
-            if (e.key === "ArrowLeft") step(-1);
+            if (e.key === "Escape") {
+                onClose();
+                return;
+            }
+
+            if (e.key === "Tab") {
+                /* Tab cycles the overlay's own controls. Without this it walks the
+                   case-study frames behind the backdrop, with no visible focus ring. */
+                const focusables = dialog.current?.querySelectorAll<HTMLElement>(
+                    'button, [href], video[controls], [tabindex]:not([tabindex="-1"])',
+                );
+                if (!focusables?.length) return;
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+                const active = document.activeElement;
+
+                if (e.shiftKey && (active === first || active === dialog.current)) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && active === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+                return;
+            }
+
+            /* The lightbox video carries native controls, and those bind the arrow
+               keys to seeking. Stepping the gallery from the same press would both
+               scrub and change shot, so the video wins while it has focus. */
+            if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+                if ((e.target as HTMLElement | null)?.tagName === "VIDEO") return;
+                step(e.key === "ArrowRight" ? 1 : -1);
+            }
         };
         window.addEventListener("keydown", onKey);
 
@@ -56,6 +96,7 @@ const Lightbox = ({ shots, index, onClose, onIndex }: LightboxProps) => {
         return () => {
             window.removeEventListener("keydown", onKey);
             document.body.style.overflow = overflow;
+            opener.current?.focus?.();
         };
     }, [isOpen, onClose, step]);
 
@@ -74,11 +115,10 @@ const Lightbox = ({ shots, index, onClose, onIndex }: LightboxProps) => {
     return createPortal(
         <motion.div
             className="fixed inset-0 z-[100] flex flex-col bg-[#F5F3EE]/95 backdrop-blur-sm"
+                    ref={dialog}
+                    tabIndex={-1}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    /* pointerEvents in exit is the safety net: if the exit animation
-                       stalls (throttled rAF in a background tab), the leftover node stays
-                       click-through instead of deadening the whole page. */
                     transition={{ duration: 0.2 }}
                     onClick={onClose}
                     role="dialog"
