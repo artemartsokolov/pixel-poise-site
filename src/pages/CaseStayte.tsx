@@ -702,18 +702,20 @@ const CaseStayte = () => {
                     <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">The Hardest Problem</h2>
                 </motion.div>
 
-                <div className="max-w-3xl">
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="bg-[#FAFAF8] px-14 py-16 rounded-sm"
-                    >
-                        <h3 className="text-2xl font-normal text-[#141414] mb-2">Every Agency Chases Differently</h3>
-                        <p className="text-sm text-gray-400 mb-10">Workflow design</p>
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="bg-[#FAFAF8] px-14 py-16 rounded-sm"
+                >
+                    <h3 className="text-2xl font-normal text-[#141414] mb-2">Every Agency Chases Differently</h3>
+                    <p className="text-sm text-gray-400 mb-12">Workflow design</p>
 
-                        <div className="space-y-6">
+                    {/* Three columns rather than a stack: at this width a single
+                        column either runs to unreadable line lengths or leaves
+                        most of the page empty. */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16 border-t border-[#141414]/10 pt-10">
                             <div>
                                 <p className="text-sm font-semibold text-[#141414] mb-2">Problem</p>
                                 <p className="text-sm text-gray-500 leading-relaxed">
@@ -732,9 +734,8 @@ const CaseStayte = () => {
                                     An agency changes how it chases leads without anyone touching code, and the difference between a warm Idealista enquiry and a cold Facebook lead stops being an argument and becomes a setting.
                                 </p>
                             </div>
-                        </div>
-                    </motion.div>
-                </div>
+                    </div>
+                </motion.div>
             </section>
 
             {/* ═══ Results ═══ */}
