@@ -16,13 +16,18 @@ const TRANSITION_MS = 700;
    are on public URLs and are reachable directly whatever happens here.
 
    Change it on the line below, or set VITE_ENTRY_CODE in Vercel to override it
-   without touching the source. Any length works — the cells count themselves. */
-const CODE = (import.meta.env.VITE_ENTRY_CODE || "DESIGN").toUpperCase();
+   without touching the source. Any length works — the cells count themselves,
+   though past six they wrap onto a second row on a narrow screen.
+
+   Deliberately a word about nothing: it has to be sayable down a phone line and
+   typed from memory, so no O against 0 and no I against 1, and nothing that hints
+   at what it opens. */
+const CODE = (import.meta.env.VITE_ENTRY_CODE || "ZENITH").toUpperCase();
 
 const REMEMBERED = "sokolovartem.entry";
 
 /* A link can carry the code so the person you sent it to never types anything:
-   sokolovartem.vercel.app/?k=DESIGN opens straight through, while the bare domain
+   sokolovartem.vercel.app/?k=ZENITH opens straight through, while the bare domain
    still asks. The parameter is stripped from the address bar immediately after, so
    it does not survive a screenshot or a copied URL. */
 const CODE_PARAM = "k";
