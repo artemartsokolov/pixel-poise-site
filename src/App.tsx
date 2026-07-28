@@ -9,6 +9,7 @@ import CaseNavian from "./pages/CaseNavian";
 import CaseReviero from "./pages/CaseReviero";
 import CaseFlowHealth from "./pages/CaseFlowHealth";
 import CaseDatox from "./pages/CaseDatox";
+import Method from "./pages/Method";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/case/reviero" element={<CaseReviero />} />
           <Route path="/case/flowhealth" element={<CaseFlowHealth />} />
           <Route path="/case/datox" element={<CaseDatox />} />
+          <Route path="/method" element={<Method />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Maximize2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Maximize2 } from "lucide-react";
 import Lightbox, { type Shot } from "@/components/Lightbox";
 
 /* ── Premium easing curve (matches Hero.tsx) ── */
@@ -1215,6 +1215,13 @@ const CaseDatox = () => {
                         <p className="text-base text-gray-700 leading-relaxed">
                             Everything below is the same architecture described above, read from a different angle. It was not designed as an AI workflow — it turned out to be one.
                         </p>
+                        <Link
+                            to="/method"
+                            className="group inline-flex items-center gap-2 text-sm font-medium text-[#141414] pt-2 hover:gap-3 transition-all"
+                        >
+                            The full version, including what it does not fix
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
                     </div>
                 </motion.div>
 
