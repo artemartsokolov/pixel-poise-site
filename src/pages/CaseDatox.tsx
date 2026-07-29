@@ -1190,47 +1190,66 @@ const CaseDatox = () => {
                 described further up the page and stalled the walkthrough on its way to
                 The Hardest Problem. /method is where they get argued. */}
             <section className="px-8 lg:px-16 py-28 bg-[#D4D0C8]">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <p className="text-xs text-gray-500 tracking-widest uppercase mb-4">Method</p>
-                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414] mb-6">
-                        Getting Production Quality Out of an AI Tool
-                    </h2>
-                    <div className="max-w-2xl space-y-4">
-                        <p className="text-base text-gray-700 leading-relaxed">
-                            I built this with Claude Code, into a product where clients were filing regulatory reports the whole time. The interesting question is not whether an AI tool can write React — it can. It is what you put around it so that being wrong is cheap, and so that "wrong" surfaces in CI or in a toggle rather than in someone's filing.
-                        </p>
-                        <p className="text-base text-gray-700 leading-relaxed">
-                            It was not designed as an AI workflow. The architecture described above turned out to be one.
-                        </p>
-                        <Link
-                            to="/method"
-                            className="group inline-flex items-center gap-2 text-sm font-medium text-[#141414] pt-2 hover:gap-3 transition-all"
-                        >
-                            The full version, including what it does not fix
-                            <ArrowRight className="w-4 h-4" />
-                        </Link>
-                    </div>
-                </motion.div>
+                {/* Label rail on the left, the argument on the right — the same
+                    two-column band as Results below. A tinted full-bleed band with
+                    everything crammed into one narrow left column reads as an
+                    unfinished slab, which is what it became once the cards went. */}
+                <div className="grid grid-cols-1 lg:grid-cols-[160px_1fr] gap-6 lg:gap-24">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <p className="text-xs text-gray-500 tracking-widest uppercase">Method</p>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414] mb-6 max-w-3xl">
+                            Getting Production Quality Out of an AI Tool
+                        </h2>
+                        <div className="max-w-2xl space-y-4">
+                            <p className="text-base text-gray-700 leading-relaxed">
+                                I built this with Claude Code, into a product where clients were filing regulatory reports the whole time. The interesting question is not whether an AI tool can write React — it can. It is what you put around it so that being wrong is cheap, and so that "wrong" surfaces in CI or in a toggle rather than in someone's filing.
+                            </p>
+                            <p className="text-base text-gray-700 leading-relaxed">
+                                It was not designed as an AI workflow. The architecture described above turned out to be one.
+                            </p>
+                            <Link
+                                to="/method"
+                                className="group inline-flex items-center gap-2 text-sm font-medium text-[#141414] pt-2 hover:gap-3 transition-all"
+                            >
+                                The full version, including what it does not fix
+                                <ArrowRight className="w-4 h-4" />
+                            </Link>
+                        </div>
+                    </motion.div>
+                </div>
             </section>
 
-            {/* Key challenge */}
+            {/* Key challenge — heading in the left rail, the card filling the rest.
+                It was a lone card at max-w-3xl hugging the left edge under a heading
+                that spans nothing, which is the same unfinished shape as the band
+                above it. There is one challenge, not a set, so the letter that used
+                to label it is gone too — an "A" with no B is a list with a piece
+                missing rather than a considered single item. */}
             <section className="px-8 lg:px-16 py-28">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-16"
-                >
-                    <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">The Hardest Problem</h2>
-                </motion.div>
+                <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 lg:gap-24">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414]">The Hardest Problem</h2>
+                    </motion.div>
 
-                <div className="max-w-3xl">
+                    <div>
                     {challenges.map((challenge, index) => (
                         <motion.div
                             key={challenge.letter}
@@ -1240,10 +1259,6 @@ const CaseDatox = () => {
                             transition={{ delay: index * 0.15, duration: 0.6 }}
                             className="bg-[#FAFAF8] px-14 py-16 rounded-sm"
                         >
-                            <div className="mb-8">
-                                <span className="text-xs font-medium text-gray-400">{challenge.letter}</span>
-                            </div>
-
                             <h3 className="text-2xl font-normal text-[#141414] mb-2">{challenge.title}</h3>
                             <p className="text-sm text-gray-400 mb-10">{challenge.subtitle}</p>
 
@@ -1263,6 +1278,7 @@ const CaseDatox = () => {
                             </div>
                         </motion.div>
                     ))}
+                    </div>
                 </div>
             </section>
 
