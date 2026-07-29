@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Maximize2, Play } from "lucide-react";
+import { Play } from "lucide-react";
+import ShotBadge from "@/components/ShotBadge";
 import BackLink from "@/components/BackLink";
 import Lightbox, { type Shot } from "@/components/Lightbox";
 import { useFirstPaint } from "@/hooks/useFirstPaint";
@@ -75,10 +76,10 @@ const ShotFrame = ({ shot, onOpen }: { shot: Shot; onOpen: () => void }) => {
                             />
                         </div>
                     </div>
-                    <span className="pointer-events-none absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 rounded-full bg-[#141414]/75 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-sm transition-colors duration-300 group-hover:bg-[#141414]/90">
-                        <Maximize2 className="h-2.5 w-2.5" />
-                        Expand
-                    </span>
+                    <ShotBadge
+                        isVideo={!!shot.video}
+                        className="-bottom-3 left-1/2 -translate-x-1/2 bg-[#141414]/75 group-hover:bg-[#141414]/90"
+                    />
                 </div>
             </div>
         );
@@ -149,10 +150,10 @@ const ShotFrame = ({ shot, onOpen }: { shot: Shot; onOpen: () => void }) => {
                 )}
 
                 {/* Always visible, not hover-only — on touch there is no hover to reveal it. */}
-                <span className="pointer-events-none absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-[#141414]/60 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-sm transition-colors duration-300 group-hover:bg-[#141414]/85">
-                    <Maximize2 className="h-2.5 w-2.5" />
-                    Expand
-                </span>
+                <ShotBadge
+                    isVideo={!!shot.video}
+                    className="bottom-3 right-3 bg-[#141414]/60 group-hover:bg-[#141414]/85"
+                />
             </div>
         </div>
     );
