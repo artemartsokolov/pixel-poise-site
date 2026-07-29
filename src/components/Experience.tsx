@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const experiences = [
   {
     id: "datox",
-    company: "Datox Compliance",
+    company: "Datox",
     location: "UK",
     years: "Feb — Jul 2026",
     position: "Design Engineer",

@@ -24,7 +24,7 @@ const useIsMobile = () => {
 const caseStudies = [
   {
     id: "datox",
-    title: "Datox Compliance",
+    title: "Datox",
     description: "Redesigned and rebuilt the reporting pipeline of a live regulatory SaaS — without a cutover.",
     year: "2026",
     image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/datox/extraction.png",
