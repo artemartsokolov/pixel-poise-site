@@ -1183,14 +1183,18 @@ const CaseDatox = () => {
                 </motion.div>
             </section>
 
-            {/* Method — how AI-assisted code reached production */}
+            {/* Method — how AI-assisted code reached production.
+
+                Three sentences and a link, deliberately. This carried a summary of the
+                six principles as well, which said the same thing as the architecture
+                described further up the page and stalled the walkthrough on its way to
+                The Hardest Problem. /method is where they get argued. */}
             <section className="px-8 lg:px-16 py-28 bg-[#D4D0C8]">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="mb-16"
                 >
                     <p className="text-xs text-gray-500 tracking-widest uppercase mb-4">Method</p>
                     <h2 className="text-3xl lg:text-4xl font-light font-heading text-[#141414] mb-6">
@@ -1201,7 +1205,7 @@ const CaseDatox = () => {
                             I built this with Claude Code, into a product where clients were filing regulatory reports the whole time. The interesting question is not whether an AI tool can write React — it can. It is what you put around it so that being wrong is cheap, and so that "wrong" surfaces in CI or in a toggle rather than in someone's filing.
                         </p>
                         <p className="text-base text-gray-700 leading-relaxed">
-                            Everything below is the same architecture described above, read from a different angle. It was not designed as an AI workflow — it turned out to be one.
+                            It was not designed as an AI workflow. The architecture described above turned out to be one.
                         </p>
                         <Link
                             to="/method"
@@ -1212,54 +1216,6 @@ const CaseDatox = () => {
                         </Link>
                     </div>
                 </motion.div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-10">
-                    {[
-                        {
-                            n: "01",
-                            title: "Contain the blast radius first",
-                            body: "Before any of it was written, the shape was fixed: new pages in their own files, the legacy stack untouched and still the default, an ErrorBoundary around each page. Generated code does not have to be perfect if the worst it can do is break one screen.",
-                        },
-                        {
-                            n: "02",
-                            title: "Ship somewhere being wrong is reversible",
-                            body: "The new interface was opt-in. A page that turned out badly cost a toggle back, not a rollback, not a hotfix, not an incident. That changes how much you can afford to try.",
-                        },
-                        {
-                            n: "03",
-                            title: "Verify against real data, not against the diff",
-                            body: "Reading generated code line by line scales badly and catches the wrong class of error. Running it against the actual quarterly dataset catches what review misses. Designing and building it myself meant that check was immediate rather than a ticket.",
-                        },
-                        {
-                            n: "04",
-                            title: "Put the contract under test",
-                            body: "Where a boundary mattered, a test enforced it — CanvasGrid's modules each testable alone, and a contract test against the library underneath. AI-written code is fine inside a boundary something else is guarding.",
-                        },
-                        {
-                            n: "05",
-                            title: "Keep the deciding human",
-                            body: "Prototypes, review with the analyst who uses the platform daily, then presentation to the team — all before a line of production code. The tool compressed the typing, not the judgement about what to build.",
-                        },
-                        {
-                            n: "06",
-                            title: "Let it change the unit of work",
-                            body: "When implementation stops being the bottleneck, shipping a whole page at a time becomes reasonable, and the design can be corrected in production instead of defended in a spec. That is what made rebuilding the whole product at this pace possible.",
-                        },
-                    ].map((item, i) => (
-                        <motion.div
-                            key={item.n}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.08, duration: 0.6 }}
-                            className="border-t border-[#141414]/20 pt-6"
-                        >
-                            <p className="text-xs text-gray-500 mb-3">{item.n}</p>
-                            <h3 className="text-lg font-normal text-[#141414] mb-2">{item.title}</h3>
-                            <p className="text-sm text-gray-600 leading-relaxed">{item.body}</p>
-                        </motion.div>
-                    ))}
-                </div>
             </section>
 
             {/* Key challenge */}
