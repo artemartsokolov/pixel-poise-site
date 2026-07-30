@@ -8,6 +8,7 @@ import CaseDatox from "./pages/CaseDatox";
 import Method from "./pages/Method";
 import PageTransition from "./components/PageTransition";
 import EntryGate from "./components/EntryGate";
+import Analytics from "./components/Analytics";
 
 /* Routes live in their own component so they can read the location that
    AnimatePresence keys on. `location` is passed to Routes explicitly: without it
@@ -17,17 +18,23 @@ const AnimatedRoutes = () => {
   const location = useLocation();
 
   return (
-    <PageTransition>
-      <Routes location={location}>
-      <Route path="/" element={<Index />} />
-      <Route path="/case/navian" element={<CaseNavian />} />
-      <Route path="/case/stayte" element={<CaseStayte />} />
-      <Route path="/case/flowhealth" element={<CaseFlowHealth />} />
-      <Route path="/case/datox" element={<CaseDatox />} />
-      <Route path="/method" element={<Method />} />
-      <Route path="*" element={<NotFound />} />
-      </Routes>
-    </PageTransition>
+    <>
+      {/* A sibling of PageTransition, not a child of it — AnimatePresence swaps
+          the page content on every route change, and Analytics has to survive
+          that swap rather than remount alongside it. */}
+      <Analytics />
+      <PageTransition>
+        <Routes location={location}>
+        <Route path="/" element={<Index />} />
+        <Route path="/case/navian" element={<CaseNavian />} />
+        <Route path="/case/stayte" element={<CaseStayte />} />
+        <Route path="/case/flowhealth" element={<CaseFlowHealth />} />
+        <Route path="/case/datox" element={<CaseDatox />} />
+        <Route path="/method" element={<Method />} />
+        <Route path="*" element={<NotFound />} />
+        </Routes>
+      </PageTransition>
+    </>
   );
 };
 
