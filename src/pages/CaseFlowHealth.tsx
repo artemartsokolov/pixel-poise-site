@@ -73,7 +73,7 @@ const CaseFlowHealth = () => {
                 {/* Hero Image — Curtain wipe + Ken Burns zoom */}
                 <div className="w-full h-[50vh] bg-[#0A192F] overflow-hidden relative">
                     <motion.img
-                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/222.png"
+                        src="/m/fh/222.png"
                         alt="Flow Health — Enterprise Biosecurity OS"
                         className="w-full h-full object-cover"
                         initial={{ scale: 1.15 }}
@@ -586,8 +586,8 @@ const CaseFlowHealth = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC] relative">
                                     <BrowserSlider alt="The command centre: every employee's clearance state as a single colour, searchable in real time" images={[
-                                        "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/pp-results-filtered-64.png",
-                                        "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/dash.png",
+                                        "/m/fh/pp-results-filtered-64.png",
+                                        "/m/fh/dash.png",
                                     ]} />
                                 </div>
                             </div>
@@ -620,8 +620,8 @@ const CaseFlowHealth = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC] relative">
                                     <BrowserSlider alt="A test result opened up — the underlying lab data behind the traffic-light call" images={[
-                                        "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/vaccination-list.png",
-                                        "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/vaccination2.png",
+                                        "/m/fh/vaccination-list.png",
+                                        "/m/fh/vaccination2.png",
                                     ]} />
                                 </div>
                             </div>
@@ -676,8 +676,8 @@ const CaseFlowHealth = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC] relative">
                                     <BrowserSlider alt="Scheduling and compliance tracking across a production's cast and crew" images={[
-                                        "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/practices-list-2.png",
-                                        "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/practices-list2.png",
+                                        "/m/fh/practices-list-2.png",
+                                        "/m/fh/practices-list2.png",
                                     ]} />
                                 </div>
                             </div>
@@ -710,7 +710,7 @@ const CaseFlowHealth = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC] relative">
                                     <BrowserSlider alt="The reporting view an executive uses to sign off on a shooting day" images={[
-                                        "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/bulk-orders-list.png",
+                                        "/m/fh/bulk-orders-list.png",
                                     ]} />
                                 </div>
                             </div>
@@ -748,12 +748,12 @@ const CaseFlowHealth = () => {
                 <div className="overflow-x-auto scrollbar-hide">
                     <div className="flex gap-6 lg:gap-8 px-8 lg:px-16 pb-4" style={{ minWidth: 'max-content' }}>
                         {[
-                            { label: "Test Results", src: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/results-list.png" },
-                            { label: "Practices", src: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/practices-list.png" },
-                            { label: "Practices Detail", src: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/practices-2list.png" },
-                            { label: "Patient Results", src: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/practices-patients-patient-details-results.png" },
-                            { label: "Kit Orders", src: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/bulk-orders-list-2.png" },
-                            { label: "Results Filters", src: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/fh/results-filters-result.png" },
+                            { label: "Test Results", src: "/m/fh/results-list.png" },
+                            { label: "Practices", src: "/m/fh/practices-list.png" },
+                            { label: "Practices Detail", src: "/m/fh/practices-2list.png" },
+                            { label: "Patient Results", src: "/m/fh/practices-patients-patient-details-results.png" },
+                            { label: "Kit Orders", src: "/m/fh/bulk-orders-list-2.png" },
+                            { label: "Results Filters", src: "/m/fh/results-filters-result.png" },
                         ].map((phone, index) => (
                             <motion.div
                                 key={phone.label}

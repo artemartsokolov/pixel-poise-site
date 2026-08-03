@@ -10,7 +10,7 @@ import { useFirstPaint } from "@/hooks/useFirstPaint";
 /* ── Premium easing curve (matches Hero.tsx) ── */
 const smooth = [0.22, 1, 0.36, 1] as const;
 
-const SHOT_BASE = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero";
+const SHOT_BASE = "/m/reviero";
 
 /* Order here is the order the lightbox steps through, one per stage. */
 const shots: Shot[] = [

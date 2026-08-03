@@ -11,7 +11,7 @@ import { useFirstPaint } from "@/hooks/useFirstPaint";
 const smooth = [0.22, 1, 0.36, 1] as const;
 
 
-const SHOT_BASE = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/datox";
+const SHOT_BASE = "/m/datox";
 
 /* Order here is the order the lightbox steps through. */
 const shots: Shot[] = [

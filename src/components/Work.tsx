@@ -27,7 +27,7 @@ const caseStudies = [
     title: "Datox",
     description: "Redesigned and rebuilt the reporting pipeline of a live regulatory SaaS — without a cutover.",
     year: "2026",
-    image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/datox/extraction.png",
+    image: "/m/datox/extraction.png",
     link: "/case/datox",
   },
   {
@@ -35,7 +35,7 @@ const caseStudies = [
     title: "Stayte",
     description: "Built the operating system a real-estate agency runs on — intake to closed deal, design and code both.",
     year: "2026",
-    image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/reviero/stayte-cover.jpg",
+    image: "/m/reviero/stayte-cover.jpg",
     link: "/case/stayte",
   },
   {
@@ -43,7 +43,7 @@ const caseStudies = [
     title: "Navian",
     description: "Replaced fragmented Excel workflows with a unified B2B SaaS pipeline.",
     year: "2023",
-    image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/navianos-1.jpg",
+    image: "/m/navianos-1.jpg",
     link: "/case/navian",
   },
   {
@@ -51,7 +51,7 @@ const caseStudies = [
     title: "Flow Health",
     description: "A safety management platform used by Disney and JPMorgan.",
     year: "2023",
-    image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/2.png",
+    image: "/m/2.png",
     link: "/case/flowhealth",
   },
 ];

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useHeroScrollEffect } from "@/hooks/useHeroScrollEffect";
 import { useFirstPaint } from "@/hooks/useFirstPaint";
 
-const profilePhoto = "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/me-final.jpg";
+const profilePhoto = "/m/me-final.jpg";
 
 /* ── Premium easing curves ── */
 const smooth = [0.22, 1, 0.36, 1] as const;        // smooth decel

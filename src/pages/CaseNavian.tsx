@@ -13,12 +13,12 @@ const CaseNavian = () => {
     const [activeRole, setActiveRole] = useState(0);
 
     const roleViews = [
-        { name: "Financier", label: "Financier", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/financier2.jpg" },
-        { name: "Project Manager", label: "PM", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/pm.png" },
-        { name: "Analyst", label: "Analyst", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/analyst2.png" },
-        { name: "Contractor", label: "Contractor", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/tendering-manager2.png" },
-        { name: "Equity Manager", label: "Equity", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/equity-manager2.png" },
-        { name: "Investor", label: "Investor", image: "https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/maps/equity-partner-admin2.png" },
+        { name: "Financier", label: "Financier", image: "/m/maps/financier2.jpg" },
+        { name: "Project Manager", label: "PM", image: "/m/maps/pm.png" },
+        { name: "Analyst", label: "Analyst", image: "/m/maps/analyst2.png" },
+        { name: "Contractor", label: "Contractor", image: "/m/maps/tendering-manager2.png" },
+        { name: "Equity Manager", label: "Equity", image: "/m/maps/equity-manager2.png" },
+        { name: "Investor", label: "Investor", image: "/m/maps/equity-partner-admin2.png" },
     ];
 
     const challenges = [
@@ -62,7 +62,7 @@ const CaseNavian = () => {
                 {/* Hero Image — Curtain wipe + Ken Burns zoom */}
                 <div className="w-full h-[50vh] bg-[#C8C4BC] overflow-hidden relative">
                     <motion.img
-                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/navian-top.png"
+                        src="/m/navian-top.png"
                         alt="Navian Dashboard Preview"
                         className="w-full h-full object-cover"
                         initial={{ scale: 1.15 }}
@@ -555,7 +555,7 @@ const CaseNavian = () => {
                     className="rounded-sm overflow-hidden"
                 >
                     <img
-                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/subscripotion.png"
+                        src="/m/subscripotion.png"
                         alt="Subscription & RBAC Architecture"
                         className="w-full h-auto object-contain"
                     />
@@ -634,8 +634,8 @@ const CaseNavian = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC]">
                                     <video
-                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/pm.mp4"
-                                        poster="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/pm-poster.jpg"
+                                        src="/m/pm.mp4"
+                                        poster="/m/pm-poster.jpg"
                                         loop
                                         muted
                                         playsInline
@@ -669,8 +669,8 @@ const CaseNavian = () => {
                                 </div>
                                 <div className="aspect-video bg-white">
                                     <video
-                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/unit-structure-2-1.mp4"
-                                        poster="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/unit-structure-2-1-poster.jpg"
+                                        src="/m/unit-structure-2-1.mp4"
+                                        poster="/m/unit-structure-2-1-poster.jpg"
                                         loop
                                         muted
                                         playsInline
@@ -760,8 +760,8 @@ const CaseNavian = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC]">
                                     <video
-                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/financier.mp4"
-                                        poster="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/financier-poster.jpg"
+                                        src="/m/financier.mp4"
+                                        poster="/m/financier-poster.jpg"
                                         loop
                                         muted
                                         playsInline
@@ -795,8 +795,8 @@ const CaseNavian = () => {
                                 </div>
                                 <div className="aspect-video bg-[#E8E4DC]">
                                     <video
-                                        src="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/partners-demo.mp4"
-                                        poster="https://crvrckpnksobktvqyokp.supabase.co/storage/v1/object/public/portfolio/partners-demo-poster.jpg"
+                                        src="/m/partners-demo.mp4"
+                                        poster="/m/partners-demo-poster.jpg"
                                         loop
                                         muted
                                         playsInline
