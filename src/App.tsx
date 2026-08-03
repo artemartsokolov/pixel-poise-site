@@ -7,7 +7,6 @@ import CaseFlowHealth from "./pages/CaseFlowHealth";
 import CaseDatox from "./pages/CaseDatox";
 import Method from "./pages/Method";
 import PageTransition from "./components/PageTransition";
-import EntryGate from "./components/EntryGate";
 import Analytics from "./components/Analytics";
 
 /* Routes live in their own component so they can read the location that
@@ -41,13 +40,14 @@ const AnimatedRoutes = () => {
 /* Where a route change leaves the scroll is decided inside PageTransition, next to
    the reveal it has to stay in step with — not by a separate component racing it.
 
-   The gate is outside the router, so it covers a deep link to a case as well as the
-   home page, and inside BrowserRouter is unnecessary — it needs no location. */
+   No gate here any more. It used to wrap this tree, which meant the check ran inside
+   a bundle the server had already handed over — the code and every case study were
+   readable in it without ever answering the prompt. The gate now lives in
+   middleware.ts and runs at the edge, so nothing reaches the browser until it has
+   been passed. By the time this renders, the visitor is already through. */
 const App = () => (
   <BrowserRouter>
-    <EntryGate>
-      <AnimatedRoutes />
-    </EntryGate>
+    <AnimatedRoutes />
   </BrowserRouter>
 );
 
