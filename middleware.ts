@@ -11,11 +11,15 @@
    storage paths are all inside that bundle, and none of them leave the server
    until someone has proved they have the code.
 
-   What this still does not cover: files already fetched from Supabase storage
-   keep their public URLs, so anyone who noted one down earlier can still open it
-   directly. Closing that means making the buckets private and signing the URLs —
-   a separate job. The point of this file is that nobody can *discover* those
-   paths any more. */
+   It also stands in front of the media. Every screenshot and screen recording used
+   to be a public Supabase URL, so the gate protected the site but not its contents:
+   a path noted down earlier still returned the file to a bare curl. They are all
+   /m/... now, which lands here, behind the same cookie, and gets signed below.
+
+   The signing lives in this file rather than a function under /api because a
+   function under /api never ran — Vercel served the SPA fallback for it instead —
+   while this middleware demonstrably works. One edge function doing both jobs is
+   also simply less to keep alive. */
 
 export const config = {
     /* Everything except what has to stay reachable for the site to be shareable
@@ -87,12 +91,81 @@ const gate = (wrong: boolean) => `<!doctype html>
 </script>
 </body></html>`;
 
-export default function middleware(request: Request) {
+/* ── Media ──
+
+   Signed and redirected, never proxied. ai-bot.mp4 is 21MB, partners-demo 20MB,
+   financier 19MB, and an edge function may not return anything like that, so
+   streaming the bytes through here would fail on precisely the files most worth
+   protecting. Redirecting also leaves 47MB of media on Supabase's CDN rather than
+   Vercel's bandwidth, and keeps range requests working, which is what <video>
+   needs in order to seek.
+
+   The service key is read from the environment and never enters the bundle. That
+   is the difference between doing this here and doing it in the client: with a key
+   in the browser, anyone through the gate once could keep fetching media forever
+   without it. */
+const SUPABASE_URL = "https://crvrckpnksobktvqyokp.supabase.co";
+const BUCKET = "portfolio";
+const SIGN_TTL = 60 * 60;
+
+const media = async (path: string) => {
+    /* Nothing but the bucket's own files: without this, ".." in a path is an
+       invitation to walk out of the bucket. */
+    if (!path || path.includes("..")) return new Response("Not found", { status: 404 });
+
+    const key = process.env.SUPABASE_SERVICE_KEY;
+
+    /* No key configured yet. While the bucket is still public the public URL is the
+       same file, so fall through to it rather than leave the site with no images.
+       Once the bucket is private this stops resolving, which is the correct
+       failure — by then a missing key is a misconfiguration, not a sequencing gap. */
+    if (!key) {
+        return new Response(null, {
+            status: 302,
+            headers: {
+                Location: `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${path}`,
+                "Cache-Control": "no-store",
+            },
+        });
+    }
+
+    const signed = await fetch(`${SUPABASE_URL}/storage/v1/object/sign/${BUCKET}/${path}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ expiresIn: SIGN_TTL }),
+    });
+
+    if (!signed.ok) {
+        return new Response("Not found", { status: signed.status === 400 ? 404 : 502 });
+    }
+
+    const { signedURL } = (await signed.json()) as { signedURL: string };
+
+    return new Response(null, {
+        status: 302,
+        headers: {
+            Location: `${SUPABASE_URL}/storage/v1${signedURL}`,
+            /* Comfortably inside the signature's own life, so a cached redirect can
+               never hand back a URL that has already expired. */
+            "Cache-Control": `private, max-age=${SIGN_TTL - 600}`,
+        },
+    });
+};
+
+export default async function middleware(request: Request) {
     const url = new URL(request.url);
     const cookies = request.headers.get("cookie") ?? "";
+    const inside = cookies.split(/;\s*/).includes(`${COOKIE}=${CODE}`);
+
+    /* Media is checked after the cookie and before anything else, so a screenshot
+       is exactly as private as the page that shows it. */
+    if (url.pathname.startsWith("/m/")) {
+        if (!inside) return new Response("Not found", { status: 404 });
+        return media(url.pathname.slice(3));
+    }
 
     /* Already let in on a previous request. */
-    if (cookies.split(/;\s*/).includes(`${COOKIE}=${CODE}`)) return;
+    if (inside) return;
 
     const supplied = url.searchParams.get("k");
 
