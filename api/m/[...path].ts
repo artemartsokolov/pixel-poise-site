@@ -29,17 +29,31 @@ const SIGN_TTL = 60 * 60;
 const REDIRECT_CACHE = SIGN_TTL - 600;
 
 export default async function handler(request: Request) {
-    const key = process.env.SUPABASE_SERVICE_KEY;
-    if (!key) {
-        return new Response("Media signing is not configured", { status: 500 });
-    }
-
     const path = new URL(request.url).pathname.replace(/^\/(api\/)?m\//, "");
 
     /* Nothing but the bucket's own files. Without this, "../" in a path is an
        invitation to walk out of the bucket. */
     if (!path || path.includes("..")) {
         return new Response("Not found", { status: 404 });
+    }
+
+    const key = process.env.SUPABASE_SERVICE_KEY;
+
+    /* No key configured yet. While the bucket is still public the public URL is
+       the same file, so fall through to it rather than leaving the site with no
+       images: this route went live before the environment variable did, and a
+       window of broken screenshots would be a worse outcome than a day of the old
+       behaviour. Once the bucket is private this path stops resolving, which is
+       the correct failure — by then a missing key is a misconfiguration, not a
+       sequencing gap. */
+    if (!key) {
+        return new Response(null, {
+            status: 302,
+            headers: {
+                Location: `${SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${path}`,
+                "Cache-Control": "no-store",
+            },
+        });
     }
 
     const signed = await fetch(`${SUPABASE_URL}/storage/v1/object/sign/${BUCKET}/${path}`, {
