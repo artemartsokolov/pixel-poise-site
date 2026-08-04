@@ -39,3 +39,5 @@ supabase/
 
 # Incremental build state, rewritten by every `tsc --build`
 *.tsbuildinfo
+.vercel
+.env*
