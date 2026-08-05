@@ -166,6 +166,17 @@
             margin-bottom: 12px;
         }
 
+        .section-cream .work-status {
+            color: #BBB;
+        }
+
+        .work-status {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            margin-bottom: 10px;
+        }
+
         .summary {
             font-size: 12px;
             color: #444;
@@ -225,14 +236,21 @@
         .experience-item {
             display: grid;
             grid-template-columns: 140px 1fr 140px;
+            /* Columns are placed explicitly so the DOM can carry the job title
+               directly after the company, where a parser expects it, while the
+               page keeps the title on the right. */
             gap: 24px;
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #C5C0B8;
         }
 
         .experience-item:last-child {
             border-bottom: none;
         }
+
+        .experience-item > .company-info  { grid-column: 1; }
+        .experience-item > .position-info  { grid-column: 3; }
+        .experience-item > .description    { grid-column: 2; grid-row: 1; }
 
         .company-info h3 {
             font-size: 12px;
@@ -279,6 +297,14 @@
             font-weight: 400;
         }
 
+        .section-heading {
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
         /* Competencies Section */
         .competencies-section {
             margin-bottom: 0;
@@ -287,8 +313,8 @@
         .skills-category {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
         .skills-category:last-of-type {
@@ -305,12 +331,12 @@
         .skills-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .skill-tag {
             display: inline-block;
-            padding: 6px 14px;
+            padding: 4px 12px;
             background: #E8E4DD;
             color: #1A1A1A;
             border-radius: 0;
@@ -343,6 +369,18 @@
         }
 
         /* Two columns for skills and education */
+        .edu-school {
+            font-size: 11px;
+            font-weight: 600;
+            color: #1A1A1A;
+        }
+
+        .edu-detail {
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+        }
+
         .two-columns {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -388,10 +426,10 @@
             <div class="header-left">
                 <div>
                     <h1>Artem Sokolov</h1>
-                    <p class="title">Design Engineer</p>
+                    <p class="title">Design Engineer <span class="work-status">&middot; Spain, no visa sponsorship needed</span></p>
                     <p class="summary">
                         Specializing in complex B2B SaaS and data-heavy interfaces. I design the product and ship the
-                        production code myself, building with Claude Code into products that cannot afford to break.
+                        production code myself, in React and TypeScript, building with Claude Code into products that cannot afford to break.
                         Nine years across Fintech, PropTech, RegTech, and Enterprise.
                     </p>
                 </div>
@@ -409,100 +447,101 @@
         </header>
 
         <section class="section-beige">
+            <h2 class="section-heading">Experience</h2>
             <div class="experience-item">
                 <div class="company-info">
                     <h3>Datox <span class="location">UK</span></h3>
-                    <p class="years">Feb — Jul 2026</p>
-                </div>
-                <div class="description">
-                    <strong>Redesigned and rebuilt</strong> a live regulatory reporting platform: the whole workflow from
-                    raw source files to a filed report, including stages the legacy product never had. Implemented and
-                    wired to the backend myself, shipped behind an opt-in toggle while clients kept filing to the regulator.
+                    <p class="years">Feb 2026 — Jul 2026</p>
                 </div>
                 <div class="position-info">
                     <p class="role">Design Engineer</p>
                     <p class="note">Temporary contract</p>
                 </div>
-            </div>
+            <div class="description">
+                    <strong>Redesigned and rebuilt</strong> a live regulatory reporting platform: the whole workflow from
+                    raw source files to a filed report, including stages the legacy product never had. Implemented and
+                    wired to the backend myself, shipped behind an opt-in toggle while clients kept filing to the regulator.
+                </div>
+                </div>
 
             <div class="experience-item">
                 <div class="company-info">
                     <h3>Stayte <span class="location">ex-Reviero · EU</span></h3>
-                    <p class="years">2024 — Feb 2026</p>
-                </div>
-                <div class="description">
-                    <strong>Designed and built</strong> the web product: frontend, Supabase
-                    backend, and the connectors to HubSpot, Pipedrive, Facebook, Twilio and Vapi. Plus a
-                    <strong>node-based editor</strong> letting the Head of Sales program the AI agents without a developer.
+                    <p class="years">Jan 2024 — Feb 2026</p>
                 </div>
                 <div class="position-info">
                     <p class="role">Design Engineer</p>
                     <p class="note">Navian Group</p>
                 </div>
-            </div>
+            <div class="description">
+                    <strong>Designed and built</strong> the web product: frontend, Supabase
+                    backend, and the connectors to HubSpot, Pipedrive, Facebook, Twilio and Vapi. Plus a
+                    <strong>node-based editor</strong> letting the Head of Sales program the AI agents without a developer.
+                </div>
+                </div>
 
             <div class="experience-item">
                 <div class="company-info">
                     <h3>Navian <span class="location">EU</span></h3>
-                    <p class="years">2023 — 2024</p>
-                </div>
-                <div class="description">
-                    Enterprise SaaS. Engineered a <strong>Capital Lifecycle OS</strong>, mapping a
-                    <strong>9-role permission matrix</strong> (RBAC) for Developers, Banks, and Investors.
+                    <p class="years">Jan 2023 — Dec 2024</p>
                 </div>
                 <div class="position-info">
                     <p class="role">Lead Product Designer</p>
                     <p class="note">Navian Group</p>
                 </div>
-            </div>
+            <div class="description">
+                    Enterprise SaaS. Engineered a <strong>Capital Lifecycle OS</strong>, mapping a
+                    <strong>9-role permission matrix</strong> (RBAC) for Developers, Banks, and Investors.
+                </div>
+                </div>
 
             <div class="experience-item">
                 <div class="company-info">
                     <h3>Flow Health <span class="location">USA</span></h3>
-                    <p class="years">2021 — 2023</p>
-                </div>
-                <div class="description">
-                    Enterprise biosecurity platform used by <strong>Disney</strong>, <strong>Netflix</strong>,
-                    <strong>JPMorgan</strong> — medical data into a traffic-light command centre for 50k+ staff on set.
+                    <p class="years">Jan 2021 — Dec 2023</p>
                 </div>
                 <div class="position-info">
                     <p class="role">Senior Product Designer</p>
                     <p class="note">Solo, End-to-End</p>
                 </div>
-            </div>
+            <div class="description">
+                    Enterprise biosecurity platform used by <strong>Disney</strong>, <strong>Netflix</strong>,
+                    <strong>JPMorgan</strong> — medical data into a traffic-light command centre for 50k+ staff on set.
+                </div>
+                </div>
 
             <div class="experience-item">
                 <div class="company-info">
                     <h3>Propetly <span class="location">UK</span></h3>
-                    <p class="years">2019 — 2021</p>
+                    <p class="years">Jan 2019 — Dec 2021</p>
                 </div>
-                <div class="description">
+                <div class="position-info">
+                    <p class="role">Product Designer</p>
+                </div>
+            <div class="description">
                     UK PropTech startup. Architected <strong>Real-Time Auction Bidding</strong> engines and
                     <strong>Market Intelligence</strong> tools for property traders.
                 </div>
-                <div class="position-info">
-                    <p class="role">Product Designer</p>
                 </div>
-            </div>
 
             <div class="experience-item">
                 <div class="company-info">
-                    <h3>Its.agency <span class="location">Russia</span></h3>
-                    <p class="years">2017 — 2019</p>
-                </div>
-                <div class="description">
-                    Agency environment. Delivered <strong>12+ turnkey MVPs</strong> — FinTech admin panels and SaaS
-                    marketplaces, zero-to-launch.
+                    <h3>Its.agency</h3>
+                    <p class="years">Jan 2017 — Dec 2019</p>
                 </div>
                 <div class="position-info">
                     <p class="role">Product Designer</p>
                 </div>
-            </div>
+            <div class="description">
+                    Agency environment. Delivered <strong>12+ turnkey MVPs</strong> — FinTech admin panels and SaaS
+                    marketplaces, zero-to-launch.
+                </div>
+                </div>
         </section>
 
         <!-- Competencies Section -->
         <section class="competencies-section section-dark">
-            <h2>Competencies</h2>
+            <h2>Skills</h2>
 
             <div class="skills-tags">
                 <span class="skill-tag">Product Discovery</span>
@@ -534,12 +573,22 @@
                 <span class="skill-tag">Cursor</span>
             </div>
 
-            <!-- Languages -->
-            <div class="languages-section-inner">
-                <h2>Languages</h2>
-                <div class="languages-inline">
-                    <span>English — Professional Working Proficiency</span>
-                    <span>Russian — Native</span>
+            <!-- Education and Languages, side by side: the page has no room for
+                 another full-width section, and Languages was one short line with
+                 half a page of nothing next to it. -->
+            <div class="languages-section-inner two-columns">
+                <div>
+                    <h2>Education</h2>
+                    <div class="edu">
+                        <p class="edu-school">Saint Petersburg State University</p>
+                        <p class="edu-detail">Faculty of Journalism &mdash; Design of Periodicals</p>
+                    </div>
+                </div>
+                <div>
+                    <h2>Languages</h2>
+                    <div class="languages-inline">
+                        <span>English &mdash; Fluent</span>
+                    </div>
                 </div>
             </div>
         </section>
